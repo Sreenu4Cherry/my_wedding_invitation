@@ -3,141 +3,777 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wedding Invitation | Sreenu & Charita</title>
+    <title>Sreenu & Charita | Wedding Invitation</title>
+    <!-- Google Fonts for typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
-            --primary-color: #8b0000;
-            --accent-color: #d4af37;
-            --bg-color: #fffdf9;
-            --text-color: #333333;
+            --primary: #800020; /* Royal Maroon */
+            --gold: #D4AF37;    /* Metallic Gold */
+            --gold-light: #F9E79F;
+            --bg-cream: #FFFDF5;
+            --text-dark: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
             text-align: center;
         }
 
-        .container {
+        /* --- FLOWER PETALS ANIMATION --- */
+        .petal {
+            position: fixed;
+            background-color: #ffb7c5;
+            border-radius: 15px 0 15px 0;
+            opacity: 0.7;
+            pointer-events: none;
+            z-index: 999;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0.2;
+            }
+        }
+
+        /* --- ENVELOPE / OPENING SCREEN --- */
+        #envelope-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #4a0011, #800020);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+        }
+
+        .envelope-card {
+            background: #fffdf5;
+            border: 3px solid var(--gold);
+            border-radius: 15px;
+            padding: 40px 20px;
+            width: 85%;
+            max-width: 400px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            cursor: pointer;
+            animation: pulse 2s infinite;
+        }
+
+        .monogram {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .tap-text {
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 15px;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+            100% { transform: scale(1); }
+        }
+
+        /* --- MAIN INVITATION CONTENT --- */
+        #main-content {
+            display: none;
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         header {
-            margin-top: 40px;
+            margin-top: 20px;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 5px;
+        .sub-heading {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: var(--gold);
         }
 
-        p.sub-title {
-            font-size: 1.2rem;
-            color: var(--accent-color);
-            font-weight: bold;
+        h1.title {
+            font-family: 'Cinzel Decorative', serif;
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin: 10px 0;
+        }
+
+        .couple-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin: 20px 0;
+            line-height: 1.2;
+        }
+
+        .couple-names span {
+            display: block;
+            font-size: 2rem;
+            color: var(--gold);
+        }
+
+        .parents-info {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* --- COUNTDOWN TIMER --- */
+        .countdown-section {
+            background: linear-gradient(135deg, var(--primary), #5a0017);
+            color: white;
+            padding: 25px 15px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .countdown-title {
+            font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            color: var(--gold-light);
+            margin-bottom: 15px;
         }
 
-        .names {
-            margin: 40px 0;
+        .timer {
+            display: flex;
+            justify-content: space-around;
         }
 
-        .names h2 {
-            font-size: 2rem;
-            margin: 10px 0;
-            color: var(--primary-color);
+        .time-box {
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            border-radius: 8px;
+            min-width: 60px;
+            border: 1px solid var(--gold);
         }
 
-        .names span {
+        .time-box span {
+            display: block;
             font-size: 1.5rem;
-            color: var(--accent-color);
+            font-weight: bold;
+            color: var(--gold-light);
+        }
+
+        .time-box label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+        }
+
+        /* --- EVENT CARDS --- */
+        .section-heading {
+            font-family: 'Cinzel Decorative', serif;
+            color: var(--primary);
+            margin: 40px 0 20px;
+            font-size: 1.5rem;
         }
 
         .event-card {
             background: #ffffff;
-            border: 1px solid #f0e6d2;
+            border: 1px solid #e0d0b0;
             border-radius: 12px;
             padding: 20px;
-            margin: 20px 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            text-align: left;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
         }
 
-        .event-card h3 {
-            color: var(--primary-color);
-            margin-top: 0;
-            font-size: 1.4rem;
-            border-bottom: 2px solid var(--accent-color);
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 6px; height: 100%;
+            background: var(--gold);
+        }
+
+        .event-title {
+            font-family: 'Cinzel Decorative', serif;
+            color: var(--primary);
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .event-date {
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+        }
+
+        .event-quote {
+            font-style: italic;
+            font-size: 0.85rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .btn {
             display: inline-block;
-            padding-bottom: 5px;
+            padding: 10px 18px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 10px;
+            margin-top: 10px;
+            border: 1px solid var(--gold);
+            transition: 0.3s;
         }
 
-        .event-details {
-            font-size: 1.1rem;
-            line-height: 1.6;
+        .btn:hover {
+            background: var(--gold);
+            color: var(--primary);
         }
 
         footer {
-            margin-top: 40px;
-            margin-bottom: 20px;
-            font-size: 0.9rem;
-            color: #777;
+            margin: 40px 0 20px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2rem;
+            color: var(--primary);
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <!-- Petals Container -->
+    <div id="petals-container"></div>
+
+    <!-- Cover / Envelope -->
+    <div id="envelope-container" onclick="openInvitation()">
+        <div class="envelope-card">
+            <div class="monogram">S & C</div>
+            <p style="font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: var(--primary);">Wedding Invitation</p>
+            <div class="tap-text">💌 Tap to Open</div>
+        </div>
+    </div>
+
+    <!-- Main Invitation Page -->
+    <div id="main-content">
         <header>
-            <p class="sub-title">Together with our families</p>
-            <h1>Wedding Invitation</h1>
+            <p class="sub-heading">Together with their families</p>
+            <h1 class="title">Request the Honor of Your Presence</h1>
         </header>
 
-        <section class="names">
-            <h2>B. Sreenivasulu</h2>
+        <div class="couple-names">
+            B. Sreenu
             <span>&</span>
-            <h2>K. Charitha</h2>
-        </section>
+            K. Charita
+        </div>
 
-        <p>Invite you to celebrate our special days</p>
+        <div class="parents-info">
+            <p>S/o B. Sreenivasulu | D/o K. Charitha</p>
+        </div>
 
-        <!-- Haldi -->
-        <div class="event-card">
-            <h3>Haldi Ceremony</h3>
-            <div class="event-details">
-                <p><strong>Date:</strong> August 22nd</p>
-                <p><strong>Time:</strong> 9:00 AM onwards</p>
+        <!-- Countdown Section -->
+        <div class="countdown-section">
+            <div class="countdown-title">Counting Down to the Muhurtham</div>
+            <div class="timer">
+                <div class="time-box"><span id="days">00</span><label>Days</label></div>
+                <div class="time-box"><span id="hours">00</span><label>Hours</label></div>
+                <div class="time-box"><span id="minutes">00</span><label>Mins</label></div>
+                <div class="time-box"><span id="seconds">00</span><label>Secs</label></div>
             </div>
         </div>
 
-        <!-- Reception -->
+        <h2 class="section-heading">The Festivities</h2>
+
+        <!-- Event 1: Haldi -->
         <div class="event-card">
-            <h3>Reception</h3>
-            <div class="event-details">
-                <p><strong>Date:</strong> August 22nd</p>
-                <p><strong>Time:</strong> 7:00 PM onwards</p>
-            </div>
+            <div class="event-title">Haldi Ceremony</div>
+            <div class="event-date">Thursday, 22nd August 2026 | 9:00 AM Onwards</div>
+            <p class="event-quote">"Turmeric, laughter, and the very first blessings."</p>
+            <a href="https://maps.google.com" target="_blank" class="btn">📍 Venue & Directions</a>
         </div>
 
-        <!-- Wedding Ceremony -->
+        <!-- Event 2: Reception -->
         <div class="event-card">
-            <h3>Wedding Ceremony</h3>
-            <div class="event-details">
-                <p><strong>Date:</strong> August 23rd (Early Morning)</p>
-                <p><strong>Time:</strong> 4:00 AM – 5:00 AM</p>
-            </div>
+            <div class="event-title">Reception</div>
+            <div class="event-date">Thursday, 22nd August 2026 | 7:00 PM Onwards</div>
+            <p class="event-quote">"An evening of celebration, dining, and joy."</p>
+            <a href="https://maps.google.com" target="_blank" class="btn">📍 Venue & Directions</a>
+        </div>
+
+        <!-- Event 3: Wedding -->
+        <div class="event-card">
+            <div class="event-title">Wedding Ceremony (Muhurtham)</div>
+            <div class="event-date">Friday, 23rd August 2026 | Early Morning 4:00 AM - 5:00 AM</div>
+            <p class="event-quote">"Two lives, two hearts, joined together in friendship and love."</p>
+            <a href="https://maps.google.com" target="_blank" class="btn">📍 Venue & Directions</a>
         </div>
 
         <footer>
-            <p>We look forward to celebrating with you!</p>
+            We look forward to celebrating with you!
         </footer>
     </div>
 
+    <script>
+        // Open Envelope Animation
+        function openInvitation() {
+            const envelope = document.getElementById('envelope-container');
+            const content = document.getElementById('main-content');
+            
+            envelope.style.transform = 'translateY(-100vh)';
+            envelope.style.opacity = '0';
+            
+            setTimeout(() => {
+                envelope.style.display = 'none';
+                content.style.display = 'block';
+                createPetals();
+            }, 600);
+        }
+
+        // Falling Flower Petals Logic
+        function createPetals() {
+            const container = document.getElementById('petals-container');
+            for (let i = 0; i < 25; i++) {
+                const petal = document.createElement('div');
+                petal.classList.add('petal');
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.animationDuration = Math.random() * 3 + 4 + 's';
+                petal.style.width = Math.random() * 10 + 10 + 'px';
+                petal.style.height = petal.style.width;
+                container.appendChild(petal);
+            }
+        }
+
+        // Countdown Timer Logic (Target: August 23, 2026, 04:00:00)
+        const weddingDate = new Date("August 23, 2026 04:00:00").getTime();
+
+        const timerInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (10Here is an upgraded, interactive single-file `index.html` code designed to match that rich Indian wedding aesthetic. 
+
+It includes:
+- **Envelope / Cover Screen**: Displays monogram **S & C** with a "Tap to Open" button.
+- **Falling Flower Petals Animation**: Smooth CSS animation running across the page.
+- **Countdown Timer**: Automatically calculates time remaining until August 22, 2026.
+- **Festivities & Events**: Cards for Haldi, Reception, and Muhurtham with placeholders for image cards.
+- **Venue Directions**: Google Maps button ready for your custom link.
+
+---
+
+### Updated Code (`index.html`)
+
+Replace the full content of your `index.html` on GitHub with this code:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sreenu & Charita | Wedding Invitation</title>
+    <link href="[https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap](https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap)" rel="stylesheet">
+    <style>
+        :root {
+            --maroon: #6A0B12;
+            --gold: #D4AF37;
+            --cream: #FFFDF8;
+            --dark-gold: #B38F28;
+            --text-dark: #333333;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            text-align: center;
+        }
+
+        /* --- Falling Petals Animation --- */
+        .petals-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            background: #ffb7c5;
+            border-radius: 150% 0 150% 0;
+            opacity: 0.7;
+            animation: animate-petal 10s linear infinite;
+        }
+
+        @keyframes animate-petal {
+            0% {
+                top: -10%;
+                transform: translateX(0) rotate(0deg);
+            }
+            100% {
+                top: 110%;
+                transform: translateX(100px) rotate(360deg);
+            }
+        }
+
+        /* --- Cover Overlay (Envelope Screen) --- */
+        #cover-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #4a050a 0%, var(--maroon) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            color: var(--gold);
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+            padding: 20px;
+        }
+
+        .monogram {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .cover-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+        }
+
+        .cover-subtitle {
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            color: #f1d382;
+        }
+
+        .open-btn {
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-family: 'Cinzel', serif;
+            border-radius: 30px;
+            cursor: pointer;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .open-btn:hover {
+            background: var(--gold);
+            color: var(--maroon);
+        }
+
+        /* --- Main Content --- */
+        .content-container {
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+
+        .header-sub {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--dark-gold);
+            margin-bottom: 10px;
+        }
+
+        .main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--maroon);
+            margin-bottom: 30px;
+        }
+
+        .couple-names {
+            margin: 20px 0;
+        }
+
+        .couple-names h2 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: var(--maroon);
+            line-height: 1.1;
+        }
+
+        .couple-names span {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            display: block;
+            margin: 5px 0;
+        }
+
+        /* --- Countdown Banner --- */
+        .countdown-section {
+            background: var(--maroon);
+            color: var(--gold);
+            padding: 20px 10px;
+            border-radius: 12px;
+            margin: 30px 0;
+            box-shadow: 0 6px 15px rgba(106, 11, 18, 0.2);
+        }
+
+        .countdown-title {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            color: #f1d382;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .timer-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .timer-num {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .timer-label {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        /* --- Event Cards --- */
+        .section-heading {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--maroon);
+            margin: 40px 0 20px;
+            border-bottom: 1px solid var(--gold);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .event-card {
+            background: #ffffff;
+            border: 1px solid #f0e2be;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 25px;
+            text-align: left;
+            position: relative;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .event-card h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--maroon);
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .event-time {
+            color: var(--dark-gold);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+
+        .event-desc {
+            font-size: 0.85rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* --- Venue & Directions --- */
+        .venue-btn {
+            display: inline-block;
+            background: var(--maroon);
+            color: var(--gold);
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-top: 15px;
+            box-shadow: 0 4px 10px rgba(106, 11, 18, 0.2);
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Petals Effect -->
+    <div class="petals-container" id="petals"></div>
+
+    <!-- Envelope Cover -->
+    <div id="cover-screen">
+        <div class="monogram">S & C</div>
+        <div class="cover-title">Sreenu & Charita</div>
+        <div class="cover-subtitle">Are Getting Married</div>
+        <button class="open-btn" onclick="openInvitation()">Tap to Open</button>
+    </div>
+
+    <!-- Main Invitation Page -->
+    <div class="content-container">
+        <p class="header-sub">Together With Their Families</p>
+        <h1 class="main-title">Save The Date</h1>
+
+        <div class="couple-names">
+            <h2>B. Sreenu</h2>
+            <span>&</span>
+            <h2>K. Charita</h2>
+        </div>
+
+        <!-- Countdown -->
+        <div class="countdown-section">
+            <div class="countdown-title">Counting Down To The Muhurtham</div>
+            <div class="timer">
+                <div class="timer-box"><span class="timer-num" id="days">00</span><span class="timer-label">Days</span></div>
+                <div class="timer-box"><span class="timer-num" id="hours">00</span><span class="timer-label">Hours</span></div>
+                <div class="timer-box"><span class="timer-num" id="mins">00</span><span class="timer-label">Mins</span></div>
+                <div class="timer-box"><span class="timer-num" id="secs">00</span><span class="timer-label">Secs</span></div>
+            </div>
+        </div>
+
+        <!-- Events List -->
+        <h2 class="section-heading">The Festivities</h2>
+
+        <div class="event-card">
+            <h3>Haldi Ceremony</h3>
+            <div class="event-time">August 22, 2026 • 9:00 AM Onwards</div>
+            <p class="event-desc">"Turmeric, laughter, and the very first blessings."</p>
+        </div>
+
+        <div class="event-card">
+            <h3>Reception</h3>
+            <div class="event-time">August 22, 2026 • 7:00 PM Onwards</div>
+            <p class="event-desc">"An evening of celebration, music, and joy."</p>
+        </div>
+
+        <div class="event-card">
+            <h3>Wedding Ceremony (Muhurtham)</h3>
+            <div class="event-time">August 23, 2026 • 4:00 AM – 5:00 AM</div>
+            <p class="event-desc">"Two hands, two hearts, joined in love forever."</p>
+        </div>
+
+        <!-- Venue Link -->
+        <h2 class="section-heading">Location</h2>
+        <p style="font-size: 0.9rem; margin-bottom: 10px;">We look forward to welcoming you at our venue!</p>
+        <!-- Replace YOUR_GOOGLE_MAPS_LINK below with your actual Google Maps URL -->
+        <a href="[https://maps.google.com](https://maps.google.com)" target="_blank" class="venue-btn">📍 Get Directions</a>
+
+        <footer>
+            <p>Warmly Invited By Sreenu & Charita</p>
+        </footer>
+    </div>
+
+    <script>
+        // Open Invitation Action
+        function openInvitation() {
+            document.getElementById('cover-screen').style.transform = 'translateY(-100%)';
+        }
+
+        // Countdown Script
+        const weddingDate = new Date("August 23, 2026 04:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            if (distance < 0) {
+                clearInterval(timer);
+                document.querySelector(".countdown-section").innerHTML = "<h3>The Special Day is Here!</h3>";
+                return;
+            }
+
+            document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById("mins").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            document.getElementById("secs").innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
+        }, 1000);
+
+        // Petals Script
+        const petalsContainer = document.getElementById('petals');
+        for (let i = 0; i < 20; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + '%';
+            petal.style.width = (Math.random() * 10 + 10) + 'px';
+            petal.style.height = (Math.random() * 10 + 10) + 'px';
+            petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            petal.style.animationDelay = (Math.random() * 5) + 's';
+            petalsContainer.appendChild(petal);
+        }
+    </script>
 </body>
 </html>

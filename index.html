@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sreenu & Charita | Wedding Invitation</title>
-    <!-- Google Fonts for Indian aesthetic typography -->
+    <title>Sreenu & Charitha | Wedding Invitation</title>
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
     <style>
@@ -45,10 +45,10 @@
 
         .petal {
             position: absolute;
-            background: #ffb7c5;
+            background: linear-gradient(135deg, #ffb7c5, #ff69b4);
             border-radius: 150% 0 150% 0;
-            opacity: 0.7;
-            animation: animate-petal 8s linear infinite;
+            opacity: 0.75;
+            animation: animate-petal 7s linear infinite;
         }
 
         @keyframes animate-petal {
@@ -58,7 +58,7 @@
             }
             100% {
                 top: 110%;
-                transform: translateX(80px) rotate(360deg);
+                transform: translateX(120px) rotate(360deg);
             }
         }
 
@@ -67,8 +67,8 @@
             position: fixed;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
             background: linear-gradient(135deg, #4a050a 0%, var(--maroon) 100%);
             display: flex;
             flex-direction: column;
@@ -86,38 +86,64 @@
             border: 2px solid var(--gold);
             border-radius: 16px;
             padding: 40px 25px;
-            width: 85%;
-            max-width: 360px;
+            width: 90%;
+            max-width: 400px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             display: flex;
             flex-direction: column;
             align-items: center;
-            animation: float-pulse 2s infinite ease-in-out;
+            animation: float-pulse 2.5s infinite ease-in-out;
         }
 
         @keyframes float-pulse {
             0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-5px) scale(1.02); }
+            50% { transform: translateY(-6px) scale(1.02); }
         }
 
-        .monogram {
-            font-family: 'Cinzel', serif;
-            font-size: 2.8rem;
-            color: var(--maroon);
-            border: 2px solid var(--gold);
-            border-radius: 50%;
-            width: 90px;
-            height: 90px;
+        /* Heart Shape Monogram Container */
+        .heart-wrapper {
+            position: relative;
+            width: 110px;
+            height: 100px;
+            margin-bottom: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 15px;
-            background-color: #FFFDF8;
+        }
+
+        .heart-shape {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: var(--maroon);
+            clip-path: path('M 50,30 A 25,25 0 0,0 0,30 C 0,60 50,90 50,90 C 50,90 100,60 100,30 A 25,25 0 0,0 50,30 Z');
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .heart-border {
+            position: absolute;
+            width: 106%;
+            height: 106%;
+            background: var(--gold);
+            clip-path: path('M 50,30 A 25,25 0 0,0 0,30 C 0,60 50,90 50,90 C 50,90 100,60 100,30 A 25,25 0 0,0 50,30 Z');
+            z-index: 0;
+        }
+
+        .monogram-text {
+            position: relative;
+            z-index: 2;
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--gold);
+            padding-bottom: 10px;
         }
 
         .cover-title {
             font-family: 'Great Vibes', cursive;
-            font-size: 2.2rem;
+            font-size: 2.3rem;
             color: var(--maroon);
             margin-bottom: 5px;
         }
@@ -136,16 +162,16 @@
             text-transform: uppercase;
         }
 
-        /* --- Main Mobile Content --- */
+        /* --- Fully Responsive Main Content --- */
         .content-container {
             width: 100%;
-            max-width: 480px;
+            max-width: 650px; /* Adapts cleanly on desktop & laptop */
             margin: 0 auto;
-            padding: 25px 20px;
+            padding: 30px 20px;
         }
 
         .header-sub {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--dark-gold);
@@ -154,7 +180,7 @@
 
         .main-title {
             font-family: 'Cinzel', serif;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             color: var(--maroon);
             margin-bottom: 20px;
         }
@@ -165,24 +191,31 @@
 
         .couple-names h2 {
             font-family: 'Great Vibes', cursive;
-            font-size: 3.2rem;
+            font-size: 3.5rem;
             color: var(--maroon);
             line-height: 1.1;
         }
 
         .couple-names span {
             font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--gold);
             display: block;
             margin: 5px 0;
         }
 
-        /* --- Countdown Banner --- */
+        .parents-info {
+            font-size: 0.9rem;
+            color: #555;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        /* --- Dynamic Timer Banner --- */
         .countdown-section {
             background: var(--maroon);
             color: var(--gold);
-            padding: 20px 10px;
+            padding: 22px 15px;
             border-radius: 12px;
             margin: 25px 0;
             box-shadow: 0 6px 15px rgba(106, 11, 18, 0.2);
@@ -190,40 +223,43 @@
         }
 
         .countdown-title {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 12px;
             color: #f1d382;
+            font-weight: 600;
         }
 
         .timer {
             display: flex;
             justify-content: space-around;
+            max-width: 400px;
+            margin: 0 auto;
         }
 
         .timer-box {
             display: flex;
             flex-direction: column;
-            min-width: 55px;
+            min-width: 60px;
         }
 
         .timer-num {
             font-family: 'Cinzel', serif;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 700;
         }
 
         .timer-label {
-            font-size: 0.65rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            opacity: 0.8;
+            opacity: 0.85;
         }
 
         /* --- Event Cards --- */
         .section-heading {
             font-family: 'Cinzel', serif;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
             color: var(--maroon);
             margin: 35px 0 15px;
             border-bottom: 2px solid var(--gold);
@@ -235,7 +271,7 @@
             background: #ffffff;
             border: 1px solid #f0e2be;
             border-radius: 12px;
-            padding: 18px;
+            padding: 20px;
             margin-bottom: 20px;
             text-align: left;
             position: relative;
@@ -246,44 +282,58 @@
         .event-card h3 {
             font-family: 'Cinzel', serif;
             color: var(--maroon);
-            font-size: 1.15rem;
+            font-size: 1.2rem;
             margin-bottom: 4px;
         }
 
         .event-time {
             color: var(--dark-gold);
             font-weight: 600;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             margin-bottom: 8px;
         }
 
         .event-desc {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: #666;
             font-style: italic;
         }
 
-        /* --- Venue & Directions --- */
+        /* --- Venue & Directions Button --- */
         .venue-btn {
             display: block;
             width: 100%;
+            max-width: 320px;
+            margin: 15px auto 0;
             background: var(--maroon);
             color: var(--gold);
             text-decoration: none;
             padding: 14px 20px;
             border-radius: 25px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 600;
-            margin-top: 15px;
             box-shadow: 0 4px 10px rgba(106, 11, 18, 0.2);
             border: 1px solid var(--gold);
+            transition: all 0.3s;
+        }
+
+        .venue-btn:hover {
+            background: var(--gold);
+            color: var(--maroon);
         }
 
         footer {
             margin-top: 40px;
             font-family: 'Great Vibes', cursive;
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: var(--maroon);
+        }
+
+        /* Laptop & Larger Screen Adjustments */
+        @media (min-width: 768px) {
+            .couple-names h2 { font-size: 4.5rem; }
+            .main-title { font-size: 2.2rem; }
+            .content-container { padding: 40px; }
         }
     </style>
 </head>
@@ -295,14 +345,20 @@
     <!-- Envelope / Cover Screen -->
     <div id="cover-screen" onclick="openInvitation()">
         <div class="envelope-card">
-            <div class="monogram">S & C</div>
+            <!-- Heart Monogram -->
+            <div class="heart-wrapper">
+                <div class="heart-border"></div>
+                <div class="heart-shape">
+                    <span class="monogram-text">S & C</span>
+                </div>
+            </div>
             <div class="cover-title">Wedding Invitation</div>
-            <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">Sreenu & Charita</p>
+            <p style="font-size: 0.85rem; color: #888; margin-top: 5px;">Sreenu & Charitha</p>
             <div class="tap-btn">💌 Tap to Open</div>
         </div>
     </div>
 
-    <!-- Main Mobile Invitation Content -->
+    <!-- Main Responsive Invitation Content -->
     <div class="content-container">
         <p class="header-sub">Together With Their Families</p>
         <h1 class="main-title">Request The Honor Of Your Presence</h1>
@@ -310,16 +366,17 @@
         <div class="couple-names">
             <h2>B. Sreenu</h2>
             <span>&</span>
-            <h2>K. Charita</h2>
+            <h2>K. Charitha</h2>
         </div>
 
-        <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">
-            S/o B. Sreenivasulu &nbsp;|&nbsp; D/o K. Charitha
-        </p>
+        <div class="parents-info">
+            <p><strong>B. Sreenu</strong> S/o B. Ramanjulu & B. LakshmiDevi</p>
+            <p><strong>K. Charitha</strong> D/o K. L. Narayana & K. Padmavati</p>
+        </div>
 
-        <!-- Countdown Banner -->
+        <!-- Dynamic Timer Section -->
         <div class="countdown-section">
-            <div class="countdown-title">Counting Down To Muhurtham</div>
+            <div class="countdown-title" id="timer-title">Counting Down To Muhurtham</div>
             <div class="timer">
                 <div class="timer-box"><span class="timer-num" id="days">00</span><span class="timer-label">Days</span></div>
                 <div class="timer-box"><span class="timer-num" id="hours">00</span><span class="timer-label">Hours</span></div>
@@ -352,11 +409,10 @@
         <!-- Venue Directions Button -->
         <h2 class="section-heading">Venue & Location</h2>
         <p style="font-size: 0.85rem; color: #555; margin-bottom: 10px;">We look forward to celebrating with you!</p>
-        <!-- Replace href link with your exact Google Maps location -->
         <a href="https://maps.google.com" target="_blank" class="venue-btn">📍 Get Venue Directions</a>
 
         <footer>
-            Warmly Invited By Sreenu & Charita
+            Warmly Invited By Sreenu & Charitha
         </footer>
     </div>
 
@@ -371,35 +427,38 @@
             }, 800);
         }
 
-        // Countdown Timer Logic
-        const weddingDate = new Date("August 23, 2026 04:00:00").getTime();
+        // Target Date: Aug 23, 2026 at 06:00:00
+        const weddingTargetDate = new Date("August 23, 2026 06:00:00").getTime();
 
         const timer = setInterval(function() {
             const now = new Date().getTime();
-            const distance = weddingDate - now;
+            let diff = weddingTargetDate - now;
+            const timerTitle = document.getElementById("timer-title");
 
-            if (distance < 0) {
-                clearInterval(timer);
-                document.querySelector(".countdown-section").innerHTML = "<h3 style='color:var(--gold)'>The Wedding Day is Here!</h3>";
-                return;
+            if (diff <= 0) {
+                // Time passed: count UP instead
+                timerTitle.innerText = "Been Together Since";
+                diff = Math.abs(diff);
+            } else {
+                timerTitle.innerText = "Counting Down To Muhurtham";
             }
 
-            document.getElementById("days").innerText = Math.floor(distance / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-            document.getElementById("hours").innerText = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-            document.getElementById("mins").innerText = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-            document.getElementById("secs").innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
+            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
 
-        // Falling Petals Generator
+        // Generate 50 Petals
         const petalsContainer = document.getElementById('petals');
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < 50; i++) {
             const petal = document.createElement('div');
             petal.className = 'petal';
             petal.style.left = Math.random() * 100 + '%';
-            petal.style.width = (Math.random() * 8 + 8) + 'px';
-            petal.style.height = (Math.random() * 8 + 8) + 'px';
-            petal.style.animationDuration = (Math.random() * 4 + 5) + 's';
-            petal.style.animationDelay = (Math.random() * 4) + 's';
+            petal.style.width = (Math.random() * 10 + 8) + 'px';
+            petal.style.height = (Math.random() * 10 + 8) + 'px';
+            petal.style.animationDuration = (Math.random() * 5 + 4) + 's';
+            petal.style.animationDelay = (Math.random() * 5) + 's';
             petalsContainer.appendChild(petal);
         }
     </script>

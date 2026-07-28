@@ -110,6 +110,7 @@
             object-fit: cover;
         }
 
+        /* Love Heart Badge replacing S&C */
         .heart-badge {
             width: 38px;
             height: 38px;
@@ -119,12 +120,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            color: var(--gold);
-            font-size: 0.85rem;
-            font-weight: 700;
+            color: #E25865;
+            font-size: 1.2rem;
             margin: 0 -18px;
             z-index: 2;
-            font-family: 'Cinzel', serif;
             box-shadow: 0 2px 6px rgba(0,0,0,0.3);
         }
 
@@ -264,22 +263,20 @@
             touch-action: none;
         }
 
-        .reveal-image {
-            width: 100%; height: 100%; object-fit: cover;
-            position: absolute; top: 0; left: 0;
+        /* Revealed Full Image Container */
+        .reveal-image-container {
+            width: 100%; height: 100%; position: absolute; top: 0; left: 0;
+            background: #222;
         }
 
-        .reveal-placeholder-art {
-            width: 100%; height: 100%; position: absolute; top: 0; left: 0;
-            display: flex; flex-direction: column; justify-content: center;
-            align-items: center; text-align: center; padding: 20px;
-            background: linear-gradient(135deg, #fffdf8 0%, #ffedd5 100%);
+        .reveal-image {
+            width: 100%; height: 100%; object-fit: cover; display: block;
         }
 
         .modal-scratch-canvas {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             cursor: pointer; z-index: 5;
-            touch-action: none; /* Crucial fix: prevents screen scroll while rubbing */
+            touch-action: none;
         }
 
         .modal-instruction {
@@ -294,20 +291,19 @@
 
     <div class="petals-container" id="petals"></div>
 
-    <!-- Envelope Cover Screen -->
+    <!-- Cover Screen -->
     <div id="cover-screen">
         <div class="envelope-card">
             <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.6rem; color: var(--royal-maroon);">Wedding Invitation</h2>
             
-            <!-- Couple Photos Placeholders -->
+            <!-- Couple Photos Frame with Heart Symbol -->
             <div class="couple-photos-container">
                 <div class="photo-frame">
-                    <!-- Groom Photo Placeholder -->
                     <img src="images/groom-photo.jpg" alt="Sreenu" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'95\' height=\'95\' viewBox=\'0 0 95 95\'><rect width=\'95\' height=\'95\' fill=\'%23e5cd93\'/><text x=\'50%\' y=\'55%\' font-size=\'14\' font-family=\'Montserrat\' fill=\'%236A0B12\' text-anchor=\'middle\'>Sreenu</text></svg>';">
                 </div>
-                <div class="heart-badge">S&C</div>
+                <!-- Heart Badge replacing S&C -->
+                <div class="heart-badge">♥</div>
                 <div class="photo-frame">
-                    <!-- Bride Photo Placeholder -->
                     <img src="images/bride-photo.jpg" alt="Charitha" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'95\' height=\'95\' viewBox=\'0 0 95 95\'><rect width=\'95\' height=\'95\' fill=\'%23e5cd93\'/><text x=\'50%\' y=\'55%\' font-size=\'14\' font-family=\'Montserrat\' fill=\'%236A0B12\' text-anchor=\'middle\'>Charitha</text></svg>';">
                 </div>
             </div>
@@ -452,19 +448,14 @@
     <div class="modal-overlay" id="scratch-modal">
         <div class="close-modal-btn" onclick="closeScratchModal()">✕</div>
         <div class="scratch-modal-box">
-            <!-- Hidden Revealed Content Under Canvas -->
-            <div class="reveal-placeholder-art" id="modal-art-content">
-                <img id="reveal-img-src" class="reveal-image" src="" alt="Revealed Invite Card" onerror="this.style.display='none';">
-                <div id="reveal-text-content">
-                    <div style="font-size: 3rem;" id="modal-emoji">🌼</div>
-                    <h2 style="font-family: 'Cinzel', serif; color: var(--royal-maroon); margin-top: 10px;" id="modal-title">Haldi Ceremony</h2>
-                    <p style="font-size: 0.85rem; color: #555; margin-top: 6px;" id="modal-sub">Mangala Snanam & Festivities</p>
-                </div>
+            <!-- Full Inside Revealed Image -->
+            <div class="reveal-image-container">
+                <img id="reveal-img-src" class="reveal-image" src="" alt="Revealed Event Card" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'300\' height=\'420\' viewBox=\'0 0 300 420\'><rect width=\'300\' height=\'420\' fill=\'%23fffbf0\'/><text x=\'50%\' y=\'50%\' font-size=\'16\' font-family=\'Montserrat\' fill=\'%236A0B12\' text-anchor=\'middle\'>Event Photo Here</text></svg>';">
             </div>
             <!-- Scratch Canvas Top Layer -->
             <canvas id="modal-canvas" class="modal-scratch-canvas" width="300" height="420"></canvas>
         </div>
-        <div class="modal-instruction">👈 Rub screen to reveal invite card 👉</div>
+        <div class="modal-instruction">👈 Rub screen to reveal event image 👉</div>
     </div>
 
     <script>
@@ -516,28 +507,16 @@
 
         const eventData = {
             'haldi': {
-                title: 'Haldi Ceremony',
-                sub: 'Mangala Snanam & Turmeric Joy',
-                emoji: '🌼',
                 img: 'haldi-reveal.jpg',
-                scratchColor: '#E5B80B',
-                scratchText: 'RUB FOR HALDI'
+                scratchColor: '#E5B80B'
             },
             'reception': {
-                title: 'Grand Reception',
-                sub: 'An Evening of Celebrations',
-                emoji: '✨',
                 img: 'reception-reveal.jpg',
-                scratchColor: '#C84B61',
-                scratchText: 'RUB FOR RECEPTION'
+                scratchColor: '#C84B61'
             },
             'muhurtham': {
-                title: 'Auspicious Muhurtham',
-                sub: 'Holy Matrimony',
-                emoji: '💍',
                 img: 'muhurtham-reveal.jpg',
-                scratchColor: '#D4AF37',
-                scratchText: 'RUB FOR MUHURTHAM'
+                scratchColor: '#D4AF37'
             }
         };
 
@@ -548,39 +527,26 @@
             // Lock background page scrolling
             document.body.classList.add('modal-open');
 
-            // Set content under scratch layer
-            document.getElementById('modal-title').innerText = data.title;
-            document.getElementById('modal-sub').innerText = data.sub;
-            document.getElementById('modal-emoji').innerText = data.emoji;
-            
+            // Set revealed inside photo image
             const imgElem = document.getElementById('reveal-img-src');
-            imgElem.style.display = 'block';
             imgElem.src = data.img;
 
-            // Reset and draw scratch layer canvas
+            // Reset canvas layer without overlay text
             ctx.globalCompositeOperation = 'source-over';
             ctx.fillStyle = data.scratchColor;
             ctx.fillRect(0, 0, modalCanvas.width, modalCanvas.height);
-
-            // Add gold overlay style & text
-            ctx.fillStyle = '#FFFFFF';
-            ctx.font = 'bold 16px Montserrat';
-            ctx.textAlign = 'center';
-            ctx.fillText(data.scratchText, modalCanvas.width / 2, modalCanvas.height / 2);
 
             modal.classList.add('active');
         }
 
         function closeScratchModal() {
             modal.classList.remove('active');
-            // Unlock background page scrolling
             document.body.classList.remove('modal-open');
         }
 
         function scratch(e) {
             if (!isDrawing) return;
             
-            // Prevent default touch movement/scrolling
             if (e.cancelable) e.preventDefault();
 
             const rect = modalCanvas.getBoundingClientRect();
@@ -601,7 +567,7 @@
         modalCanvas.addEventListener('mousemove', scratch);
         window.addEventListener('mouseup', () => { isDrawing = false; });
 
-        // Touch Events for Mobile (with strict event handling)
+        // Touch Events for Mobile
         modalCanvas.addEventListener('touchstart', (e) => { 
             isDrawing = true; 
             if (e.cancelable) e.preventDefault();

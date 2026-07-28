@@ -81,7 +81,7 @@
             text-align: center;
         }
 
-        /* Couple Photo Display Frame (Enlarged & Face-Centered) */
+        /* Couple Photo Display Frame */
         .couple-photos-container {
             display: flex;
             align-items: center;
@@ -108,7 +108,12 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center 20%; /* Centers on faces perfectly */
+        }
+
+        /* Positions groom & bride photos to keep top of hair fully visible */
+        .photo-frame img.groom-img,
+        .photo-frame img.bride-img {
+            object-position: center top !important;
         }
 
         /* Love Heart Badge */
@@ -299,15 +304,14 @@
             <!-- Couple Photos Frame -->
             <div class="couple-photos-container">
                 <div class="photo-frame">
-                    <img src="images/groom-photo1.jpeg" alt="Sreenu" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'130\' height=\'130\' viewBox=\'0 0 130 130\'><rect width=\'130\' height=\'130\' fill=\'%23e5cd93\'/><text x=\'50%\' y=\'55%\' font-size=\'16\' font-family=\'Montserrat\' fill=\'%236A0B12\' text-anchor=\'middle\'>Sreenu</text></svg>';">
+                    <img class="groom-img" src="images/groom-photo.jpg" alt="Sreenu" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'130\' height=\'130\' viewBox=\'0 0 130 130\'><rect width=\'130\' height=\'130\' fill=\'%23e5cd93\'/><text x=\'50%\' y=\'55%\' font-size=\'16\' font-family=\'Montserrat\' fill=\'%236A0B12\' text-anchor=\'middle\'>Sreenu</text></svg>';">
                 </div>
                 <div class="heart-badge">♥</div>
                 <div class="photo-frame">
-                    <img src="images/bride-photo.jpg" alt="Cherry" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'130\' height=\'130\' viewBox=\'0 0 130 130\'><rect width=\'130\' height=\'130\' fill=\'%23e5cd93\'/><text x=\'50%\' y=\'55%\' font-size=\'16\' font-family=\'Montserrat\' fill=\'%236A0B12\' text-anchor=\'middle\'>Cherry</text></svg>';">
+                    <img class="bride-img" src="images/bride-photo.jpg" alt="Cherry" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'130\' height=\'130\' viewBox=\'0 0 130 130\'><rect width=\'130\' height=\'130\' fill=\'%23e5cd93\'/><text x=\'50%\' y=\'55%\' font-size=\'16\' font-family=\'Montserrat\' fill=\'%236A0B12\' text-anchor=\'middle\'>Cherry</text></svg>';">
                 </div>
             </div>
 
-            <!-- Name updated on Tap to Open page -->
             <p style="font-size: 0.95rem; font-weight: 600; color: var(--royal-maroon); margin-bottom: 5px;">Sreenu & Cherry</p>
             <button class="tap-btn" onclick="openInvitation()">💌 Tap To Open</button>
         </div>
@@ -323,7 +327,6 @@
         <!-- Couple Banner -->
         <div class="couple-card">
             <div class="couple-names">
-                <!-- Names updated inside as requested -->
                 <h2>B. Sreenivasulu</h2>
                 <p class="parent-subtext">S/o B. Ramanjulu & B. LakshmiDevi</p>
                 <div class="ampersand">&</div>
@@ -525,14 +528,11 @@
             const data = eventData[eventType];
             if (!data) return;
 
-            // Lock background page scrolling
             document.body.classList.add('modal-open');
 
-            // Set revealed inside photo image
             const imgElem = document.getElementById('reveal-img-src');
             imgElem.src = data.img;
 
-            // Reset canvas layer without overlay text
             ctx.globalCompositeOperation = 'source-over';
             ctx.fillStyle = data.scratchColor;
             ctx.fillRect(0, 0, modalCanvas.width, modalCanvas.height);

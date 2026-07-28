@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sreenu & Charitha | Royal Wedding Invitation</title>
-    <!-- Google Fonts for Royal Indian Aesthetic -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700&family=Great+Vibes&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>Sreenu & Charitha | Wedding Celebration</title>
+    
+    <!-- Google Fonts for Luxury Aesthetic -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --royal-maroon: #58060C;
-            --deep-maroon: #3d0207;
+            --royal-maroon: #6A0B12;
             --gold: #D4AF37;
-            --gold-light: #FDF3C7;
+            --gold-light: #FBF4E2;
             --cream: #FFFDF8;
             --dark-gold: #B38F28;
-            --text-dark: #2A2A2A;
+            --text-dark: #333333;
+            --text-muted: #666666;
         }
 
         * {
@@ -26,349 +27,199 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             background-color: var(--cream);
             color: var(--text-dark);
             overflow-x: hidden;
-            text-align: center;
         }
 
-        /* --- Falling Petals Animation --- */
+        /* --- Falling Petals --- */
         .petals-container {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 99;
-            overflow: hidden;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 99; overflow: hidden;
         }
 
         .petal {
             position: absolute;
             background: linear-gradient(135deg, #ffb7c5, #e05275);
             border-radius: 150% 0 150% 0;
-            opacity: 0.75;
+            opacity: 0.7;
             animation: animate-petal 7s linear infinite;
         }
 
         @keyframes animate-petal {
-            0% {
-                top: -10%;
-                transform: translateX(0) rotate(0deg);
-            }
-            100% {
-                top: 110%;
-                transform: translateX(120px) rotate(360deg);
-            }
+            0% { top: -10%; transform: translateX(0) rotate(0deg); }
+            100% { top: 110%; transform: translateX(100px) rotate(360deg); }
         }
 
-        /* --- Cover Overlay (Envelope Screen) --- */
+        /* --- Envelope Cover --- */
         #cover-screen {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: radial-gradient(circle, var(--royal-maroon) 0%, var(--deep-maroon) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            color: var(--gold);
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: radial-gradient(circle, #58060c 0%, #350206 100%);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 1000; color: var(--gold);
             transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
-            padding: 20px;
-            cursor: pointer;
+            padding: 20px; cursor: pointer;
         }
 
         .envelope-card {
             background: var(--cream);
-            border: 3px double var(--gold);
-            outline: 1px solid var(--gold);
+            border: 2px solid var(--gold);
             border-radius: 16px;
             padding: 40px 25px;
-            width: 90%;
-            max-width: 380px;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.6), 0 0 15px rgba(212, 175, 55, 0.2);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            animation: float-pulse 2.5s infinite ease-in-out;
+            width: 90%; max-width: 380px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+            display: flex; flex-direction: column; align-items: center;
+            text-align: center;
         }
 
-        @keyframes float-pulse {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-6px) scale(1.02); }
-        }
-
-        /* Heart Shape Monogram Container */
         .heart-wrapper {
-            position: relative;
-            width: 110px;
-            height: 100px;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: relative; width: 100px; height: 90px; margin-bottom: 15px;
+            display: flex; justify-content: center; align-items: center;
         }
 
         .heart-shape {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: var(--royal-maroon);
+            position: absolute; width: 100%; height: 100%; background: var(--royal-maroon);
             clip-path: path('M 50,30 A 25,25 0 0,0 0,30 C 0,60 50,90 50,90 C 50,90 100,60 100,30 A 25,25 0 0,0 50,30 Z');
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: flex; justify-content: center; align-items: center;
         }
 
         .heart-border {
-            position: absolute;
-            width: 106%;
-            height: 106%;
-            background: var(--gold);
+            position: absolute; width: 106%; height: 106%; background: var(--gold);
             clip-path: path('M 50,30 A 25,25 0 0,0 0,30 C 0,60 50,90 50,90 C 50,90 100,60 100,30 A 25,25 0 0,0 50,30 Z');
-            z-index: 0;
         }
 
         .monogram-text {
-            position: relative;
-            z-index: 2;
-            font-family: 'Cinzel Decorative', serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--gold);
-            padding-bottom: 8px;
-        }
-
-        .cover-title {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.5rem;
-            color: var(--royal-maroon);
-            margin-bottom: 5px;
+            position: relative; z-index: 2; font-family: 'Cinzel', serif;
+            font-size: 1.2rem; font-weight: 700; color: var(--gold); padding-bottom: 8px;
         }
 
         .tap-btn {
-            background: var(--royal-maroon);
-            color: var(--gold);
-            border: 1px solid var(--gold);
-            padding: 10px 24px;
-            font-size: 0.85rem;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            border-radius: 25px;
-            letter-spacing: 1.5px;
-            margin-top: 15px;
-            text-transform: uppercase;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            background: var(--royal-maroon); color: var(--gold);
+            border: 1px solid var(--gold); padding: 10px 24px;
+            font-size: 0.8rem; font-weight: 600; border-radius: 25px;
+            letter-spacing: 1.5px; margin-top: 15px; text-transform: uppercase;
         }
 
-        /* --- Main Responsive Content --- */
-        .content-container {
-            width: 100%;
-            max-width: 650px;
-            margin: 0 auto;
-            padding: 30px 20px;
+        /* --- Main Layout --- */
+        .container {
+            width: 100%; max-width: 680px; margin: 0 auto; padding: 40px 20px;
         }
 
-        .header-sub {
-            font-size: 0.85rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            color: var(--dark-gold);
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
+        .header-section { text-align: center; margin-bottom: 30px; }
+        .sub-title { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--dark-gold); margin-bottom: 10px; font-weight: 600; }
+        .main-heading { font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--royal-maroon); letter-spacing: 1px; }
 
-        .main-title {
-            font-family: 'Cinzel Decorative', serif;
-            font-size: 1.6rem;
-            color: var(--royal-maroon);
-            margin-bottom: 25px;
-            line-height: 1.3;
-        }
-
-        /* --- Couple Block with Underlined Parent Names --- */
         .couple-card {
-            background: #ffffff;
-            border: 2px solid var(--gold);
-            border-radius: 15px;
-            padding: 30px 20px;
+            background: #ffffff; border: 1px solid #e8d7ad; border-radius: 16px;
+            padding: 30px 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             margin-bottom: 30px;
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.15);
-            position: relative;
         }
 
-        .couple-names h2 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.8rem;
-            color: var(--royal-maroon);
-            line-height: 1;
-            margin-bottom: 2px;
+        .couple-names h2 { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: var(--royal-maroon); line-height: 1; }
+        .parent-subtext { font-size: 0.8rem; color: var(--text-muted); margin: 6px 0 15px; }
+        .ampersand { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--gold); font-weight: 700; margin: 5px 0; }
+
+        /* --- Countdown --- */
+        .countdown-banner {
+            background: var(--royal-maroon); color: var(--gold);
+            padding: 20px; border-radius: 14px; text-align: center;
+            border: 1px solid var(--gold); margin-bottom: 40px;
+        }
+        .countdown-title { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; color: #f3dfa2; }
+        .timer { display: flex; justify-content: space-around; max-width: 360px; margin: 0 auto; }
+        .timer-num { font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 700; color: #ffffff; }
+        .timer-label { font-size: 0.65rem; text-transform: uppercase; opacity: 0.8; }
+
+        /* --- Timeline & Interactive Cards Section --- */
+        .section-title-wrap { text-align: center; margin-bottom: 35px; }
+        .section-title { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--royal-maroon); }
+
+        .timeline { position: relative; padding-left: 28px; border-left: 2px solid var(--gold); margin-left: 10px; }
+
+        .timeline-item { position: relative; margin-bottom: 40px; }
+
+        .timeline-node {
+            position: absolute; left: -37px; top: 0;
+            width: 16px; height: 16px; border-radius: 50%;
+            background: var(--gold); border: 3px solid var(--cream);
+            box-shadow: 0 0 0 2px var(--gold);
         }
 
-        .parent-subtext {
-            font-size: 0.82rem;
-            color: #555;
-            margin-bottom: 15px;
-            font-weight: 400;
-            letter-spacing: 0.5px;
+        .event-card-container {
+            display: flex; flex-direction: column-reverse; background: #ffffff;
+            border: 1px solid #ebd9b0; border-radius: 16px; overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
         }
 
-        .ampersand {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            color: var(--gold);
-            margin: 5px 0;
-            font-weight: 700;
+        @media (min-width: 550px) {
+            .event-card-container { flex-direction: row; }
         }
 
-        /* --- Dynamic Timer Banner --- */
-        .countdown-section {
-            background: radial-gradient(circle, var(--royal-maroon), var(--deep-maroon));
-            color: var(--gold);
-            padding: 22px 15px;
-            border-radius: 15px;
-            margin: 25px 0;
-            box-shadow: 0 8px 20px rgba(88, 6, 12, 0.3);
-            border: 2px solid var(--gold);
+        .event-info { padding: 20px; flex: 1; }
+        .event-date { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--dark-gold); letter-spacing: 1px; }
+        .event-title { font-family: 'Cinzel', serif; font-size: 1.25rem; color: var(--royal-maroon); margin: 4px 0; }
+        .event-venue { font-size: 0.8rem; color: #444; margin-bottom: 8px; font-weight: 500; }
+        .event-quote { font-size: 0.8rem; color: var(--text-muted); font-style: italic; margin-bottom: 15px; }
+
+        .btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
+
+        .action-btn {
+            display: inline-flex; align-items: center; gap: 4px;
+            font-size: 0.72rem; font-weight: 600; padding: 7px 12px;
+            border-radius: 20px; text-decoration: none; transition: all 0.2s;
         }
 
-        .countdown-title {
-            font-size: 0.8rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            color: var(--gold-light);
-            font-weight: 600;
+        .btn-calendar { background: #fdf8eb; color: var(--royal-maroon); border: 1px solid #e5cd93; }
+        .btn-map { background: var(--royal-maroon); color: var(--gold); border: 1px solid var(--gold); }
+
+        /* --- Interactive Card Artwork Display --- */
+        .card-preview-wrap {
+            width: 100%; height: 220px; position: relative;
+            background: #fff6e5; display: flex; justify-content: center; align-items: center;
+            user-select: none;
         }
 
-        .timer {
-            display: flex;
-            justify-content: space-around;
-            max-width: 400px;
-            margin: 0 auto;
+        @media (min-width: 550px) {
+            .card-preview-wrap { width: 170px; height: auto; }
         }
 
-        .timer-box {
-            display: flex;
-            flex-direction: column;
-            min-width: 60px;
+        .art-card {
+            width: 140px; height: 180px; border-radius: 12px;
+            background: linear-gradient(135deg, #fff2d6 0%, #ffe3a8 100%);
+            border: 2px solid var(--gold); box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            position: relative; overflow: hidden; display: flex;
+            flex-direction: column; justify-content: center; align-items: center; text-align: center;
+            padding: 10px;
         }
 
-        .timer-num {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: #ffffff;
+        .art-card-title { font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--royal-maroon); font-weight: 700; }
+        .art-card-sub { font-size: 0.6rem; color: var(--dark-gold); margin-top: 4px; }
+        .art-icon { font-size: 2rem; margin: 8px 0; }
+
+        /* Canvas for Scratch Off */
+        .scratch-canvas {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            border-radius: 10px; cursor: pointer; z-index: 10;
         }
 
-        .timer-label {
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            color: var(--gold-light);
-            opacity: 0.9;
+        .instruction-tag {
+            position: absolute; bottom: 8px; font-size: 0.58rem;
+            font-weight: 700; background: rgba(106, 11, 18, 0.85);
+            color: var(--gold); padding: 3px 8px; border-radius: 10px;
+            letter-spacing: 0.5px; text-transform: uppercase; pointer-events: none; z-index: 11;
         }
 
-        /* --- Event Cards --- */
-        .section-heading {
-            font-family: 'Cinzel Decorative', serif;
-            font-size: 1.3rem;
-            color: var(--royal-maroon);
-            margin: 35px 0 20px;
-            border-bottom: 2px solid var(--gold);
-            display: inline-block;
-            padding-bottom: 6px;
-        }
-
-        .event-card {
-            background: #ffffff;
-            border: 1px solid #e2d2a4;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: left;
-            position: relative;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-            border-left: 6px solid var(--royal-maroon);
-        }
-
-        .event-card h3 {
-            font-family: 'Cinzel', serif;
-            color: var(--royal-maroon);
-            font-size: 1.25rem;
-            margin-bottom: 4px;
-        }
-
-        .event-location-tag {
-            display: inline-block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--royal-maroon);
-            background: var(--gold-light);
-            padding: 2px 8px;
-            border-radius: 4px;
-            margin-bottom: 8px;
-            border: 1px solid var(--gold);
-        }
-
-        .event-time {
-            color: var(--dark-gold);
-            font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-        }
-
-        .event-desc {
-            font-size: 0.85rem;
-            color: #666;
-            font-style: italic;
-            margin-bottom: 12px;
-        }
-
-        .mini-map-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            background: var(--royal-maroon);
-            color: var(--gold);
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            border: 1px solid var(--gold);
-            transition: all 0.3s ease;
-        }
-
-        .mini-map-btn:hover {
-            background: var(--gold);
-            color: var(--royal-maroon);
-        }
-
-        footer {
-            margin-top: 45px;
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.2rem;
-            color: var(--royal-maroon);
-        }
-
-        @media (min-width: 768px) {
-            .couple-names h2 { font-size: 4.5rem; }
-            .main-title { font-size: 2rem; }
-            .content-container { padding: 40px; }
-        }
+        footer { text-align: center; margin-top: 50px; font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--royal-maroon); }
     </style>
 </head>
 <body>
 
-    <!-- Falling Petals Container -->
     <div class="petals-container" id="petals"></div>
 
-    <!-- Envelope / Cover Screen -->
+    <!-- Envelope Overlay -->
     <div id="cover-screen" onclick="openInvitation()">
         <div class="envelope-card">
             <div class="heart-wrapper">
@@ -377,78 +228,146 @@
                     <span class="monogram-text">S & C</span>
                 </div>
             </div>
-            <div class="cover-title">Wedding Invitation</div>
-            <p style="font-size: 0.85rem; color: #777; margin-top: 5px;">Sreenu & Charitha</p>
-            <div class="tap-btn">💌 Tap to Open</div>
+            <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.4rem; color: var(--royal-maroon);">Wedding Invitation</h2>
+            <p style="font-size: 0.8rem; color: #777; margin-top: 4px;">Sreenu & Charitha</p>
+            <div class="tap-btn">💌 Tap To Open</div>
         </div>
     </div>
 
-    <!-- Main Content -->
-    <div class="content-container">
-        <p class="header-sub">Together With Their Families</p>
-        <h1 class="main-title">Request The Honor Of Your Presence</h1>
+    <!-- Main Content Container -->
+    <div class="container">
+        <div class="header-section">
+            <p class="sub-title">Together With Their Families</p>
+            <h1 class="main-heading">Request The Honor Of Your Presence</h1>
+        </div>
 
-        <!-- Royal Couple Card -->
+        <!-- Couple Banner -->
         <div class="couple-card">
             <div class="couple-names">
                 <h2>B. Sreenu</h2>
                 <p class="parent-subtext">S/o B. Ramanjulu & B. LakshmiDevi</p>
-                
                 <div class="ampersand">&</div>
-                
                 <h2>K. Charitha</h2>
                 <p class="parent-subtext">D/o K. L. Narayana & K. Padmavati</p>
             </div>
         </div>
 
-        <!-- Dynamic Timer Section -->
-        <div class="countdown-section">
+        <!-- Countdown Banner -->
+        <div class="countdown-banner">
             <div class="countdown-title" id="timer-title">Counting Down To Muhurtham</div>
             <div class="timer">
-                <div class="timer-box"><span class="timer-num" id="days">00</span><span class="timer-label">Days</span></div>
-                <div class="timer-box"><span class="timer-num" id="hours">00</span><span class="timer-label">Hours</span></div>
-                <div class="timer-box"><span class="timer-num" id="mins">00</span><span class="timer-label">Mins</span></div>
-                <div class="timer-box"><span class="timer-num" id="secs">00</span><span class="timer-label">Secs</span></div>
+                <div><div class="timer-num" id="days">00</div><div class="timer-label">Days</div></div>
+                <div><div class="timer-num" id="hours">00</div><div class="timer-label">Hours</div></div>
+                <div><div class="timer-num" id="mins">00</div><div class="timer-label">Mins</div></div>
+                <div><div class="timer-num" id="secs">00</div><div class="timer-label">Secs</div></div>
             </div>
         </div>
 
-        <!-- Event Festivities -->
-        <h2 class="section-heading">The Festivities</h2>
-
-        <!-- Event 1: Haldi -->
-        <div class="event-card">
-            <span class="event-location-tag">📍 Anantapur</span>
-            <h3>Haldi Ceremony</h3>
-            <div class="event-time">August 22, 2026 • 9:00 AM Onwards</div>
-            <p class="event-desc">"Turmeric, laughter, and the very first blessings."</p>
-            <a href="https://maps.app.goo.gl/wDfPxHQPte7LLno77" target="_blank" class="mini-map-btn">📍 Get Venue Directions</a>
+        <div class="section-title-wrap">
+            <h2 class="section-title">The Festivities</h2>
         </div>
 
-        <!-- Event 2: Reception (Anantapur) -->
-        <div class="event-card">
-            <span class="event-location-tag">📍 Anantapur</span>
-            <h3>Wedding Reception</h3>
-            <div class="event-time">August 22, 2026 • 7:00 PM Onwards</div>
-            <p class="event-desc">"An evening of celebration, dining, and joy."</p>
-            <a href="https://maps.app.goo.gl/wDfPxHQPte7LLno77" target="_blank" class="mini-map-btn">📍 Get Venue Directions</a>
-        </div>
+        <!-- Timeline Section -->
+        <div class="timeline">
 
-        <!-- Event 3: Muhurtham (Anantapur) -->
-        <div class="event-card">
-            <span class="event-location-tag">📍 Anantapur</span>
-            <h3>Wedding Ceremony (Muhurtham)</h3>
-            <div class="event-time">August 23, 2026 • Early Morning 4:00 AM – 5:00 AM</div>
-            <p class="event-desc">"Two hands, two hearts, joined in love forever."</p>
-            <a href="https://maps.app.goo.gl/wDfPxHQPte7LLno77" target="_blank" class="mini-map-btn">📍 Get Venue Directions</a>
-        </div>
+            <!-- EVENT 1: HALDI (INTERACTIVE SCRATCH CARD) -->
+            <div class="timeline-item">
+                <div class="timeline-node"></div>
+                <div class="event-card-container">
+                    <div class="event-info">
+                        <div class="event-date">Saturday, 22 August 2026</div>
+                        <h3 class="event-title">Haldi Ceremony</h3>
+                        <div class="event-venue">📍 9:00 AM Onwards • Anantapur</div>
+                        <p class="event-desc">"Turmeric, laughter, and the very first blessings."</p>
+                        <div class="btn-group">
+                            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Haldi+Ceremony+-+Sreenu+%26+Charitha&dates=20260822T033000Z/20260822T063000Z&details=Turmeric,+laughter,+and+blessings!&location=Anantapur" target="_blank" class="action-btn btn-calendar">+ Add To Calendar</a>
+                            <a href="https://maps.app.goo.gl/wDfPxHQPte7LLno77" target="_blank" class="action-btn btn-map">📍 Directions</a>
+                        </div>
+                    </div>
+                    <div class="card-preview-wrap">
+                        <div class="art-card" style="background: linear-gradient(135deg, #fff5cc 0%, #ffdb70 100%);">
+                            <div class="art-icon">🌼</div>
+                            <div class="art-card-title">Haldi</div>
+                            <div class="art-card-sub">Mangala Snanam</div>
+                        </div>
+                        <canvas id="haldi-canvas" class="scratch-canvas" width="140" height="180"></canvas>
+                        <div class="instruction-tag">✨ Rub To Reveal</div>
+                    </div>
+                </div>
+            </div>
 
-        <!-- Event 4: Post-Wedding Reception (Dharmavaram) -->
-        <div class="event-card" style="border-left-color: var(--gold);">
-            <span class="event-location-tag" style="background:#FFFDF8;">📍 Hometown Dharmavaram</span>
-            <h3>Post-Wedding Reception</h3>
-            <div class="event-time">Hometown Celebration • Dharmavaram</div>
-            <p class="event-desc">"Continuing the joy and blessings in our hometown."</p>
-            <a href="https://maps.app.goo.gl/dJzmkvnq5mUEw2gPA" target="_blank" class="mini-map-btn">📍 Dharmavaram Venue Directions</a>
+            <!-- EVENT 2: RECEPTION (ANANTAPUR) -->
+            <div class="timeline-item">
+                <div class="timeline-node"></div>
+                <div class="event-card-container">
+                    <div class="event-info">
+                        <div class="event-date">Saturday, 22 August 2026</div>
+                        <h3 class="event-title">Wedding Reception</h3>
+                        <div class="event-venue">📍 7:00 PM Onwards • Anantapur</div>
+                        <p class="event-desc">"An evening of celebration, dining, and joy."</p>
+                        <div class="btn-group">
+                            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+Reception+-+Sreenu+%26+Charitha&dates=20260822T133000Z/20260822T173000Z&details=Evening+reception+celebration.&location=Anantapur" target="_blank" class="action-btn btn-calendar">+ Add To Calendar</a>
+                            <a href="https://maps.app.goo.gl/wDfPxHQPte7LLno77" target="_blank" class="action-btn btn-map">📍 Directions</a>
+                        </div>
+                    </div>
+                    <div class="card-preview-wrap">
+                        <div class="art-card" style="background: linear-gradient(135deg, #ffe0e3 0%, #f7a8b8 100%);">
+                            <div class="art-icon">✨</div>
+                            <div class="art-card-title">Reception</div>
+                            <div class="art-card-sub">Grand Celebration</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 3: MUHURTHAM -->
+            <div class="timeline-item">
+                <div class="timeline-node"></div>
+                <div class="event-card-container">
+                    <div class="event-info">
+                        <div class="event-date">Sunday, 23 August 2026</div>
+                        <h3 class="event-title">Wedding Ceremony</h3>
+                        <div class="event-venue">📍 Early Morning 4:00 AM – 5:00 AM • Anantapur</div>
+                        <p class="event-desc">"Two hands, two hearts, joined in love forever."</p>
+                        <div class="btn-group">
+                            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Muhurtham+-+Sreenu+%26+Charitha&dates=20260822T223000Z/20260822T233000Z&details=Auspicious+Muhurtham+Ceremony.&location=Anantapur" target="_blank" class="action-btn btn-calendar">+ Add To Calendar</a>
+                            <a href="https://maps.app.goo.gl/wDfPxHQPte7LLno77" target="_blank" class="action-btn btn-map">📍 Directions</a>
+                        </div>
+                    </div>
+                    <div class="card-preview-wrap">
+                        <div class="art-card" style="background: linear-gradient(135deg, #fff0d6 0%, #ffd180 100%); border-color: var(--royal-maroon);">
+                            <div class="art-icon">💍</div>
+                            <div class="art-card-title">Muhurtham</div>
+                            <div class="art-card-sub">Holy Matrimony</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 4: HOMETOWN RECEPTION -->
+            <div class="timeline-item">
+                <div class="timeline-node"></div>
+                <div class="event-card-container">
+                    <div class="event-info">
+                        <div class="event-date">Hometown Celebration</div>
+                        <h3 class="event-title">Post-Wedding Reception</h3>
+                        <div class="event-venue">📍 Hometown • Dharmavaram</div>
+                        <p class="event-desc">"Continuing the joy and blessings in our hometown."</p>
+                        <div class="btn-group">
+                            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Post+Wedding+Reception+-+Sreenu+%26+Charitha&details=Hometown+Reception+in+Dharmavaram&location=Dharmavaram" target="_blank" class="action-btn btn-calendar">+ Add To Calendar</a>
+                            <a href="https://maps.app.goo.gl/dJzmkvnq5mUEw2gPA" target="_blank" class="action-btn btn-map">📍 Dharmavaram Map</a>
+                        </div>
+                    </div>
+                    <div class="card-preview-wrap">
+                        <div class="art-card" style="background: linear-gradient(135deg, #e3f2fd 0%, #90caf9 100%);">
+                            <div class="art-icon">🏡</div>
+                            <div class="art-card-title">Hometown</div>
+                            <div class="art-card-sub">Dharmavaram</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <footer>
@@ -457,26 +376,21 @@
     </div>
 
     <script>
-        // Open Cover Screen Function
         function openInvitation() {
             const cover = document.getElementById('cover-screen');
             cover.style.transform = 'translateY(-100%)';
             cover.style.opacity = '0';
-            setTimeout(() => {
-                cover.style.display = 'none';
-            }, 800);
+            setTimeout(() => { cover.style.display = 'none'; }, 800);
         }
 
-        // Target Date: Aug 23, 2026 at 06:00:00 AM IST
+        /* --- Dynamic Countdown / Countup --- */
         const weddingTargetDate = new Date("August 23, 2026 06:00:00").getTime();
-
-        const timer = setInterval(function() {
+        setInterval(function() {
             const now = new Date().getTime();
             let diff = weddingTargetDate - now;
             const timerTitle = document.getElementById("timer-title");
 
             if (diff <= 0) {
-                // Count UP after wedding time passes
                 timerTitle.innerText = "Been Together Since";
                 diff = Math.abs(diff);
             } else {
@@ -489,17 +403,54 @@
             document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
 
-        // Falling Petals Generator (50 Petals)
+        /* --- Falling Petals --- */
         const petalsContainer = document.getElementById('petals');
-        for (let i = 0; i < 50; i++) {
+        for (let i = 0; i < 40; i++) {
             const petal = document.createElement('div');
             petal.className = 'petal';
             petal.style.left = Math.random() * 100 + '%';
-            petal.style.width = (Math.random() * 10 + 8) + 'px';
-            petal.style.height = (Math.random() * 10 + 8) + 'px';
-            petal.style.animationDuration = (Math.random() * 5 + 4) + 's';
-            petal.style.animationDelay = (Math.random() * 5) + 's';
+            petal.style.width = (Math.random() * 8 + 8) + 'px';
+            petal.style.height = (Math.random() * 8 + 8) + 'px';
+            petal.style.animationDuration = (Math.random() * 4 + 4) + 's';
+            petal.style.animationDelay = (Math.random() * 4) + 's';
             petalsContainer.appendChild(petal);
+        }
+
+        /* --- Scratch Off Canvas Implementation for Haldi Card --- */
+        const canvas = document.getElementById('haldi-canvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            // Fill with gold-turmeric overlay
+            ctx.fillStyle = '#E5B80B';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // Add subtle text overlay on top of scratch area
+            ctx.fillStyle = '#6A0B12';
+            ctx.font = 'bold 11px Montserrat';
+            ctx.textAlign = 'center';
+            ctx.fillText('RUB TURMERIC', canvas.width / 2, canvas.height / 2);
+
+            let isDrawing = false;
+
+            function scratch(e) {
+                if (!isDrawing) return;
+                const rect = canvas.getBoundingClientRect();
+                const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+                const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath();
+                ctx.arc(x, y, 16, 0, Math.PI * 2, false);
+                ctx.fill();
+            }
+
+            canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
+            canvas.addEventListener('mousemove', scratch);
+            window.addEventListener('mouseup', () => { isDrawing = false; });
+
+            canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); });
+            canvas.addEventListener('touchmove', scratch);
+            window.addEventListener('touchend', () => { isDrawing = false; });
         }
     </script>
 </body>

@@ -2,411 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sreenu & Charita | Wedding Invitation</title>
-    <!-- Google Fonts for typography -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Google Fonts for Indian aesthetic typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     
-    <style>
-        :root {
-            --primary: #800020; /* Royal Maroon */
-            --gold: #D4AF37;    /* Metallic Gold */
-            --gold-light: #F9E79F;
-            --bg-cream: #FFFDF5;
-            --text-dark: #333333;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-cream);
-            color: var(--text-dark);
-            overflow-x: hidden;
-            text-align: center;
-        }
-
-        /* --- FLOWER PETALS ANIMATION --- */
-        .petal {
-            position: fixed;
-            background-color: #ffb7c5;
-            border-radius: 15px 0 15px 0;
-            opacity: 0.7;
-            pointer-events: none;
-            z-index: 999;
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(-10vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(105vh) rotate(360deg);
-                opacity: 0.2;
-            }
-        }
-
-        /* --- ENVELOPE / OPENING SCREEN --- */
-        #envelope-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: linear-gradient(135deg, #4a0011, #800020);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
-        }
-
-        .envelope-card {
-            background: #fffdf5;
-            border: 3px solid var(--gold);
-            border-radius: 15px;
-            padding: 40px 20px;
-            width: 85%;
-            max-width: 400px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            cursor: pointer;
-            animation: pulse 2s infinite;
-        }
-
-        .monogram {
-            font-family: 'Cinzel Decorative', serif;
-            font-size: 3rem;
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-
-        .tap-text {
-            font-size: 1rem;
-            color: var(--gold);
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-top: 15px;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.03); }
-            100% { transform: scale(1); }
-        }
-
-        /* --- MAIN INVITATION CONTENT --- */
-        #main-content {
-            display: none;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            animation: fadeIn 1.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        header {
-            margin-top: 20px;
-        }
-
-        .sub-heading {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2rem;
-            color: var(--gold);
-        }
-
-        h1.title {
-            font-family: 'Cinzel Decorative', serif;
-            color: var(--primary);
-            font-size: 1.8rem;
-            margin: 10px 0;
-        }
-
-        .couple-names {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3.5rem;
-            color: var(--primary);
-            margin: 20px 0;
-            line-height: 1.2;
-        }
-
-        .couple-names span {
-            display: block;
-            font-size: 2rem;
-            color: var(--gold);
-        }
-
-        .parents-info {
-            font-size: 0.95rem;
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        /* --- COUNTDOWN TIMER --- */
-        .countdown-section {
-            background: linear-gradient(135deg, var(--primary), #5a0017);
-            color: white;
-            padding: 25px 15px;
-            border-radius: 15px;
-            margin: 30px 0;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-        }
-
-        .countdown-title {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--gold-light);
-            margin-bottom: 15px;
-        }
-
-        .timer {
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .time-box {
-            background: rgba(255,255,255,0.1);
-            padding: 10px;
-            border-radius: 8px;
-            min-width: 60px;
-            border: 1px solid var(--gold);
-        }
-
-        .time-box span {
-            display: block;
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: var(--gold-light);
-        }
-
-        .time-box label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-        }
-
-        /* --- EVENT CARDS --- */
-        .section-heading {
-            font-family: 'Cinzel Decorative', serif;
-            color: var(--primary);
-            margin: 40px 0 20px;
-            font-size: 1.5rem;
-        }
-
-        .event-card {
-            background: #ffffff;
-            border: 1px solid #e0d0b0;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 25px;
-            text-align: left;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .event-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 6px; height: 100%;
-            background: var(--gold);
-        }
-
-        .event-title {
-            font-family: 'Cinzel Decorative', serif;
-            color: var(--primary);
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        .event-date {
-            color: var(--gold);
-            font-weight: 600;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-        }
-
-        .event-quote {
-            font-style: italic;
-            font-size: 0.85rem;
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 10px 18px;
-            background: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-right: 10px;
-            margin-top: 10px;
-            border: 1px solid var(--gold);
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background: var(--gold);
-            color: var(--primary);
-        }
-
-        footer {
-            margin: 40px 0 20px;
-            font-family: 'Great Vibes', cursive;
-            font-size: 2rem;
-            color: var(--primary);
-        }
-    </style>
-</head>
-<body>
-
-    <!-- Petals Container -->
-    <div id="petals-container"></div>
-
-    <!-- Cover / Envelope -->
-    <div id="envelope-container" onclick="openInvitation()">
-        <div class="envelope-card">
-            <div class="monogram">S & C</div>
-            <p style="font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: var(--primary);">Wedding Invitation</p>
-            <div class="tap-text">💌 Tap to Open</div>
-        </div>
-    </div>
-
-    <!-- Main Invitation Page -->
-    <div id="main-content">
-        <header>
-            <p class="sub-heading">Together with their families</p>
-            <h1 class="title">Request the Honor of Your Presence</h1>
-        </header>
-
-        <div class="couple-names">
-            B. Sreenu
-            <span>&</span>
-            K. Charita
-        </div>
-
-        <div class="parents-info">
-            <p>S/o B. Sreenivasulu | D/o K. Charitha</p>
-        </div>
-
-        <!-- Countdown Section -->
-        <div class="countdown-section">
-            <div class="countdown-title">Counting Down to the Muhurtham</div>
-            <div class="timer">
-                <div class="time-box"><span id="days">00</span><label>Days</label></div>
-                <div class="time-box"><span id="hours">00</span><label>Hours</label></div>
-                <div class="time-box"><span id="minutes">00</span><label>Mins</label></div>
-                <div class="time-box"><span id="seconds">00</span><label>Secs</label></div>
-            </div>
-        </div>
-
-        <h2 class="section-heading">The Festivities</h2>
-
-        <!-- Event 1: Haldi -->
-        <div class="event-card">
-            <div class="event-title">Haldi Ceremony</div>
-            <div class="event-date">Thursday, 22nd August 2026 | 9:00 AM Onwards</div>
-            <p class="event-quote">"Turmeric, laughter, and the very first blessings."</p>
-            <a href="https://maps.google.com" target="_blank" class="btn">📍 Venue & Directions</a>
-        </div>
-
-        <!-- Event 2: Reception -->
-        <div class="event-card">
-            <div class="event-title">Reception</div>
-            <div class="event-date">Thursday, 22nd August 2026 | 7:00 PM Onwards</div>
-            <p class="event-quote">"An evening of celebration, dining, and joy."</p>
-            <a href="https://maps.google.com" target="_blank" class="btn">📍 Venue & Directions</a>
-        </div>
-
-        <!-- Event 3: Wedding -->
-        <div class="event-card">
-            <div class="event-title">Wedding Ceremony (Muhurtham)</div>
-            <div class="event-date">Friday, 23rd August 2026 | Early Morning 4:00 AM - 5:00 AM</div>
-            <p class="event-quote">"Two lives, two hearts, joined together in friendship and love."</p>
-            <a href="https://maps.google.com" target="_blank" class="btn">📍 Venue & Directions</a>
-        </div>
-
-        <footer>
-            We look forward to celebrating with you!
-        </footer>
-    </div>
-
-    <script>
-        // Open Envelope Animation
-        function openInvitation() {
-            const envelope = document.getElementById('envelope-container');
-            const content = document.getElementById('main-content');
-            
-            envelope.style.transform = 'translateY(-100vh)';
-            envelope.style.opacity = '0';
-            
-            setTimeout(() => {
-                envelope.style.display = 'none';
-                content.style.display = 'block';
-                createPetals();
-            }, 600);
-        }
-
-        // Falling Flower Petals Logic
-        function createPetals() {
-            const container = document.getElementById('petals-container');
-            for (let i = 0; i < 25; i++) {
-                const petal = document.createElement('div');
-                petal.classList.add('petal');
-                petal.style.left = Math.random() * 100 + 'vw';
-                petal.style.animationDuration = Math.random() * 3 + 4 + 's';
-                petal.style.width = Math.random() * 10 + 10 + 'px';
-                petal.style.height = petal.style.width;
-                container.appendChild(petal);
-            }
-        }
-
-        // Countdown Timer Logic (Target: August 23, 2026, 04:00:00)
-        const weddingDate = new Date("August 23, 2026 04:00:00").getTime();
-
-        const timerInterval = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (10Here is an upgraded, interactive single-file `index.html` code designed to match that rich Indian wedding aesthetic. 
-
-It includes:
-- **Envelope / Cover Screen**: Displays monogram **S & C** with a "Tap to Open" button.
-- **Falling Flower Petals Animation**: Smooth CSS animation running across the page.
-- **Countdown Timer**: Automatically calculates time remaining until August 22, 2026.
-- **Festivities & Events**: Cards for Haldi, Reception, and Muhurtham with placeholders for image cards.
-- **Venue Directions**: Google Maps button ready for your custom link.
-
----
-
-### Updated Code (`index.html`)
-
-Replace the full content of your `index.html` on GitHub with this code:
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sreenu & Charita | Wedding Invitation</title>
-    <link href="[https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap](https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap)" rel="stylesheet">
     <style>
         :root {
             --maroon: #6A0B12;
@@ -420,6 +20,7 @@ Replace the full content of your `index.html` on GitHub with this code:
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -447,7 +48,7 @@ Replace the full content of your `index.html` on GitHub with this code:
             background: #ffb7c5;
             border-radius: 150% 0 150% 0;
             opacity: 0.7;
-            animation: animate-petal 10s linear infinite;
+            animation: animate-petal 8s linear infinite;
         }
 
         @keyframes animate-petal {
@@ -457,7 +58,7 @@ Replace the full content of your `index.html` on GitHub with this code:
             }
             100% {
                 top: 110%;
-                transform: translateX(100px) rotate(360deg);
+                transform: translateX(80px) rotate(360deg);
             }
         }
 
@@ -473,79 +74,89 @@ Replace the full content of your `index.html` on GitHub with this code:
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 100;
+            z-index: 1000;
             color: var(--gold);
-            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+            transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
             padding: 20px;
+            cursor: pointer;
+        }
+
+        .envelope-card {
+            background: #FFFDF8;
+            border: 2px solid var(--gold);
+            border-radius: 16px;
+            padding: 40px 25px;
+            width: 85%;
+            max-width: 360px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: float-pulse 2s infinite ease-in-out;
+        }
+
+        @keyframes float-pulse {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-5px) scale(1.02); }
         }
 
         .monogram {
             font-family: 'Cinzel', serif;
-            font-size: 4rem;
+            font-size: 2.8rem;
+            color: var(--maroon);
             border: 2px solid var(--gold);
             border-radius: 50%;
-            width: 140px;
-            height: 140px;
+            width: 90px;
+            height: 90px;
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 20px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            margin-bottom: 15px;
+            background-color: #FFFDF8;
         }
 
         .cover-title {
             font-family: 'Great Vibes', cursive;
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-        }
-
-        .cover-subtitle {
-            font-size: 0.9rem;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 40px;
-            color: #f1d382;
-        }
-
-        .open-btn {
-            background: transparent;
-            border: 2px solid var(--gold);
-            color: var(--gold);
-            padding: 12px 30px;
-            font-size: 1rem;
-            font-family: 'Cinzel', serif;
-            border-radius: 30px;
-            cursor: pointer;
-            letter-spacing: 2px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .open-btn:hover {
-            background: var(--gold);
+            font-size: 2.2rem;
             color: var(--maroon);
+            margin-bottom: 5px;
         }
 
-        /* --- Main Content --- */
+        .tap-btn {
+            background: var(--maroon);
+            color: var(--gold);
+            border: 1px solid var(--gold);
+            padding: 10px 24px;
+            font-size: 0.85rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            border-radius: 25px;
+            letter-spacing: 1.5px;
+            margin-top: 15px;
+            text-transform: uppercase;
+        }
+
+        /* --- Main Mobile Content --- */
         .content-container {
-            max-width: 500px;
+            width: 100%;
+            max-width: 480px;
             margin: 0 auto;
-            padding: 30px 20px;
+            padding: 25px 20px;
         }
 
         .header-sub {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: var(--dark-gold);
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .main-title {
             font-family: 'Cinzel', serif;
-            font-size: 2rem;
+            font-size: 1.6rem;
             color: var(--maroon);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .couple-names {
@@ -554,14 +165,14 @@ Replace the full content of your `index.html` on GitHub with this code:
 
         .couple-names h2 {
             font-family: 'Great Vibes', cursive;
-            font-size: 3.5rem;
+            font-size: 3.2rem;
             color: var(--maroon);
             line-height: 1.1;
         }
 
         .couple-names span {
             font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--gold);
             display: block;
             margin: 5px 0;
@@ -573,15 +184,16 @@ Replace the full content of your `index.html` on GitHub with this code:
             color: var(--gold);
             padding: 20px 10px;
             border-radius: 12px;
-            margin: 30px 0;
+            margin: 25px 0;
             box-shadow: 0 6px 15px rgba(106, 11, 18, 0.2);
+            border: 1px solid var(--gold);
         }
 
         .countdown-title {
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             color: #f1d382;
         }
 
@@ -593,16 +205,17 @@ Replace the full content of your `index.html` on GitHub with this code:
         .timer-box {
             display: flex;
             flex-direction: column;
+            min-width: 55px;
         }
 
         .timer-num {
             font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
         }
 
         .timer-label {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             opacity: 0.8;
         }
@@ -610,83 +223,89 @@ Replace the full content of your `index.html` on GitHub with this code:
         /* --- Event Cards --- */
         .section-heading {
             font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--maroon);
-            margin: 40px 0 20px;
-            border-bottom: 1px solid var(--gold);
+            margin: 35px 0 15px;
+            border-bottom: 2px solid var(--gold);
             display: inline-block;
-            padding-bottom: 5px;
+            padding-bottom: 4px;
         }
 
         .event-card {
             background: #ffffff;
             border: 1px solid #f0e2be;
             border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 25px;
+            padding: 18px;
+            margin-bottom: 20px;
             text-align: left;
             position: relative;
             box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            border-left: 5px solid var(--maroon);
         }
 
         .event-card h3 {
             font-family: 'Cinzel', serif;
             color: var(--maroon);
-            font-size: 1.3rem;
-            margin-bottom: 5px;
+            font-size: 1.15rem;
+            margin-bottom: 4px;
         }
 
         .event-time {
             color: var(--dark-gold);
             font-weight: 600;
-            font-size: 0.9rem;
-            margin-bottom: 10px;
+            font-size: 0.85rem;
+            margin-bottom: 8px;
         }
 
         .event-desc {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: #666;
             font-style: italic;
         }
 
         /* --- Venue & Directions --- */
         .venue-btn {
-            display: inline-block;
+            display: block;
+            width: 100%;
             background: var(--maroon);
             color: var(--gold);
             text-decoration: none;
-            padding: 12px 25px;
+            padding: 14px 20px;
             border-radius: 25px;
             font-size: 0.9rem;
             font-weight: 600;
             margin-top: 15px;
             box-shadow: 0 4px 10px rgba(106, 11, 18, 0.2);
+            border: 1px solid var(--gold);
         }
 
         footer {
-            margin-top: 50px;
-            font-size: 0.8rem;
-            color: #888;
+            margin-top: 40px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.8rem;
+            color: var(--maroon);
         }
     </style>
 </head>
 <body>
 
-    <!-- Petals Effect -->
+    <!-- Falling Petals -->
     <div class="petals-container" id="petals"></div>
 
-    <!-- Envelope Cover -->
-    <div id="cover-screen">
-        <div class="monogram">S & C</div>
-        <div class="cover-title">Sreenu & Charita</div>
-        <div class="cover-subtitle">Are Getting Married</div>
-        <button class="open-btn" onclick="openInvitation()">Tap to Open</button>
+    <!-- Envelope / Cover Screen -->
+    <div id="cover-screen" onclick="openInvitation()">
+        <div class="envelope-card">
+            <div class="monogram">S & C</div>
+            <div class="cover-title">Wedding Invitation</div>
+            <p style="font-size: 0.8rem; color: #888; margin-top: 5px;">Sreenu & Charita</p>
+            <div class="tap-btn">💌 Tap to Open</div>
+        </div>
     </div>
 
-    <!-- Main Invitation Page -->
+    <!-- Main Mobile Invitation Content -->
     <div class="content-container">
         <p class="header-sub">Together With Their Families</p>
-        <h1 class="main-title">Save The Date</h1>
+        <h1 class="main-title">Request The Honor Of Your Presence</h1>
 
         <div class="couple-names">
             <h2>B. Sreenu</h2>
@@ -694,9 +313,13 @@ Replace the full content of your `index.html` on GitHub with this code:
             <h2>K. Charita</h2>
         </div>
 
-        <!-- Countdown -->
+        <p style="font-size: 0.85rem; color: #666; margin-bottom: 20px;">
+            S/o B. Sreenivasulu &nbsp;|&nbsp; D/o K. Charitha
+        </p>
+
+        <!-- Countdown Banner -->
         <div class="countdown-section">
-            <div class="countdown-title">Counting Down To The Muhurtham</div>
+            <div class="countdown-title">Counting Down To Muhurtham</div>
             <div class="timer">
                 <div class="timer-box"><span class="timer-num" id="days">00</span><span class="timer-label">Days</span></div>
                 <div class="timer-box"><span class="timer-num" id="hours">00</span><span class="timer-label">Hours</span></div>
@@ -705,7 +328,7 @@ Replace the full content of your `index.html` on GitHub with this code:
             </div>
         </div>
 
-        <!-- Events List -->
+        <!-- Event Festivities -->
         <h2 class="section-heading">The Festivities</h2>
 
         <div class="event-card">
@@ -717,33 +340,38 @@ Replace the full content of your `index.html` on GitHub with this code:
         <div class="event-card">
             <h3>Reception</h3>
             <div class="event-time">August 22, 2026 • 7:00 PM Onwards</div>
-            <p class="event-desc">"An evening of celebration, music, and joy."</p>
+            <p class="event-desc">"An evening of celebration, dining, and joy."</p>
         </div>
 
         <div class="event-card">
             <h3>Wedding Ceremony (Muhurtham)</h3>
-            <div class="event-time">August 23, 2026 • 4:00 AM – 5:00 AM</div>
+            <div class="event-time">August 23, 2026 • Early Morning 4:00 AM – 5:00 AM</div>
             <p class="event-desc">"Two hands, two hearts, joined in love forever."</p>
         </div>
 
-        <!-- Venue Link -->
-        <h2 class="section-heading">Location</h2>
-        <p style="font-size: 0.9rem; margin-bottom: 10px;">We look forward to welcoming you at our venue!</p>
-        <!-- Replace YOUR_GOOGLE_MAPS_LINK below with your actual Google Maps URL -->
-        <a href="[https://maps.google.com](https://maps.google.com)" target="_blank" class="venue-btn">📍 Get Directions</a>
+        <!-- Venue Directions Button -->
+        <h2 class="section-heading">Venue & Location</h2>
+        <p style="font-size: 0.85rem; color: #555; margin-bottom: 10px;">We look forward to celebrating with you!</p>
+        <!-- Replace href link with your exact Google Maps location -->
+        <a href="https://maps.google.com" target="_blank" class="venue-btn">📍 Get Venue Directions</a>
 
         <footer>
-            <p>Warmly Invited By Sreenu & Charita</p>
+            Warmly Invited By Sreenu & Charita
         </footer>
     </div>
 
     <script>
-        // Open Invitation Action
+        // Open Cover Screen Function
         function openInvitation() {
-            document.getElementById('cover-screen').style.transform = 'translateY(-100%)';
+            const cover = document.getElementById('cover-screen');
+            cover.style.transform = 'translateY(-100%)';
+            cover.style.opacity = '0';
+            setTimeout(() => {
+                cover.style.display = 'none';
+            }, 800);
         }
 
-        // Countdown Script
+        // Countdown Timer Logic
         const weddingDate = new Date("August 23, 2026 04:00:00").getTime();
 
         const timer = setInterval(function() {
@@ -752,7 +380,7 @@ Replace the full content of your `index.html` on GitHub with this code:
 
             if (distance < 0) {
                 clearInterval(timer);
-                document.querySelector(".countdown-section").innerHTML = "<h3>The Special Day is Here!</h3>";
+                document.querySelector(".countdown-section").innerHTML = "<h3 style='color:var(--gold)'>The Wedding Day is Here!</h3>";
                 return;
             }
 
@@ -762,16 +390,16 @@ Replace the full content of your `index.html` on GitHub with this code:
             document.getElementById("secs").innerText = Math.floor((distance % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
 
-        // Petals Script
+        // Falling Petals Generator
         const petalsContainer = document.getElementById('petals');
         for (let i = 0; i < 20; i++) {
             const petal = document.createElement('div');
             petal.className = 'petal';
             petal.style.left = Math.random() * 100 + '%';
-            petal.style.width = (Math.random() * 10 + 10) + 'px';
-            petal.style.height = (Math.random() * 10 + 10) + 'px';
-            petal.style.animationDuration = (Math.random() * 5 + 5) + 's';
-            petal.style.animationDelay = (Math.random() * 5) + 's';
+            petal.style.width = (Math.random() * 8 + 8) + 'px';
+            petal.style.height = (Math.random() * 8 + 8) + 'px';
+            petal.style.animationDuration = (Math.random() * 4 + 5) + 's';
+            petal.style.animationDelay = (Math.random() * 4) + 's';
             petalsContainer.appendChild(petal);
         }
     </script>

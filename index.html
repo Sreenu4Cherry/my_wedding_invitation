@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sreenu & Cherry | Wedding Celebration</title>
+    
+    <!-- Google Fonts for Luxury Aesthetic -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --royal-maroon: #6A0B12;
+            --gold: #D4AF37;
+            --gold-light: #FBF4E2;
+            --cream: #FFFDF8;
+            --dark-gold: #B38F28;
+            --text-dark: #333333;
+            --text-muted: #666666;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Prevent background scroll when modal is active */
+        body.modal-open {
+            overflow: hidden !important;
+            touch-action: none;
+        }
+
+        /* --- Falling Petals --- */
+        .petals-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 99; overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            background: linear-gradient(135deg, #ffb7c5, #e05275);
+            border-radius: 150% 0 150% 0;
+            opacity: 0.7;
+            animation: animate-petal 7s linear infinite;
+        }
+
+        @keyframes animate-petal {
+            0% { top: -10%; transform: translateX(0) rotate(0deg); }
+            100% { top: 110%; transform: translateX(100px) rotate(360deg); }
+        }
+
+        /* --- Envelope / Tap To Open Cover Screen --- */
+        #cover-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background: radial-gradient(circle, #58060c 0%, #350206 100%);
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            z-index: 1000; color: var(--gold);
+            transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+            padding: 20px;
+        }
+
+        .envelope-card {
+            background: var(--cream);
+            border: 2px solid var(--gold);
+            border-radius: 20px;
+            padding: 30px 20px;
+            width: 92%; max-width: 400px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+            display: flex; flex-direction: column; align-items: center;
+            text-align: center;
+        }
+
+        /* Couple Photo Display Frame */
+        .couple-photos-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .photo-frame {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 3px solid var(--gold);
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+            background: #f0e6d2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .photo-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-frame img.groom-img {
+            object-position: center top !important;
+            transform: scale(0.95);
+        }
+
+        .photo-frame img.bride-img {
+            object-position: center top !important;
+        }
+
+        /* Love Heart Badge */
+        .heart-badge {
+            width: 36px;
+            height: 36px;
+            background: var(--royal-maroon);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #E25865;
+            font-size: 1.1rem;
+            margin: 0 -16px;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .tap-btn {
+            background: var(--royal-maroon); color: var(--gold);
+            border: 1px solid var(--gold); padding: 12px 28px;
+            font-size: 0.85rem; font-weight: 600; border-radius: 25px;
+            letter-spacing: 1.5px; margin-top: 10px; text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Music Floating Control Button */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background: var(--royal-maroon);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            color: var(--gold);
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 900;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+
+        /* --- Main Layout --- */
+        .container {
+            width: 100%; max-width: 680px; margin: 0 auto; padding: 40px 20px;
+        }
+
+        .header-section { text-align: center; margin-bottom: 30px; }
+        .sub-title { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--dark-gold); margin-bottom: 10px; font-weight: 600; }
+        .main-heading { font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--royal-maroon); letter-spacing: 1px; }
+
+        .couple-card {
+            background: #ffffff; border: 1px solid #e8d7ad; border-radius: 16px;
+            padding: 30px 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            margin-bottom: 30px;
+        }
+
+        .couple-names h2 { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: var(--royal-maroon); line-height: 1; }
+        .parent-subtext { font-size: 0.8rem; color: var(--text-muted); margin: 6px 0 15px; }
+        .ampersand { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--gold); font-weight: 700; margin: 5px 0; }
+
+        /* --- Countdown --- */
+        .countdown-banner {
+            background: var(--royal-maroon); color: var(--gold);
+            padding: 20px; border-radius: 14px; text-align: center;
+            border: 1px solid var(--gold); margin-bottom: 40px;
+        }
+        .countdown-title { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; color: #f3dfa2; }
+        .timer { display: flex; justify-content: space-around; max-width: 360px; margin: 0 auto; }
+        .timer-num { font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 700; color: #ffffff; }
+        .timer-label { font-size: 0.65rem; text-transform: uppercase; opacity: 0.8; }
+
+        /* --- Timeline & Interactive Cards Section --- */
+        .section-title-wrap { text-align: center; margin-bottom: 35px; }
+        .section-title { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--royal-maroon); }
+
+        .timeline { position: relative; padding-left: 28px; border-left: 2px solid var(--gold); margin-left: 10px; }
+        .timeline-item { position: relative; margin-bottom: 40px; }
+
+        .timeline-node {
+            position: absolute; left: -37px; top: 0;
+            width: 16px; height: 16px; border-radius: 50%;
+            background: var(--gold); border: 3px solid var(--cream);
+            box-shadow: 0 0 0 2px var(--gold);
+        }
+
+        .event-card-container {
+            display: flex; flex-direction: column-reverse; background: #ffffff;
+            border: 1px solid #ebd9b0; border-radius: 16px; overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+        }
+
+        @media (min-width: 550px) {
+            .event-card-container { flex-direction: row; }
+        }
+
+        .event-info { padding: 20px; flex: 1; }
+        .event-date { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--dark-gold); letter-spacing: 1px; }
+        .event-title { font-family: 'Cinzel', serif; font-size: 1.25rem; color: var(--royal-maroon); margin: 4px 0; }
+        .event-venue { font-size: 0.8rem; color: #444; margin-bottom: 8px; font-weight: 500; }
+        .event-desc { font-size: 0.8rem; color: var(--text-muted); font-style: italic; margin-bottom: 15px; }
+
+        .btn-group { display: flex; gap: 8px; flex-wrap: wrap; }
+
+        .action-btn {
+            display: inline-flex; align-items: center; gap: 4px;
+            font-size: 0.72rem; font-weight: 600; padding: 8px 16px;
+            border-radius: 20px; text-decoration: none; transition: all 0.2s;
+        }
+
+        .btn-map { background: var(--royal-maroon); color: var(--gold); border: 1px solid var(--gold); }
+
+        /* Card Preview Side Block */
+        .card-preview-wrap {
+            width: 100%; height: 210px; position: relative;
+            background: #fff6e5; display: flex; justify-content: center; align-items: center;
+            user-select: none; cursor: pointer; padding: 10px;
+        }
+
+        @media (min-width: 550px) {
+            .card-preview-wrap { width: 170px; height: auto; }
+        }
+
+        .art-card-thumb {
+            width: 130px; height: 175px; border-radius: 12px;
+            border: 2px solid var(--gold); box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            position: relative; overflow: hidden; display: flex;
+            justify-content: center; align-items: center;
+        }
+
+        .art-card-thumb img {
+            width: 100%; height: 100%; object-fit: cover; display: block;
+        }
+
+        .rub-tag {
+            position: absolute; bottom: 18px; font-size: 0.62rem;
+            font-weight: 700; background: var(--royal-maroon);
+            color: var(--gold); padding: 5px 12px; border-radius: 12px;
+            letter-spacing: 0.5px; text-transform: uppercase; border: 1px solid var(--gold);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        /* --- Fullscreen Pop-up Modal for Scratching --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.88); backdrop-filter: blur(6px);
+            z-index: 2000; display: none; justify-content: center; align-items: center;
+            flex-direction: column; touch-action: none;
+        }
+
+        .modal-overlay.active { display: flex; }
+
+        .close-modal-btn {
+            position: absolute; top: 25px; right: 25px;
+            width: 42px; height: 42px; background: #ffffff;
+            color: #000; border-radius: 50%; display: flex;
+            justify-content: center; align-items: center;
+            font-size: 1.4rem; font-weight: bold; cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4); z-index: 2010;
+        }
+
+        .scratch-modal-box {
+            position: relative; width: 300px; height: 420px;
+            border-radius: 16px; border: 3px solid var(--gold);
+            overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: #fff;
+            touch-action: none;
+        }
+
+        .reveal-image-container {
+            width: 100%; height: 100%; position: absolute; top: 0; left: 0;
+            background: #ffffff;
+        }
+
+        .reveal-image {
+            width: 100%; height: 100%; object-fit: contain; display: block; background: #ffffff;
+        }
+
+        .modal-scratch-canvas {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            cursor: pointer; z-index: 5;
+            touch-action: none;
+            transition: opacity 0.5s ease;
+        }
+
+        .modal-instruction {
+            color: #ffffff; font-size: 0.85rem; letter-spacing: 1px;
+            margin-top: 15px; text-transform: uppercase; font-weight: 500;
+        }
+
+        footer { text-align: center; margin-top: 50px; font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--royal-maroon); }
+    </style>
+</head>
+<body>
+
+    <!-- Looping Audio Player -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="images/adara-song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Toggle Button -->
+    <button class="music-btn" id="music-toggle" onclick="toggleMusic()">🎵</button>
+
+    <div class="petals-container" id="petals"></div>
+
+    <!-- Cover Screen -->
+    <div id="cover-screen">
+        <div class="envelope-card">
+            <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.6rem; color: var(--royal-maroon);">Wedding Invitation</h2>
+            
+            <!-- Couple Photos Frame -->
+            <div class="couple-photos-container">
+                <div class="photo-frame">
+                    <img class="groom-img" src="images/groom-photo1.jpeg" alt="Sreenu" onerror="this.onerror=null; this.src='images/groom-photo.jpg';">
+                </div>
+                <div class="heart-badge">♥</div>
+                <div class="photo-frame">
+                    <img class="bride-img" src="images/bride-photo.jpg" alt="Cherry">
+                </div>
+            </div>
+
+            <p style="font-size: 0.95rem; font-weight: 600; color: var(--royal-maroon); margin-bottom: 5px;">Sreenu & Cherry</p>
+            <button class="tap-btn" onclick="openInvitation()">💌 Tap To Open</button>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        <div class="header-section">
+            <p class="sub-title">Together With Our Families</p>
+            <h1 class="main-heading">Request The Honor Of Your Presence</h1>
+        </div>
+
+        <!-- Couple Banner -->
+        <div class="couple-card">
+            <div class="couple-names">
+                <h2>B. Sreenivasulu</h2>
+                <p class="parent-subtext">S/o B. Ramanjulu & B. LakshmiDevi</p>
+                <div class="ampersand">&</div>
+                <h2>K. Charitha</h2>
+                <p class="parent-subtext">D/o K. L. Narayana & K. Padmavati</p>
+            </div>
+        </div>
+
+        <!-- Countdown Banner -->
+        <div class="countdown-banner">
+            <div class="countdown-title" id="timer-title">Counting Down To Muhurtham</div>
+            <div class="timer">
+                <div><div class="timer-num" id="days">00</div><div class="timer-label">Days</div></div>
+                <div><div class="timer-num" id="hours">00</div><div class="timer-label">Hours</div></div>
+                <div><div class="timer-num" id="mins">00</div><div class="timer-label">Mins</div></div>
+                <div><div class="timer-num" id="secs">00</div><div class="timer-label">Secs</div></div>
+            </div>
+        </div>
+
+        <div class="section-title-wrap">
+            <h2 class="section-title">The Festivities</h2>
+        </div>
+
+        <!-- Timeline Section -->
+        <div class="timeline">
+
+            <!-- EVENT 1: HALDI (Dharmavaram) -->
+            <div class="timeline-item">
+                <div class="timeline-node"></div>
+                <div class="event-card-container">
+                    <div class="event-info">
+                        <div class="event-date">Saturday, 22 August 2026</div>
+                        <h3 class="event-title">Haldi Ceremony</h3>
+                        <div class="event-venue">📍 9:00 AM Onwards • Dharmavaram</div>
+                        <p class="event-desc">"Turmeric, laughter, and the very first blessings."</p>
+                    </div>
+                    <div class="card-preview-wrap" onclick="openScratchModal('haldi')">
+                        <div class="art-card-thumb">
+                            <img src="images/haldi-reveal.jpeg" alt="Haldi Ceremony">
+                        </div>
+                        <div class="rub-tag">✨ Rub To Reveal</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 2: RECEPTION (ANANTAPUR) -->
+            <div class="timeline-item">
+                <div class="timeline-node"></div>
+                <div class="event-card-container">
+                    <div class="event-info">
+                        <div class="event-date">Saturday, 22 August 2026</div>
+                        <h3 class="event-title">Wedding Reception</h3>
+                        <div class="event-venue">📍 7:00 PM Onwards • Anantapur</div>
+                        <p class="event-desc">"An evening of celebration, dining, and joy."</p>
+                        <div class="btn-group">
+                            <a href="https://maps.app.goo.gl/wDfPxHQPte7LLno77" target="_blank" class="action-btn btn-map">📍 Directions</a>
+                        </div>
+                    </div>
+                    <div class="card-preview-wrap" onclick="openScratchModal('reception')">
+                        <div class="art-card-thumb">
+                            <img src="images/reception-reveal.jpeg" alt="Wedding Reception">
+                        </div>
+                        <div class="rub-tag">✨ Rub To Reveal</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 3: MUHURTHAM -->
+            <div class="timeline-item">
+                <div class="timeline-node"></div>
+                <div class="event-card-container">
+                    <div class="event-info">
+                        <div class="event-date">Sunday, 23 August 2026</div>
+                        <h3 class="event-title">Wedding Ceremony</h3>
+                        <div class="event-venue">📍 Early Morning 4:00 AM – 5:00 AM • Anantapur</div>
+                        <p class="event-desc">"Two hands, two hearts, joined in love forever."</p>
+                        <div class="btn-group">
+                            <a href="https://maps.app.goo.gl/wDfPxHQPte7LLno77" target="_blank" class="action-btn btn-map">📍 Directions</a>
+                        </div>
+                    </div>
+                    <div class="card-preview-wrap" onclick="openScratchModal('muhurtham')">
+                        <div class="art-card-thumb">
+                            <img src="images/muhurtham-reveal.jpeg" alt="Muhurtham">
+                        </div>
+                        <div class="rub-tag">✨ Rub To Reveal</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 4: DHARMAVARAM RECEPTION -->
+            <div class="timeline-item">
+                <div class="timeline-node"></div>
+                <div class="event-card-container">
+                    <div class="event-info">
+                        <div class="event-date">Dharmavaram</div>
+                        <h3 class="event-title">Reception</h3>
+                        <div class="event-venue">📍 Dharmavaram</div>
+                        <p class="event-desc">"Continuing the joy and blessings."</p>
+                        <div class="btn-group">
+                            <a href="https://maps.app.goo.gl/dJzmkvnq5mUEw2gPA" target="_blank" class="action-btn btn-map">📍 Directions</a>
+                        </div>
+                    </div>
+                    <div class="card-preview-wrap" onclick="openScratchModal('reception2')">
+                        <div class="art-card-thumb">
+                            <img src="images/reception-reveal2.jpeg" alt="Dharmavaram Reception">
+                        </div>
+                        <div class="rub-tag">✨ Rub To Reveal</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer>
+            Warmly Invited By Sreenu & Cherry
+        </footer>
+    </div>
+
+    <!-- Scratch Pop-up Overlay Modal -->
+    <div class="modal-overlay" id="scratch-modal">
+        <div class="close-modal-btn" onclick="closeScratchModal()">✕</div>
+        <div class="scratch-modal-box">
+            <!-- Full Inside Revealed Image -->
+            <div class="reveal-image-container">
+                <img id="reveal-img-src" class="reveal-image" src="" alt="Revealed Event Card">
+            </div>
+            <!-- Scratch Canvas Top Layer -->
+            <canvas id="modal-canvas" class="modal-scratch-canvas" width="300" height="420"></canvas>
+        </div>
+        <div class="modal-instruction">👈 Rub screen to reveal event image 👉</div>
+    </div>
+
+    <script>
+        /* --- Music Controller --- */
+        const audio = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-toggle');
+        let isPlaying = false;
+
+        function openInvitation() {
+            const cover = document.getElementById('cover-screen');
+            cover.style.transform = 'translateY(-100%)';
+            cover.style.opacity = '0';
+            setTimeout(() => { cover.style.display = 'none'; }, 800);
+
+            playAudio();
+        }
+
+        function playAudio() {
+            audio.play().then(() => {
+                isPlaying = true;
+                musicBtn.innerText = '🎵';
+            }).catch(err => console.log('Audio autoplay blocked: ', err));
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+                musicBtn.innerText = '🔇';
+            } else {
+                audio.play();
+                isPlaying = true;
+                musicBtn.innerText = '🎵';
+            }
+        }
+
+        /* --- Dynamic Countdown / Countup --- */
+        const weddingTargetDate = new Date("August 23, 2026 06:00:00").getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            let diff = weddingTargetDate - now;
+            const timerTitle = document.getElementById("timer-title");
+
+            if (diff <= 0) {
+                timerTitle.innerText = "Been Together Since";
+                diff = Math.abs(diff);
+            } else {
+                timerTitle.innerText = "Counting Down To Muhurtham";
+            }
+
+            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+        }, 1000);
+
+        /* --- Falling Petals --- */
+        const petalsContainer = document.getElementById('petals');
+        for (let i = 0; i < 35; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + '%';
+            petal.style.width = (Math.random() * 8 + 8) + 'px';
+            petal.style.height = (Math.random() * 8 + 8) + 'px';
+            petal.style.animationDuration = (Math.random() * 4 + 4) + 's';
+            petal.style.animationDelay = (Math.random() * 4) + 's';
+            petalsContainer.appendChild(petal);
+        }
+
+        /* --- Scratch Modal Logic --- */
+        const modal = document.getElementById('scratch-modal');
+        const modalCanvas = document.getElementById('modal-canvas');
+        const ctx = modalCanvas.getContext('2d');
+        let isDrawing = false;
+        let scratchCount = 0; // Tracks swipe/scratch counts
+
+        const eventData = {
+            'haldi': {
+                img: 'images/haldi-reveal.jpeg',
+                scratchColor: '#E5B80B'
+            },
+            'reception': {
+                img: 'images/reception-reveal.jpeg',
+                scratchColor: '#C84B61'
+            },
+            'muhurtham': {
+                img: 'images/muhurtham-reveal.jpeg',
+                scratchColor: '#D4AF37'
+            },
+            'reception2': {
+                img: 'images/reception-reveal2.jpeg',
+                scratchColor: '#8B0000'
+            }
+        };
+
+        function openScratchModal(eventType) {
+            const data = eventData[eventType];
+            if (!data) return;
+
+            document.body.classList.add('modal-open');
+            scratchCount = 0;
+
+            const imgElem = document.getElementById('reveal-img-src');
+            imgElem.src = data.img;
+
+            // Reset canvas visibility and overlay color
+            modalCanvas.style.opacity = '1';
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.fillStyle = data.scratchColor;
+            ctx.fillRect(0, 0, modalCanvas.width, modalCanvas.height);
+
+            modal.classList.add('active');
+        }
+
+        function closeScratchModal() {
+            modal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+        }
+
+        function autoReveal() {
+            // Completely clear canvas layer
+            ctx.clearRect(0, 0, modalCanvas.width, modalCanvas.height);
+        }
+
+        function scratch(e) {
+            if (!isDrawing) return;
+            
+            if (e.cancelable) e.preventDefault();
+
+            const rect = modalCanvas.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            const scaleX = modalCanvas.width / rect.width;
+            const scaleY = modalCanvas.height / rect.height;
+
+            const x = (clientX - rect.left) * scaleX;
+            const y = (clientY - rect.top) * scaleY;
+
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc(x, y, 28, 0, Math.PI * 2, false);
+            ctx.fill();
+
+            scratchCount++;
+            
+            // Auto reveal fully after 2 drag/swipe motions
+            if (scratchCount >= 2) {
+                autoReveal();
+            }
+        }
+
+        // Mouse Events
+        modalCanvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
+        modalCanvas.addEventListener('mousemove', scratch);
+        window.addEventListener('mouseup', () => { isDrawing = false; });
+
+        // Touch Events for Mobile
+        modalCanvas.addEventListener('touchstart', (e) => { 
+            isDrawing = true; 
+            if (e.cancelable) e.preventDefault();
+            scratch(e); 
+        }, { passive: false });
+
+        modalCanvas.addEventListener('touchmove', (e) => { 
+            if (e.cancelable) e.preventDefault();
+            scratch(e); 
+        }, { passive: false });
+
+        window.addEventListener('touchend', () => { isDrawing = false; });
+    </script>
+</body>
+</html>

@@ -4,7 +4,7 @@ Welcome to the official repository for the wedding web invitation of Sreenu & Ch
 
 ## 🔗 Live Invitation
 You can view the live web invitation here:
-[Sreenu & Cherry Wedding Invitation](https://sreenu4cherry.github.io/my-wedding-invitation/)
+[Sreenu & Cherry Wedding Invitation](https://sreenu4cherry.github.io/my_wedding_invitation/)
 
 ## 📅 Schedule of Events
 - **Haldi Ceremony:** August 22nd at 9:00 AM , 2026

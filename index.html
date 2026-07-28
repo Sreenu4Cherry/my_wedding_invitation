@@ -10,12 +10,12 @@
     
     <style>
         :root {
-            /* REVISED ATTRACTIVE PALETTE: Maroon, Silver, Ivory */
+            /* LUXURY PALETTE: Maroon, Silver, Ivory */
             --royal-maroon: #6A0B12;
-            --main-accent: #C0C0C0; /* Polished Silver instead of Gold */
-            --main-accent-dark: #A9A9A9; /* Darker Silver for borders */
-            --accent-light: #E0E0E0; /* Very light silver for highlights */
-            --cream: #FFFDF8; /* Retained cream for warm backdrop */
+            --main-accent: #C0C0C0; /* Polished Silver */
+            --main-accent-dark: #A9A9A9; /* Darker Silver */
+            --accent-light: #E0E0E0; /* Light silver highlights */
+            --cream: #FFFDF8; /* Warm backdrop */
             --text-dark: #222222;
             --text-muted: #555555;
             --white: #ffffff;
@@ -61,11 +61,10 @@
             100% { top: 110%; transform: translateX(100px) rotate(360deg); }
         }
 
-        /* --- Envelope / Tap To Open Cover Screen --- */
+        /* --- Cover Screen --- */
         #cover-screen {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            /* Revised Gradient: Dark Maroon to Black */
             background: radial-gradient(circle, #58060c 0%, #000000 100%);
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             z-index: 1000; color: var(--main-accent);
@@ -75,7 +74,6 @@
 
         .envelope-card {
             background: var(--cream);
-            /* REVISED: Maroon Border */
             border: 2px solid var(--royal-maroon);
             border-radius: 20px;
             padding: 30px 20px;
@@ -99,7 +97,6 @@
             width: 130px;
             height: 130px;
             border-radius: 50%;
-            /* REVISED: Maroon Background & Border */
             border: 3px solid var(--royal-maroon);
             overflow: hidden;
             box-shadow: 0 6px 15px rgba(0,0,0,0.25);
@@ -129,7 +126,6 @@
             width: 36px;
             height: 36px;
             background: var(--royal-maroon);
-            /* REVISED: Maroon Border */
             border: 2px solid var(--royal-maroon);
             border-radius: 50%;
             display: flex;
@@ -144,7 +140,6 @@
 
         .tap-btn {
             background: var(--royal-maroon); 
-            /* REVISED: Silver Text & Border */
             color: var(--main-accent);
             border: 1px solid var(--main-accent); 
             padding: 12px 28px;
@@ -162,7 +157,6 @@
             width: 45px;
             height: 45px;
             background: var(--royal-maroon);
-            /* REVISED: Silver Border & Color */
             border: 2px solid var(--main-accent);
             border-radius: 50%;
             color: var(--main-accent);
@@ -181,13 +175,11 @@
         }
 
         .header-section { text-align: center; margin-bottom: 30px; }
-        /* REVISED: Maroon Sub-title */
         .sub-title { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--royal-maroon); margin-bottom: 10px; font-weight: 600; }
         .main-heading { font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--royal-maroon); letter-spacing: 1px; }
 
         .couple-card {
             background: var(--white); 
-            /* REVISED: Silver Border */
             border: 1px solid var(--main-accent-dark); 
             border-radius: 16px;
             padding: 30px 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03);
@@ -196,21 +188,17 @@
 
         .couple-names h2 { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: var(--royal-maroon); line-height: 1; }
         .parent-subtext { font-size: 0.8rem; color: var(--text-muted); margin: 6px 0 15px; }
-        /* REVISED: Silver Ampersand */
         .ampersand { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--main-accent-dark); font-weight: 700; margin: 5px 0; }
 
         /* --- Countdown --- */
         .countdown-banner {
             background: var(--royal-maroon); 
-            /* REVISED: Silver Text & Border */
             color: var(--white);
             padding: 20px; border-radius: 14px; text-align: center;
             border: 1px solid var(--main-accent); margin-bottom: 40px;
         }
-        /* REVISED: Light Silver Countdown Title */
         .countdown-title { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; color: var(--accent-light); }
         .timer { display: flex; justify-content: space-around; max-width: 360px; margin: 0 auto; }
-        /* REVISED: Silver Timer Numbers */
         .timer-num { font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 700; color: var(--main-accent); }
         .timer-label { font-size: 0.65rem; text-transform: uppercase; opacity: 0.8; }
 
@@ -218,11 +206,9 @@
         .section-title-wrap { text-align: center; margin-bottom: 35px; }
         .section-title { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--royal-maroon); }
 
-        /* REVISED: Silver Timeline Line */
         .timeline { position: relative; padding-left: 28px; border-left: 2px solid var(--main-accent); margin-left: 10px; }
         .timeline-item { position: relative; margin-bottom: 40px; }
 
-        /* REVISED: Silver Timeline Node */
         .timeline-node {
             position: absolute; left: -37px; top: 0;
             width: 16px; height: 16px; border-radius: 50%;
@@ -232,7 +218,6 @@
 
         .event-card-container {
             display: flex; flex-direction: column-reverse; background: var(--white);
-            /* REVISED: Silver Border */
             border: 1px solid var(--main-accent); border-radius: 16px; overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.04);
         }
@@ -242,7 +227,6 @@
         }
 
         .event-info { padding: 20px; flex: 1; }
-        /* REVISED: Maroon Event Date */
         .event-date { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--royal-maroon); letter-spacing: 1px; }
         .event-title { font-family: 'Cinzel', serif; font-size: 1.25rem; color: var(--royal-maroon); margin: 4px 0; }
         .event-venue { font-size: 0.8rem; color: #444; margin-bottom: 8px; font-weight: 500; }
@@ -256,13 +240,11 @@
             border-radius: 20px; text-decoration: none; transition: all 0.2s;
         }
 
-        /* REVISED: Silver Directions Button */
         .btn-map { background: var(--royal-maroon); color: var(--main-accent); border: 1px solid var(--main-accent); }
 
         /* Card Preview Side Block */
         .card-preview-wrap {
             width: 100%; height: 210px; position: relative;
-            /* REVISED: Very Light Silver Preview Background */
             background: var(--white); display: flex; justify-content: center; align-items: center;
             user-select: none; cursor: pointer; padding: 10px;
         }
@@ -273,7 +255,6 @@
 
         .art-card-thumb {
             width: 130px; height: 175px; border-radius: 12px;
-            /* REVISED: Maroon Border */
             border: 2px solid var(--royal-maroon); box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             position: relative; overflow: hidden; display: flex;
             justify-content: center; align-items: center;
@@ -283,7 +264,6 @@
             width: 100%; height: 100%; object-fit: cover; display: block;
         }
 
-        /* REVISED: Silver Rub Tag with Maroon Text */
         .rub-tag {
             position: absolute; bottom: 18px; font-size: 0.62rem;
             font-weight: 700; background: var(--main-accent);
@@ -314,7 +294,6 @@
         .scratch-modal-box {
             position: relative; width: 300px; height: 420px;
             border-radius: 16px; 
-            /* REVISED: Silver Border */
             border: 3px solid var(--main-accent);
             overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             background: var(--white);
@@ -414,7 +393,7 @@
         <!-- Timeline Section -->
         <div class="timeline">
 
-            <!-- EVENT 1: HALDI (Dharmavaram) - LOCATION FIXED -->
+            <!-- EVENT 1: HALDI (Dharmavaram) -->
             <div class="timeline-item">
                 <div class="timeline-node"></div>
                 <div class="event-card-container">
@@ -477,7 +456,7 @@
                 </div>
             </div>
 
-            <!-- EVENT 4: DHARMAVARAM RECEPTION - REVEAL2 ADDED -->
+            <!-- EVENT 4: DHARMAVARAM RECEPTION -->
             <div class="timeline-item">
                 <div class="timeline-node"></div>
                 <div class="event-card-container">
@@ -592,240 +571,99 @@
         const modalCanvas = document.getElementById('modal-canvas');
         const ctx = modalCanvas.getContext('2d');
         let isDrawing = false;
-        let scratchCount = 0; // Tracks swipe/scratch counts
+        let scratchCount = 0;
 
         const eventData = {
             'haldi': {
                 img: 'images/haldi-reveal.jpeg',
-                scratchColor: '#A9A9A9' /* Revised: Silver Scratch Layer */
+                scratchColor: '#A9A9A9'
             },
             'reception': {
                 img: 'images/reception-reveal.jpeg',
-                scratchColor: '#A9A9A9' /* Revised: Silver Scratch Layer */
+                scratchColor: '#A9A9A9'
             },
             'muhurtham': {
                 img: 'images/muhurtham-reveal.jpeg',
-                scratchColor: '#A9A9A9' /* Revised: Silver Scratch LayerUnderstood. If you find the gold tones unattractive, we should change them to create a luxury look you prefer.
+                scratchColor: '#A9A9A9'
+            },
+            'reception2': {
+                img: 'images/reception-reveal2.jpeg',
+                scratchColor: '#A9A9A9'
+            }
+        };
 
-I have replaced the gold and yellow palette with a combination of **Royal Maroon, Polished Silver, and Ivory**. This creates a high-contrast, sophisticated aesthetic.
+        function openScratchModal(eventType) {
+            const data = eventData[eventType];
+            if (!data) return;
 
-I have also integrated your functional requests:
-1.  Fixed the Haldi Ceremony location to **Dharmavaram**.
-2.  Added `reception-reveal2.jpeg` to the Dharmavaram Reception card.
+            document.body.classList.add('modal-open');
+            scratchCount = 0;
 
-Here is the updated code:
+            const imgElem = document.getElementById('reveal-img-src');
+            imgElem.src = data.img;
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sreenu & Cherry | Wedding Celebration</title>
-    
-    <!-- Google Fonts for Luxury Aesthetic -->
-    <link href="[https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap](https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap)" rel="stylesheet">
-    
-    <style>
-        :root {
-            /* REVISED LUXURY PALETTE: Maroon, Silver, Ivory */
-            --royal-maroon: #6A0B12;
-            --main-accent: #C0C0C0; /* Polished Silver instead of Gold */
-            --main-accent-dark: #A9A9A9; /* Darker Silver for definition */
-            --accent-light: #E0E0E0; /* Light silver highlights */
-            --cream: #FFFDF8; /* Warm background */
-            --text-dark: #222222;
-            --text-muted: #555555;
-            --white: #ffffff;
+            modalCanvas.style.opacity = '1';
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.fillStyle = data.scratchColor;
+            ctx.fillRect(0, 0, modalCanvas.width, modalCanvas.height);
+
+            modal.classList.add('active');
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            -webkit-tap-highlight-color: transparent;
+        function closeScratchModal() {
+            modal.classList.remove('active');
+            document.body.classList.remove('modal-open');
         }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--cream);
-            color: var(--text-dark);
-            overflow-x: hidden;
+        function autoReveal() {
+            ctx.clearRect(0, 0, modalCanvas.width, modalCanvas.height);
         }
 
-        /* Prevent background scroll when modal is active */
-        body.modal-open {
-            overflow: hidden !important;
-            touch-action: none;
+        function scratch(e) {
+            if (!isDrawing) return;
+            
+            if (e.cancelable) e.preventDefault();
+
+            const rect = modalCanvas.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            const scaleX = modalCanvas.width / rect.width;
+            const scaleY = modalCanvas.height / rect.height;
+
+            const x = (clientX - rect.left) * scaleX;
+            const y = (clientY - rect.top) * scaleY;
+
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc(x, y, 28, 0, Math.PI * 2, false);
+            ctx.fill();
+
+            scratchCount++;
+            
+            if (scratchCount >= 2) {
+                autoReveal();
+            }
         }
 
-        /* --- Falling Petals --- */
-        .petals-container {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 99; overflow: hidden;
-        }
+        // Mouse Events
+        modalCanvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
+        modalCanvas.addEventListener('mousemove', scratch);
+        window.addEventListener('mouseup', () => { isDrawing = false; });
 
-        .petal {
-            position: absolute;
-            background: linear-gradient(135deg, #ffb7c5, #e05275);
-            border-radius: 150% 0 150% 0;
-            opacity: 0.7;
-            animation: animate-petal 7s linear infinite;
-        }
+        // Touch Events for Mobile
+        modalCanvas.addEventListener('touchstart', (e) => { 
+            isDrawing = true; 
+            if (e.cancelable) e.preventDefault();
+            scratch(e); 
+        }, { passive: false });
 
-        @keyframes animate-petal {
-            0% { top: -10%; transform: translateX(0) rotate(0deg); }
-            100% { top: 110%; transform: translateX(100px) rotate(360deg); }
-        }
+        modalCanvas.addEventListener('touchmove', (e) => { 
+            if (e.cancelable) e.preventDefault();
+            scratch(e); 
+        }, { passive: false });
 
-        /* --- Envelope / Tap To Open Cover Screen --- */
-        #cover-screen {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            /* Revised Gradient: Dark Maroon to Black */
-            background: radial-gradient(circle, #58060c 0%, #000000 100%);
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 1000; color: var(--main-accent);
-            transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
-            padding: 20px;
-        }
-
-        .envelope-card {
-            background: var(--cream);
-            /* REVISED: Maroon Border */
-            border: 2px solid var(--royal-maroon);
-            border-radius: 20px;
-            padding: 30px 20px;
-            width: 92%; max-width: 400px;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.6);
-            display: flex; flex-direction: column; align-items: center;
-            text-align: center;
-        }
-
-        /* Couple Photo Display Frame */
-        .couple-photos-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            margin: 20px 0;
-            position: relative;
-        }
-
-        .photo-frame {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            /* REVISED: Maroon Background & Border */
-            border: 3px solid var(--royal-maroon);
-            overflow: hidden;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-            background: var(--royal-maroon);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .photo-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .photo-frame img.groom-img {
-            object-position: center top !important;
-            transform: scale(1.10);
-        }
-
-        .photo-frame img.bride-img {
-            object-position: center top !important;
-        }
-
-        /* Love Heart Badge */
-        .heart-badge {
-            width: 36px;
-            height: 36px;
-            background: var(--royal-maroon);
-            border: 2px solid var(--royal-maroon);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #E25865;
-            font-size: 1.1rem;
-            margin: 0 -16px;
-            z-index: 2;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        }
-
-        .tap-btn {
-            background: var(--royal-maroon); 
-            /* REVISED: Silver Text & Border */
-            color: var(--main-accent);
-            border: 1px solid var(--main-accent); 
-            padding: 12px 28px;
-            font-size: 0.85rem; font-weight: 600; border-radius: 25px;
-            letter-spacing: 1.5px; margin-top: 10px; text-transform: uppercase;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-        }
-
-        /* Music Floating Control Button */
-        .music-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 45px;
-            height: 45px;
-            background: var(--royal-maroon);
-            /* REVISED: Silver Border & Color */
-            border: 2px solid var(--main-accent);
-            border-radius: 50%;
-            color: var(--main-accent);
-            font-size: 1.2rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 900;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        }
-
-        /* --- Main Layout --- */
-        .container {
-            width: 100%; max-width: 680px; margin: 0 auto; padding: 40px 20px;
-        }
-
-        .header-section { text-align: center; margin-bottom: 30px; }
-        /* REVISED: Maroon Sub-title */
-        .sub-title { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--royal-maroon); margin-bottom: 10px; font-weight: 600; }
-        .main-heading { font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--royal-maroon); letter-spacing: 1px; }
-
-        .couple-card {
-            background: var(--white); 
-            /* REVISED: Silver Border */
-            border: 1px solid var(--main-accent-dark); 
-            border-radius: 16px;
-            padding: 30px 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            margin-bottom: 30px;
-        }
-
-        .couple-names h2 { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: var(--royal-maroon); line-height: 1; }
-        .parent-subtext { font-size: 0.8rem; color: var(--text-muted); margin: 6px 0 15px; }
-        /* REVISED: Silver Ampersand */
-        .ampersand { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--main-accent-dark); font-weight: 700; margin: 5px 0; }
-
-        /* --- Countdown --- */
-        .countdown-banner {
-            background: var(--royal-maroon); 
-            /* REVISED: Silver Border */
-            color: var(--white);
-            padding: 20px; border-radius: 14px; text-align: center;
-            border: 1px solid var(--main-accent); margin-bottom: 40px;
-        }
-        /* REVISED: Light Silver Countdown Title */
-        .countdown-title { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; color: var(--accent-light); }
-        .timer { display: flex; justify-content: space-around; max-width: 360px; margin: 0 auto; }
-        /* REVISED: Silver Timer Numbers */
-        .timer
+        window.addEventListener('touchend', () => { isDrawing = false; });
+    </script>
+</body>
+</html>

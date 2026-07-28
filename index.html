@@ -33,6 +33,12 @@
             overflow-x: hidden;
         }
 
+        /* Prevent background scroll when modal is active */
+        body.modal-open {
+            overflow: hidden !important;
+            touch-action: none;
+        }
+
         /* --- Falling Petals --- */
         .petals-container {
             position: fixed;
@@ -92,7 +98,10 @@
             border: 3px solid var(--gold);
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            background: #eee;
+            background: #f0e6d2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .photo-frame img {
@@ -231,20 +240,20 @@
         /* --- Fullscreen Pop-up Modal for Scratching --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.88); backdrop-filter: blur(6px);
             z-index: 2000; display: none; justify-content: center; align-items: center;
-            flex-direction: column;
+            flex-direction: column; touch-action: none;
         }
 
         .modal-overlay.active { display: flex; }
 
         .close-modal-btn {
             position: absolute; top: 25px; right: 25px;
-            width: 40px; height: 40px; background: #ffffff;
+            width: 42px; height: 42px; background: #ffffff;
             color: #000; border-radius: 50%; display: flex;
             justify-content: center; align-items: center;
             font-size: 1.4rem; font-weight: bold; cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 2010;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4); z-index: 2010;
         }
 
         .scratch-modal-box {
@@ -252,6 +261,7 @@
             border-radius: 16px; border: 3px solid var(--gold);
             overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             background: #fff;
+            touch-action: none;
         }
 
         .reveal-image {
@@ -269,6 +279,7 @@
         .modal-scratch-canvas {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             cursor: pointer; z-index: 5;
+            touch-action: none; /* Crucial fix: prevents screen scroll while rubbing */
         }
 
         .modal-instruction {
@@ -288,14 +299,16 @@
         <div class="envelope-card">
             <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.6rem; color: var(--royal-maroon);">Wedding Invitation</h2>
             
-            <!-- Couple Photos -->
+            <!-- Couple Photos Placeholders -->
             <div class="couple-photos-container">
                 <div class="photo-frame">
-                    <img src="portrait1.png" alt="Sreenu">
+                    <!-- Groom Photo Placeholder -->
+                    <img src="groom-photo.jpg" alt="Sreenu" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'95\' height=\'95\' viewBox=\'0 0 95 95\'><rect width=\'95\' height=\'95\' fill=\'%23e5cd93\'/><text x=\'50%\' y=\'55%\' font-size=\'14\' font-family=\'Montserrat\' fill=\'%236A0B12\' text-anchor=\'middle\'>Sreenu</text></svg>';">
                 </div>
                 <div class="heart-badge">S&C</div>
                 <div class="photo-frame">
-                    <img src="Cherry.jpg" alt="Charitha">
+                    <!-- Bride Photo Placeholder -->
+                    <img src="bride-photo.jpg" alt="Charitha" onerror="this.onerror=null; this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'95\' height=\'95\' viewBox=\'0 0 95 95\'><rect width=\'95\' height=\'95\' fill=\'%23e5cd93\'/><text x=\'50%\' y=\'55%\' font-size=\'14\' font-family=\'Montserrat\' fill=\'%236A0B12\' text-anchor=\'middle\'>Charitha</text></svg>';">
                 </div>
             </div>
 
@@ -441,7 +454,6 @@
         <div class="scratch-modal-box">
             <!-- Hidden Revealed Content Under Canvas -->
             <div class="reveal-placeholder-art" id="modal-art-content">
-                <!-- If you upload images named haldi-reveal.jpg, etc., they will display automatically -->
                 <img id="reveal-img-src" class="reveal-image" src="" alt="Revealed Invite Card" onerror="this.style.display='none';">
                 <div id="reveal-text-content">
                     <div style="font-size: 3rem;" id="modal-emoji">🌼</div>
@@ -533,6 +545,9 @@
             const data = eventData[eventType];
             if (!data) return;
 
+            // Lock background page scrolling
+            document.body.classList.add('modal-open');
+
             // Set content under scratch layer
             document.getElementById('modal-title').innerText = data.title;
             document.getElementById('modal-sub').innerText = data.sub;
@@ -558,13 +573,22 @@
 
         function closeScratchModal() {
             modal.classList.remove('active');
+            // Unlock background page scrolling
+            document.body.classList.remove('modal-open');
         }
 
         function scratch(e) {
             if (!isDrawing) return;
+            
+            // Prevent default touch movement/scrolling
+            if (e.cancelable) e.preventDefault();
+
             const rect = modalCanvas.getBoundingClientRect();
-            const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
-            const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            const x = clientX - rect.left;
+            const y = clientY - rect.top;
 
             ctx.globalCompositeOperation = 'destination-out';
             ctx.beginPath();
@@ -572,12 +596,23 @@
             ctx.fill();
         }
 
+        // Mouse Events
         modalCanvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
         modalCanvas.addEventListener('mousemove', scratch);
         window.addEventListener('mouseup', () => { isDrawing = false; });
 
-        modalCanvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); });
-        modalCanvas.addEventListener('touchmove', scratch);
+        // Touch Events for Mobile (with strict event handling)
+        modalCanvas.addEventListener('touchstart', (e) => { 
+            isDrawing = true; 
+            if (e.cancelable) e.preventDefault();
+            scratch(e); 
+        }, { passive: false });
+
+        modalCanvas.addEventListener('touchmove', (e) => { 
+            if (e.cancelable) e.preventDefault();
+            scratch(e); 
+        }, { passive: false });
+
         window.addEventListener('touchend', () => { isDrawing = false; });
     </script>
 </body>

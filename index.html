@@ -110,8 +110,12 @@
             object-fit: cover;
         }
 
-        /* Positions groom & bride photos to keep top of hair fully visible */
-        .photo-frame img.groom-img,
+        /* Groom specific alignment and reduced zoom so face matches proportion */
+        .photo-frame img.groom-img {
+            object-position: center top !important;
+            transform: scale(0.85); /* Slightly zooms out groom photo */
+        }
+
         .photo-frame img.bride-img {
             object-position: center top !important;
         }
@@ -140,6 +144,26 @@
             letter-spacing: 1.5px; margin-top: 10px; text-transform: uppercase;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Music Floating Control Button */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 45px;
+            height: 45px;
+            background: var(--royal-maroon);
+            border: 2px solid var(--gold);
+            border-radius: 50%;
+            color: var(--gold);
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 900;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
         /* --- Main Layout --- */
@@ -293,6 +317,14 @@
     </style>
 </head>
 <body>
+
+    <!-- Looping Audio Player -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="images/song.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Toggle Button -->
+    <button class="music-btn" id="music-toggle" onclick="toggleMusic()">🎵</button>
 
     <div class="petals-container" id="petals"></div>
 
@@ -463,11 +495,38 @@
     </div>
 
     <script>
+        /* --- Music Controller --- */
+        const audio = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-toggle');
+        let isPlaying = false;
+
         function openInvitation() {
             const cover = document.getElementById('cover-screen');
             cover.style.transform = 'translateY(-100%)';
             cover.style.opacity = '0';
             setTimeout(() => { cover.style.display = 'none'; }, 800);
+
+            // Play background audio on user interaction
+            playAudio();
+        }
+
+        function playAudio() {
+            audio.play().then(() => {
+                isPlaying = true;
+                musicBtn.innerText = '🎵';
+            }).catch(err => console.log('Audio autoplay blocked: ', err));
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+                musicBtn.innerText = '🔇';
+            } else {
+                audio.play();
+                isPlaying = true;
+                musicBtn.innerText = '🎵';
+            }
         }
 
         /* --- Dynamic Countdown / Countup --- */

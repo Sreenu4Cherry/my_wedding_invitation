@@ -613,8 +613,12 @@
             const clientX = e.touches ? e.touches[0].clientX : e.clientX;
             const clientY = e.touches ? e.touches[0].clientY : e.clientY;
 
-            const x = clientX - rect.left;
-            const y = clientY - rect.top;
+            // Scale calculations to keep touch coordinate aligned on scaled mobile displays
+            const scaleX = modalCanvas.width / rect.width;
+            const scaleY = modalCanvas.height / rect.height;
+
+            const x = (clientX - rect.left) * scaleX;
+            const y = (clientY - rect.top) * scaleY;
 
             ctx.globalCompositeOperation = 'destination-out';
             ctx.beginPath();

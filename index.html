@@ -34,7 +34,7 @@
             overflow: hidden;
         }
 
-        /* Music Toggle Button */
+        /* Music Toggle Button (Hidden on Landing, Revealed on Main Page) */
         .music-btn {
             position: fixed;
             top: 18px;
@@ -48,7 +48,14 @@
             cursor: pointer;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(4px);
-            transition: transform 0.2s;
+            transition: opacity 0.4s ease, transform 0.2s;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .music-btn.visible {
+            opacity: 1;
+            pointer-events: auto;
         }
 
         .music-btn:active {
@@ -87,7 +94,7 @@
         }
 
         /* ==========================================
-           2. COVER / LANDING SCREEN (Arc Title & Fit)
+           2. FULL-SCREEN EDGE-TO-EDGE LANDING COVER
            ========================================== */
         #cover-screen {
             position: fixed;
@@ -95,35 +102,18 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: #4A0E17;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            padding: 12px;
-            box-sizing: border-box;
-            transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
-        }
-
-        .envelope-card {
-            position: relative;
-            width: 100%;
-            max-width: 380px;
-            height: calc(100vh - 30px);
-            max-height: 680px;
-            border-radius: 24px;
-            overflow: hidden;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
-            background: #FFFDF9;
+            background: #fdfaf5;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 10px 16px 10px;
+            z-index: 9999;
             box-sizing: border-box;
+            transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+            overflow: hidden;
         }
 
-        /* Responsive Hero Artwork fitting inside frame */
+        /* Background Artwork fitting exact viewport */
         .landing-hero-bg {
             position: absolute;
             top: 0;
@@ -135,29 +125,29 @@
             z-index: 1;
         }
 
-        /* Top Arc Text Section */
+        /* Arched SVG Title Section */
         .arc-title-container {
             position: relative;
             z-index: 3;
             width: 100%;
-            margin-top: 4px;
+            margin-top: 22px;
             pointer-events: none;
         }
 
         .arc-svg {
             width: 100%;
-            height: 65px;
+            height: 75px;
             overflow: visible;
         }
 
         .arc-text {
             font-family: 'Great Vibes', cursive;
-            font-size: 2.2rem;
-            fill: #5a0c16;
-            text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.8);
+            font-size: 2.3rem;
+            fill: #6a131f;
+            text-shadow: 0px 1px 3px rgba(255, 255, 255, 0.9);
         }
 
-        /* Bottom Controls Overlaid on Image */
+        /* Controls sitting directly over the bottom artwork */
         .bottom-content {
             position: relative;
             z-index: 3;
@@ -165,48 +155,45 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-bottom: 4px;
+            padding-bottom: 24px;
         }
 
         .couple-names-text {
             font-family: 'Cinzel', serif;
-            font-size: 1.05rem;
+            font-size: 1.15rem;
             font-weight: 700;
             color: #3b0a10;
-            letter-spacing: 1.5px;
-            margin-bottom: 2px;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
             text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
-            background: rgba(255, 253, 249, 0.45);
-            padding: 2px 14px;
-            border-radius: 12px;
-            backdrop-filter: blur(2px);
         }
 
         .hand-pointer {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             animation: bounce 1.2s infinite alternate;
-            margin: 2px 0 6px 0;
+            margin-bottom: 6px;
         }
 
         @keyframes bounce {
             0% { transform: translateY(0); }
-            100% { transform: translateY(5px); }
+            100% { transform: translateY(6px); }
         }
 
         .tap-btn {
             background: #6a131f;
             color: #fff;
             border: none;
-            padding: 10px 24px;
+            padding: 12px 28px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.82rem;
+            font-size: 0.85rem;
             font-weight: 600;
-            letter-spacing: 1px;
+            letter-spacing: 1.2px;
             border-radius: 25px;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(106, 19, 31, 0.4);
             transition: transform 0.2s, background 0.2s;
             width: 82%;
+            max-width: 320px;
         }
 
         .tap-btn:active {
@@ -499,36 +486,34 @@
         <source id="music-src" src="" type="audio/mpeg">
     </audio>
 
-    <!-- Music Toggle Button -->
+    <!-- Music Toggle Button (Appears only on Main Page) -->
     <button class="music-btn" id="music-toggle" onclick="toggleMusic()">🎵</button>
 
     <!-- Background Petals Animation -->
     <div class="petals-container" id="petals"></div>
 
-    <!-- COVER / LANDING SCREEN WITH ARC TEXT & FULL FIT BACKGROUND -->
+    <!-- COVER / LANDING SCREEN (Full Edge-To-Edge Viewport) -->
     <div id="cover-screen">
-        <div class="envelope-card">
-            <!-- Full Background Illustration -->
-            <img id="landing-hero-img" class="landing-hero-bg" src="" alt="Sreenu & Cherry Wedding Illustration">
-            
-            <!-- Curved Arc Title at Top -->
-            <div class="arc-title-container">
-                <svg class="arc-svg" viewBox="0 0 300 70">
-                    <path id="title-curve" d="M 20,55 A 180,180 0 0,1 280,55" fill="transparent"/>
-                    <text class="arc-text">
-                        <textPath href="#title-curve" startOffset="50%" text-anchor="middle" id="landing-title-text">
-                            Wedding Invitation
-                        </textPath>
-                    </text>
-                </svg>
-            </div>
+        <!-- Background Illustration -->
+        <img id="landing-hero-img" class="landing-hero-bg" src="" alt="Sreenu & Cherry Wedding Illustration">
+        
+        <!-- Curved Arc Title at Top -->
+        <div class="arc-title-container">
+            <svg class="arc-svg" viewBox="0 0 300 70">
+                <path id="title-curve" d="M 15,58 A 185,185 0 0,1 285,58" fill="transparent"/>
+                <text class="arc-text">
+                    <textPath href="#title-curve" startOffset="50%" text-anchor="middle" id="landing-title-text">
+                        Wedding Invitation
+                    </textPath>
+                </text>
+            </svg>
+        </div>
 
-            <!-- Overlaid Bottom Elements -->
-            <div class="bottom-content">
-                <p class="couple-names-text" id="landing-couple-names"></p>
-                <div class="hand-pointer">👇</div>
-                <button class="tap-btn" id="landing-tap-btn" onclick="openInvitation()"></button>
-            </div>
+        <!-- Overlaid Bottom Elements -->
+        <div class="bottom-content">
+            <p class="couple-names-text" id="landing-couple-names"></p>
+            <div class="hand-pointer">👇</div>
+            <button class="tap-btn" id="landing-tap-btn" onclick="openInvitation()"></button>
         </div>
     </div>
 
@@ -703,6 +688,9 @@
             cover.style.transform = 'translateY(-100%)';
             cover.style.opacity = '0';
             setTimeout(() => { cover.style.display = 'none'; }, 800);
+            
+            // Show music button on main invitation page
+            musicBtn.classList.add('visible');
             playAudio();
         }
 

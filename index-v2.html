@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sreenu & Cherry | Wedding Celebration</title>
     
-    <!-- Google Fonts for Luxury Aesthetic -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
@@ -61,26 +61,26 @@
             100% { top: 110%; transform: translateX(100px) rotate(360deg); }
         }
 
-        /* --- Cover Screen --- */
+        /* --- Custom Traditional Cover Screen --- */
         #cover-screen {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background: radial-gradient(circle, #58060c 0%, #000000 100%);
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 1000; color: var(--main-accent);
+            background: #fffdf8 url('images/cover-bg.jpg') center/cover no-repeat; /* Fallback frame image */
+            display: flex; flex-direction: column; justify-content: space-between; align-items: center;
+            z-index: 1000; color: var(--royal-maroon);
             transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
-            padding: 20px;
+            padding: 40px 20px;
+            text-align: center;
         }
 
-        .envelope-card {
-            background: var(--cream);
-            border: 2px solid var(--royal-maroon);
-            border-radius: 20px;
-            padding: 30px 20px;
-            width: 92%; max-width: 400px;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.6);
-            display: flex; flex-direction: column; align-items: center;
-            text-align: center;
+        .cover-header-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--royal-maroon);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+            margin-top: 20px;
         }
 
         /* Couple Photo Display Frame */
@@ -88,18 +88,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            margin: 20px 0;
+            gap: 12px;
+            margin: 10px 0;
             position: relative;
         }
 
         .photo-frame {
-            width: 130px;
-            height: 130px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            border: 3px solid var(--royal-maroon);
+            border: 4px solid var(--royal-maroon);
             overflow: hidden;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
             background: var(--royal-maroon);
             display: flex;
             justify-content: center;
@@ -108,19 +108,12 @@
             color: #ffffff !important;
             font-weight: 600;
             font-size: 1.1rem;
-            line-height: 1.2;
-            word-break: break-word;
         }
 
         .photo-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            color: #ffffff;
-            text-align: center;
-            line-height: 124px;
-            font-size: 1.1rem;
-            font-weight: 600;
         }
 
         .photo-frame img.groom-img {
@@ -132,7 +125,6 @@
             object-position: center top !important;
         }
 
-        /* Fallback text styling when image fails to load */
         .frame-placeholder {
             color: #ffffff;
             font-size: 1.15rem;
@@ -143,48 +135,65 @@
 
         /* Love Heart Badge */
         .heart-badge {
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             background: var(--royal-maroon);
-            border: 2px solid var(--royal-maroon);
+            border: 2px solid #ffffff;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             color: #E25865;
-            font-size: 1.1rem;
-            margin: 0 -16px;
+            font-size: 1.2rem;
+            margin: 0 -18px;
             z-index: 2;
             box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
 
-        /* --- Bouncing Hand Pointer --- */
+        .couple-cover-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--royal-maroon);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.9);
+            margin: 5px 0 15px;
+        }
+
+        /* Cover Action Button Container */
+        .cover-action-wrap {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .tap-btn {
+            background: var(--royal-maroon); 
+            color: var(--white);
+            border: 2px solid #E0E0E0; 
+            padding: 14px 40px;
+            font-size: 1rem; font-weight: 700; border-radius: 30px;
+            letter-spacing: 2px; text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 6px 18px rgba(106, 11, 18, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .tap-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* Bouncing Hand Pointer */
         .hand-pointer {
             font-size: 1.6rem;
-            margin-top: 10px;
-            margin-bottom: -4px;
+            margin-bottom: 6px;
             animation: bounce 1.2s infinite ease-in-out;
             user-select: none;
         }
 
         @keyframes bounce {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(6px);
-            }
-        }
-
-        .tap-btn {
-            background: var(--royal-maroon); 
-            color: var(--main-accent);
-            border: 1px solid var(--main-accent); 
-            padding: 12px 28px;
-            font-size: 0.85rem; font-weight: 600; border-radius: 25px;
-            letter-spacing: 1.5px; text-transform: uppercase;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
         }
 
         /* Music Floating Control Button */
@@ -376,10 +385,10 @@
 
     <!-- Cover Screen -->
     <div id="cover-screen">
-        <div class="envelope-card">
-            <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.20rem; color: var(--royal-maroon);">Wedding Invitation</h2>
-            
-            <!-- Couple Photos Frame -->
+        <div class="cover-header-title">INVITE</div>
+        
+        <!-- Couple Photos Frame -->
+        <div>
             <div class="couple-photos-container">
                 <div class="photo-frame" id="groom-frame">
                     <img class="groom-img" src="images/groom-photo1.jpeg" alt="Sreenu" onerror="handleImgError(this, 'Sreenu')">
@@ -389,12 +398,12 @@
                     <img class="bride-img" src="images/bride-photo.jpg" alt="Cherry" onerror="handleImgError(this, 'Cherry')">
                 </div>
             </div>
+            <div class="couple-cover-name">Sreenu & Cherry</div>
+        </div>
 
-            <p style="font-size: 1.50rem; font-weight: 600; color: var(--royal-maroon); margin-bottom: 6px;">Sreenu ♥ Cherry</p>
-            
-            <!-- Bouncing Hand Symbol Pointer -->
+        <div class="cover-action-wrap">
             <div class="hand-pointer">👇</div>
-            <button class="tap-btn" onclick="openInvitation()">💌 Tap To Open</button>
+            <button class="tap-btn" onclick="openInvitation()">TAP TO OPEN</button>
         </div>
     </div>
 

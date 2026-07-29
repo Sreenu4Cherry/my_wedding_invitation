@@ -37,16 +37,16 @@
         /* Music Toggle Button */
         .music-btn {
             position: fixed;
-            top: 20px;
-            right: 20px;
+            top: 18px;
+            right: 18px;
             z-index: 10000;
-            background: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.9);
             border: 1px solid #d4af37;
             font-size: 1.2rem;
-            padding: 10px 12px;
+            padding: 8px 11px;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(4px);
             transition: transform 0.2s;
         }
@@ -87,7 +87,7 @@
         }
 
         /* ==========================================
-           2. COVER / LANDING SCREEN (Full-Image Overlay)
+           2. COVER / LANDING SCREEN (Arc Title & Fit)
            ========================================== */
         #cover-screen {
             position: fixed;
@@ -100,7 +100,7 @@
             justify-content: center;
             align-items: center;
             z-index: 9999;
-            padding: 16px;
+            padding: 12px;
             box-sizing: border-box;
             transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
         }
@@ -109,20 +109,21 @@
             position: relative;
             width: 100%;
             max-width: 380px;
-            height: 85vh;
+            height: calc(100vh - 30px);
             max-height: 680px;
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+            background: #FFFDF9;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            padding: 24px 16px;
+            padding: 12px 10px 16px 10px;
             box-sizing: border-box;
         }
 
-        /* Background image taking full space */
+        /* Responsive Hero Artwork fitting inside frame */
         .landing-hero-bg {
             position: absolute;
             top: 0;
@@ -130,96 +131,82 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
             z-index: 1;
         }
 
-        /* Top and Bottom gradient scrims for text legibility */
-        .envelope-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 25%;
-            background: linear-gradient(to bottom, rgba(255, 253, 249, 0.95), rgba(255, 253, 249, 0));
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .envelope-card::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 30%;
-            background: linear-gradient(to top, rgba(255, 253, 249, 0.95), rgba(255, 253, 249, 0));
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        /* Content layers placed on top of background */
-        .top-content {
+        /* Top Arc Text Section */
+        .arc-title-container {
             position: relative;
             z-index: 3;
             width: 100%;
-            text-align: center;
+            margin-top: 4px;
+            pointer-events: none;
         }
 
+        .arc-svg {
+            width: 100%;
+            height: 65px;
+            overflow: visible;
+        }
+
+        .arc-text {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            fill: #5a0c16;
+            text-shadow: 0px 1px 2px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Bottom Controls Overlaid on Image */
         .bottom-content {
             position: relative;
             z-index: 3;
             width: 100%;
-            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-
-        .landing-title {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.5rem;
-            color: #6a131f;
-            margin: 0;
-            line-height: 1.1;
-            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+            padding-bottom: 4px;
         }
 
         .couple-names-text {
             font-family: 'Cinzel', serif;
-            font-size: 1.15rem;
+            font-size: 1.05rem;
             font-weight: 700;
-            color: #333;
-            margin-bottom: 6px;
-            letter-spacing: 1px;
-            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.8);
+            color: #3b0a10;
+            letter-spacing: 1.5px;
+            margin-bottom: 2px;
+            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+            background: rgba(255, 253, 249, 0.45);
+            padding: 2px 14px;
+            border-radius: 12px;
+            backdrop-filter: blur(2px);
         }
 
         .hand-pointer {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             animation: bounce 1.2s infinite alternate;
-            margin-bottom: 6px;
+            margin: 2px 0 6px 0;
         }
 
         @keyframes bounce {
             0% { transform: translateY(0); }
-            100% { transform: translateY(6px); }
+            100% { transform: translateY(5px); }
         }
 
         .tap-btn {
             background: #6a131f;
             color: #fff;
             border: none;
-            padding: 12px 28px;
+            padding: 10px 24px;
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
+            font-size: 0.82rem;
             font-weight: 600;
             letter-spacing: 1px;
             border-radius: 25px;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(106, 19, 31, 0.4);
             transition: transform 0.2s, background 0.2s;
-            width: 80%;
+            width: 82%;
         }
 
         .tap-btn:active {
@@ -518,18 +505,25 @@
     <!-- Background Petals Animation -->
     <div class="petals-container" id="petals"></div>
 
-    <!-- COVER / LANDING SCREEN WITH FULL BACKGROUND IMAGE -->
+    <!-- COVER / LANDING SCREEN WITH ARC TEXT & FULL FIT BACKGROUND -->
     <div id="cover-screen">
         <div class="envelope-card">
-            <!-- Full background illustration -->
+            <!-- Full Background Illustration -->
             <img id="landing-hero-img" class="landing-hero-bg" src="" alt="Sreenu & Cherry Wedding Illustration">
             
-            <!-- Overlaid top section -->
-            <div class="top-content">
-                <h2 class="landing-title" id="landing-title-text"></h2>
+            <!-- Curved Arc Title at Top -->
+            <div class="arc-title-container">
+                <svg class="arc-svg" viewBox="0 0 300 70">
+                    <path id="title-curve" d="M 20,55 A 180,180 0 0,1 280,55" fill="transparent"/>
+                    <text class="arc-text">
+                        <textPath href="#title-curve" startOffset="50%" text-anchor="middle" id="landing-title-text">
+                            Wedding Invitation
+                        </textPath>
+                    </text>
+                </svg>
             </div>
 
-            <!-- Overlaid bottom section -->
+            <!-- Overlaid Bottom Elements -->
             <div class="bottom-content">
                 <p class="couple-names-text" id="landing-couple-names"></p>
                 <div class="hand-pointer">👇</div>
@@ -597,8 +591,8 @@
         const CONFIG = {
             // Cover / Landing Screen Parameters
             landingTitle: "Wedding Invitation",
-            groomName: "Sreenu",
-            brideName: "Cherry",
+            groomName: "SREENU",
+            brideName: "CHERRY",
             landingIllustration: "images/Sreenu4Cherry.png",
             tapButtonText: "💌 TAP TO OPEN",
             bgMusicSrc: "images/adara-song.mp3",
@@ -657,7 +651,7 @@
 
         /* Initialize Page Content */
         function initPageFromConfig() {
-            document.getElementById('landing-title-text').innerText = CONFIG.landingTitle;
+            document.getElementById('landing-title-text').textContent = CONFIG.landingTitle;
             document.getElementById('landing-hero-img').src = CONFIG.landingIllustration;
             document.getElementById('landing-couple-names').innerText = `${CONFIG.groomName} ♥ ${CONFIG.brideName}`;
             document.getElementById('landing-tap-btn').innerText = CONFIG.tapButtonText;

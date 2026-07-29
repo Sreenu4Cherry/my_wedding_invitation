@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sreenu & Cherry | Wedding Celebration</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Separate Stylesheets -->
+    <link rel="stylesheet" href="landing.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+
+    <!-- Dynamic Audio Player -->
+    <audio id="bg-music" loop preload="auto">
+        <source id="music-src" src="" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Toggle Button -->
+    <button class="music-btn" id="music-toggle" onclick="toggleMusic()">🎵</button>
+
+    <div class="petals-container" id="petals"></div>
+
+    <!-- Cover / Landing Screen -->
+    <div id="cover-screen">
+        <div class="envelope-card">
+            <h2 class="landing-title" id="landing-title-text"></h2>
+            
+            <div class="couple-photos-container">
+                <div class="photo-frame">
+                    <img id="groom-photo-img" class="groom-img" src="" alt="Groom" onerror="handleImgError(this, CONFIG.groomName)">
+                </div>
+                <div class="heart-badge">♥</div>
+                <div class="photo-frame">
+                    <img id="bride-photo-img" class="bride-img" src="" alt="Bride" onerror="handleImgError(this, CONFIG.brideName)">
+                </div>
+            </div>
+
+            <p class="couple-names-text" id="landing-couple-names"></p>
+            <div class="hand-pointer">👇</div>
+            <button class="tap-btn" id="landing-tap-btn" onclick="openInvitation()"></button>
+        </div>
+    </div>
+
+    <!-- Main Content Container -->
+    <div class="container">
+        <div class="header-section">
+            <p class="sub-title" id="main-subtitle"></p>
+            <h1 class="main-heading" id="main-heading"></h1
+        ></div>
+
+        <!-- Couple Banner -->
+        <div class="couple-card">
+            <div class="couple-names">
+                <h2 id="groom-full-name"></h2>
+                <p class="parent-subtext" id="groom-parents"></p>
+                <div class="ampersand">&</div>
+                <h2 id="bride-full-name"></h2>
+                <p class="parent-subtext" id="bride-parents"></p>
+            </div>
+        </div>
+
+        <!-- Countdown Banner -->
+        <div class="countdown-banner">
+            <div class="countdown-title" id="timer-title">Counting Down To Muhurtham</div>
+            <div class="timer">
+                <div><div class="timer-num" id="days">00</div><div class="timer-label">Days</div></div>
+                <div><div class="timer-num" id="hours">00</div><div class="timer-label">Hours</div></div>
+                <div><div class="timer-num" id="mins">00</div><div class="timer-label">Mins</div></div>
+                <div><div class="timer-num" id="secs">00</div><div class="timer-label">Secs</div></div>
+            </div>
+        </div>
+
+        <div class="section-title-wrap">
+            <h2 class="section-title" id="events-section-title"></h2>
+        </div>
+
+        <!-- Dynamic Timeline Events Section -->
+        <div class="timeline" id="events-timeline"></div>
+
+        <footer id="footer-text"></footer>
+    </div>
+
+    <!-- Scratch Pop-up Overlay Modal -->
+    <div class="modal-overlay" id="scratch-modal">
+        <div class="close-modal-btn" onclick="closeScratchModal()">✕</div>
+        <div class="scratch-modal-box">
+            <div class="reveal-image-container">
+                <img id="reveal-img-src" class="reveal-image" src="" alt="Revealed Event Card">
+            </div>
+            <canvas id="modal-canvas" class="modal-scratch-canvas" width="300" height="420"></canvas>
+        </div>
+        <div class="modal-instruction">👈 Rub screen to reveal event image 👉</div>
+    </div>
+
+    <!-- CONFIG & LOGIC SCRIPT -->
+    <script>
+        /* =========================================================
+           PARAMETERIZED CONFIGURATION (Edit values here)
+           ========================================================= */
+        const CONFIG = {
+            // Landing Screen Parameters
+            landingTitle: "Wedding Invitation",
+            groomName: "Sreenu",
+            brideName: "Cherry",
+            groomPhoto: "images/groom-photo1.jpeg",
+            bridePhoto: "images/bride-photo.jpg",
+            tapButtonText: "💌 Tap To Open",
+            bgMusicSrc: "images/adara-song.mp3",
+
+            // Main Screen Parameters
+            subTitle: "Together With Our Families",
+            mainHeading: "Request The Honor Of Your Presence",
+            
+            groomFullName: "B. Sreenivasulu",
+            groomParents: "S/o B. Ramanjulu & B. LakshmiDevi",
+            
+            brideFullName: "K. Charitha",
+            brideParents: "D/o K. L. Narayana & K. Padmavati",
+            
+            targetWeddingDate: "August 23, 2026 06:00:00",
+            eventsSectionTitle: "The Festivities",
+            footerText: "Warmly Invited By Sreenu & Cherry",
+
+            // Events Timeline Array Parameters
+            events: [
+                {
+                    id: "haldi",
+                    date: "Saturday, 22 August 2026",
+                    title: "Haldi Ceremony",
+                    venue: "📍 9:00 AM Onwards • Dharmavaram",
+                    desc: "\"Turmeric, laughter, and the very first blessings.\"",
+                    mapUrl: "", // Leave blank if no map needed
+                    revealImg: "images/haldi-reveal.jpeg"
+                },
+                {
+                    id: "reception",
+                    date: "Saturday, 22 August 2026",
+                    title: "Wedding Reception",
+                    venue: "📍 7:00 PM Onwards • Anantapur",
+                    desc: "\"An evening of celebration, dining, and joy.\"",
+                    mapUrl: "https://maps.app.goo.gl/wDfPxHQPte7LLno77",
+                    revealImg: "images/reception-reveal.jpeg"
+                },
+                {
+                    id: "muhurtham",
+                    date: "Sunday, 23 August 2026",
+                    title: "Wedding Ceremony",
+                    venue: "📍 Early Morning 4:00 AM – 5:00 AM • Anantapur",
+                    desc: "\"Two hands, two hearts, joined in love forever.\"",
+                    mapUrl: "https://maps.app.goo.gl/wDfPxHQPte7LLno77",
+                    revealImg: "images/muhurtham-reveal.jpeg"
+                },
+                {
+                    id: "reception2",
+                    date: "Dharmavaram",
+                    title: "Reception",
+                    venue: "📍 Dharmavaram",
+                    desc: "\"Continuing the joy and blessings.\"",
+                    mapUrl: "https://maps.app.goo.gl/dJzmkvnq5mUEw2gPA",
+                    revealImg: "images/reception-reveal2.jpeg"
+                }
+            ]
+        };
+
+        /* =========================================================
+           POPULATE HTML FROM CONFIG
+           ========================================================= */
+        function initPageFromConfig() {
+            // Landing screen
+            document.getElementById('landing-title-text').innerText = CONFIG.landingTitle;
+            document.getElementById('groom-photo-img').src = CONFIG.groomPhoto;
+            document.getElementById('bride-photo-img').src = CONFIG.bridePhoto;
+            document.getElementById('landing-couple-names').innerText = `${CONFIG.groomName} ♥ ${CONFIG.brideName}`;
+            document.getElementById('landing-tap-btn').innerText = CONFIG.tapButtonText;
+            document.getElementById('music-src').src = CONFIG.bgMusicSrc;
+            document.getElementById('bg-music').load();
+
+            // Main screen
+            document.getElementById('main-subtitle').innerText = CONFIG.subTitle;
+            document.getElementById('main-heading').innerText = CONFIG.mainHeading;
+            document.getElementById('groom-full-name').innerText = CONFIG.groomFullName;
+            document.getElementById('groom-parents').innerText = CONFIG.groomParents;
+            document.getElementById('bride-full-name').innerText = CONFIG.brideFullName;
+            document.getElementById('bride-parents').innerText = CONFIG.brideParents;
+            document.getElementById('events-section-title').innerText = CONFIG.eventsSectionTitle;
+            document.getElementById('footer-text').innerText = CONFIG.footerText;
+
+            // Render Timeline
+            const timelineContainer = document.getElementById('events-timeline');
+            timelineContainer.innerHTML = CONFIG.events.map(event => `
+                <div class="timeline-item">
+                    <div class="timeline-node"></div>
+                    <div class="event-card-container">
+                        <div class="event-info">
+                            <div class="event-date">${event.date}</div>
+                            <h3 class="event-title">${event.title}</h3>
+                            <div class="event-venue">${event.venue}</div>
+                            <p class="event-desc">${event.desc}</p>
+                            ${event.mapUrl ? `
+                                <div class="btn-group">
+                                    <a href="${event.mapUrl}" target="_blank" class="action-btn btn-map">📍 Directions</a>
+                                </div>
+                            ` : ''}
+                        </div>
+                        <div class="card-preview-wrap" onclick="openScratchModal('${event.id}')">
+                            <div class="art-card-thumb">
+                                <img src="${event.revealImg}" alt="${event.title}">
+                            </div>
+                            <div class="rub-tag">✨ Rub To Reveal</div>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize page content
+        initPageFromConfig();
+
+        /* --- Image Fallback Handler --- */
+        function handleImgError(img, textName) {
+            const parent = img.parentElement;
+            img.remove();
+            parent.innerHTML = `<span class="frame-placeholder">${textName}</span>`;
+        }
+
+        /* --- Music Controller --- */
+        const audio = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-toggle');
+        let isPlaying = false;
+
+        function openInvitation() {
+            const cover = document.getElementById('cover-screen');
+            cover.style.transform = 'translateY(-100%)';
+            cover.style.opacity = '0';
+            setTimeout(() => { cover.style.display = 'none'; }, 800);
+
+            playAudio();
+        }
+
+        function playAudio() {
+            audio.play().then(() => {
+                isPlaying = true;
+                musicBtn.innerText = '🎵';
+            }).catch(err => console.log('Audio autoplay blocked: ', err));
+        }
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                isPlaying = false;
+                musicBtn.innerText = '🔇';
+            } else {
+                audio.play();
+                isPlaying = true;
+                musicBtn.innerText = '🎵';
+            }
+        }
+
+        /* --- Dynamic Countdown / Countup --- */
+        const weddingTargetDate = new Date(CONFIG.targetWeddingDate).getTime();
+        setInterval(function() {
+            const now = new Date().getTime();
+            let diff = weddingTargetDate - now;
+            const timerTitle = document.getElementById("timer-title");
+
+            if (diff <= 0) {
+                timerTitle.innerText = "Been Together Since";
+                diff = Math.abs(diff);
+            } else {
+                timerTitle.innerText = "Counting Down To Muhurtham";
+            }
+
+            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+        }, 1000);
+
+        /* --- Falling Petals --- */
+        const petalsContainer = document.getElementById('petals');
+        for (let i = 0; i < 35; i++) {
+            const petal = document.createElement('div');
+            petal.className = 'petal';
+            petal.style.left = Math.random() * 100 + '%';
+            petal.style.width = (Math.random() * 8 + 8) + 'px';
+            petal.style.height = (Math.random() * 8 + 8) + 'px';
+            petal.style.animationDuration = (Math.random() * 4 + 4) + 's';
+            petal.style.animationDelay = (Math.random() * 4) + 's';
+            petalsContainer.appendChild(petal);
+        }
+
+        /* --- Scratch Modal Logic --- */
+        const modal = document.getElementById('scratch-modal');
+        const modalCanvas = document.getElementById('modal-canvas');
+        const ctx = modalCanvas.getContext('2d');
+        let isDrawing = false;
+        let scratchCount = 0;
+
+        function openScratchModal(eventId) {
+            const eventObj = CONFIG.events.find(e => e.id === eventId);
+            if (!eventObj) return;
+
+            document.body.classList.add('modal-open');
+            scratchCount = 0;
+
+            const imgElem = document.getElementById('reveal-img-src');
+            imgElem.src = eventObj.revealImg;
+
+            modalCanvas.style.opacity = '1';
+            ctx.globalCompositeOperation = 'source-over';
+            ctx.fillStyle = '#A9A9A9';
+            ctx.fillRect(0, 0, modalCanvas.width, modalCanvas.height);
+
+            modal.classList.add('active');
+        }
+
+        function closeScratchModal() {
+            modal.classList.remove('active');
+            document.body.classList.remove('modal-open');
+        }
+
+        function autoReveal() {
+            ctx.clearRect(0, 0, modalCanvas.width, modalCanvas.height);
+        }
+
+        function scratch(e) {
+            if (!isDrawing) return;
+            if (e.cancelable) e.preventDefault();
+
+            const rect = modalCanvas.getBoundingClientRect();
+            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+            const scaleX = modalCanvas.width / rect.width;
+            const scaleY = modalCanvas.height / rect.height;
+
+            const x = (clientX - rect.left) * scaleX;
+            const y = (clientY - rect.top) * scaleY;
+
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.beginPath();
+            ctx.arc(x, y, 28, 0, Math.PI * 2, false);
+            ctx.fill();
+
+            scratchCount++;
+            if (scratchCount >= 2) autoReveal();
+        }
+
+        modalCanvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
+        modalCanvas.addEventListener('mousemove', scratch);
+        window.addEventListener('mouseup', () => { isDrawing = false; });
+
+        modalCanvas.addEventListener('touchstart', (e) => { 
+            isDrawing = true; 
+            if (e.cancelable) e.preventDefault();
+            scratch(e); 
+        }, { passive: false });
+
+        modalCanvas.addEventListener('touchmove', (e) => { 
+            if (e.cancelable) e.preventDefault();
+            scratch(e); 
+        }, { passive: false });
+
+        window.addEventListener('touchend', () => { isDrawing = false; });
+    </script>
+</body>
+</html>

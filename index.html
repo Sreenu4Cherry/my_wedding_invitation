@@ -158,13 +158,31 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
 
+        /* --- Bouncing Hand Pointer --- */
+        .hand-pointer {
+            font-size: 1.6rem;
+            margin-top: 10px;
+            margin-bottom: -4px;
+            animation: bounce 1.2s infinite ease-in-out;
+            user-select: none;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(6px);
+            }
+        }
+
         .tap-btn {
             background: var(--royal-maroon); 
             color: var(--main-accent);
             border: 1px solid var(--main-accent); 
             padding: 12px 28px;
             font-size: 0.85rem; font-weight: 600; border-radius: 25px;
-            letter-spacing: 1.5px; margin-top: 10px; text-transform: uppercase;
+            letter-spacing: 1.5px; text-transform: uppercase;
             cursor: pointer;
             box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
@@ -373,6 +391,9 @@
             </div>
 
             <p style="font-size: 1.50rem; font-weight: 600; color: var(--royal-maroon); margin-bottom: 6px;">Sreenu ♥ Cherry</p>
+            
+            <!-- Bouncing Hand Symbol Pointer -->
+            <div class="hand-pointer">👇</div>
             <button class="tap-btn" onclick="openInvitation()">💌 Tap To Open</button>
         </div>
     </div>

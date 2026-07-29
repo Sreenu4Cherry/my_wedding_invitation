@@ -104,12 +104,23 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            text-align: center;
+            color: #ffffff !important;
+            font-weight: 600;
+            font-size: 1.1rem;
+            line-height: 1.2;
+            word-break: break-word;
         }
 
         .photo-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            color: #ffffff;
+            text-align: center;
+            line-height: 124px;
+            font-size: 1.1rem;
+            font-weight: 600;
         }
 
         .photo-frame img.groom-img {
@@ -119,6 +130,15 @@
 
         .photo-frame img.bride-img {
             object-position: center top !important;
+        }
+
+        /* Fallback text styling when image fails to load */
+        .frame-placeholder {
+            color: #ffffff;
+            font-size: 1.15rem;
+            font-weight: 600;
+            width: 100%;
+            text-align: center;
         }
 
         /* Love Heart Badge */
@@ -343,12 +363,12 @@
             
             <!-- Couple Photos Frame -->
             <div class="couple-photos-container">
-                <div class="photo-frame">
-                    <img class="groom-img" src="images/groom-photo1.jpeg" alt="Sreenu" onerror="this.onerror=null; this.src='images/groom-photo.jpg';">
+                <div class="photo-frame" id="groom-frame">
+                    <img class="groom-img" src="images/groom-photo1.jpeg" alt="Sreenu" onerror="handleImgError(this, 'Sreenu')">
                 </div>
                 <div class="heart-badge">♥</div>
-                <div class="photo-frame">
-                    <img class="bride-img" src="images/bride-photo.jpg" alt="Cherry">
+                <div class="photo-frame" id="bride-frame">
+                    <img class="bride-img" src="images/bride-photo.jpg" alt="Cherry" onerror="handleImgError(this, 'Cherry')">
                 </div>
             </div>
 
@@ -500,6 +520,13 @@
     </div>
 
     <script>
+        /* --- Image Fallback Handler --- */
+        function handleImgError(img, textName) {
+            const parent = img.parentElement;
+            img.remove();
+            parent.innerHTML = `<span class="frame-placeholder">${textName}</span>`;
+        }
+
         /* --- Music Controller --- */
         const audio = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-toggle');

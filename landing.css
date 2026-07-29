@@ -1,0 +1,170 @@
+/* =========================================================
+   LANDING / COVER PAGE STYLES (landing.css)
+   ========================================================= */
+
+:root {
+    /* Color Palette - Landing Page */
+    --landing-bg-gradient-start: #58060c;
+    --landing-bg-gradient-end: #000000;
+    --landing-card-bg: #FFFDF8;
+    --landing-card-border: #6A0B12;
+    --landing-title-color: #6A0B12;
+    --landing-names-color: #6A0B12;
+    
+    /* Photo Frames & Heart Badge */
+    --landing-frame-border: #6A0B12;
+    --landing-frame-bg: #6A0B12;
+    --landing-fallback-text: #ffffff;
+    --landing-heart-bg: #6A0B12;
+    --landing-heart-icon: #E25865;
+    
+    /* Button & Accents */
+    --landing-btn-bg: #6A0B12;
+    --landing-btn-text: #C0C0C0;
+    --landing-btn-border: #C0C0C0;
+}
+
+/* Landing Cover Screen Wrapper */
+#cover-screen {
+    position: fixed;
+    top: 0; left: 0; 
+    width: 100vw; height: 100vh;
+    background: radial-gradient(circle, var(--landing-bg-gradient-start) 0%, var(--landing-bg-gradient-end) 100%);
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center;
+    z-index: 1000; 
+    transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+    padding: 20px;
+}
+
+.envelope-card {
+    background: var(--landing-card-bg);
+    border: 2px solid var(--landing-card-border);
+    border-radius: 20px;
+    padding: 30px 20px;
+    width: 92%; 
+    max-width: 400px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.6);
+    display: flex; 
+    flex-direction: column; 
+    align-items: center;
+    text-align: center;
+}
+
+.envelope-card .landing-title {
+    font-family: 'Great Vibes', cursive;
+    font-size: 2.20rem;
+    color: var(--landing-title-color);
+}
+
+.envelope-card .couple-names-text {
+    font-size: 1.50rem;
+    font-weight: 600;
+    color: var(--landing-names-color);
+    margin-bottom: 6px;
+}
+
+/* Photo Frames Display */
+.couple-photos-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 20px 0;
+    position: relative;
+}
+
+.photo-frame {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 3px solid var(--landing-frame-border);
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+    background: var(--landing-frame-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--landing-fallback-text) !important;
+    font-weight: 600;
+    font-size: 1.1rem;
+    line-height: 1.2;
+    word-break: break-word;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    color: var(--landing-fallback-text);
+    text-align: center;
+    line-height: 124px;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.photo-frame img.groom-img {
+    object-position: center top !important;
+    transform: scale(1.10);
+}
+
+.photo-frame img.bride-img {
+    object-position: center top !important;
+}
+
+.frame-placeholder {
+    color: var(--landing-fallback-text);
+    font-size: 1.15rem;
+    font-weight: 600;
+    width: 100%;
+    text-align: center;
+}
+
+/* Love Heart Badge */
+.heart-badge {
+    width: 36px;
+    height: 36px;
+    background: var(--landing-heart-bg);
+    border: 2px solid var(--landing-heart-bg);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--landing-heart-icon);
+    font-size: 1.1rem;
+    margin: 0 -16px;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+/* Bouncing Hand Pointer */
+.hand-pointer {
+    font-size: 1.6rem;
+    margin-top: 10px;
+    margin-bottom: -4px;
+    animation: bounce 1.2s infinite ease-in-out;
+    user-select: none;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+}
+
+/* Tap Button */
+.tap-btn {
+    background: var(--landing-btn-bg); 
+    color: var(--landing-btn-text);
+    border: 1px solid var(--landing-btn-border); 
+    padding: 12px 28px;
+    font-size: 0.85rem; 
+    font-weight: 600; 
+    border-radius: 25px;
+    letter-spacing: 1.5px; 
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}

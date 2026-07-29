@@ -29,14 +29,9 @@
         <div class="envelope-card">
             <h2 class="landing-title" id="landing-title-text"></h2>
             
-            <div class="couple-photos-container">
-                <div class="photo-frame">
-                    <img id="groom-photo-img" class="groom-img" src="" alt="Groom" onerror="handleImgError(this, CONFIG.groomName)">
-                </div>
-                <div class="heart-badge">♥</div>
-                <div class="photo-frame">
-                    <img id="bride-photo-img" class="bride-img" src="" alt="Bride" onerror="handleImgError(this, CONFIG.brideName)">
-                </div>
+            <!-- Full Illustrated Image with Groom, Bride & Frame Built-In -->
+            <div class="illustration-hero-container">
+                <img id="landing-hero-img" class="landing-hero-img" src="" alt="Sreenu & Cherry Wedding Illustration">
             </div>
 
             <p class="couple-names-text" id="landing-couple-names"></p>
@@ -49,8 +44,8 @@
     <div class="container">
         <div class="header-section">
             <p class="sub-title" id="main-subtitle"></p>
-            <h1 class="main-heading" id="main-heading"></h1
-        ></div>
+            <h1 class="main-heading" id="main-heading"></h1>
+        </div>
 
         <!-- Couple Banner -->
         <div class="couple-card">
@@ -106,9 +101,8 @@
             landingTitle: "Wedding Invitation",
             groomName: "Sreenu",
             brideName: "Cherry",
-            groomPhoto: "images/groom-photo1.jpeg",
-            bridePhoto: "images/bride-photo.jpg",
-            tapButtonText: "💌 Tap To Open",
+            landingIllustration: "images/Sreenu4Cherry.png", // Full background artwork
+            tapButtonText: "💌 TAP TO OPEN",
             bgMusicSrc: "images/adara-song.mp3",
 
             // Main Screen Parameters
@@ -133,7 +127,7 @@
                     title: "Haldi Ceremony",
                     venue: "📍 9:00 AM Onwards • Dharmavaram",
                     desc: "\"Turmeric, laughter, and the very first blessings.\"",
-                    mapUrl: "", // Leave blank if no map needed
+                    mapUrl: "",
                     revealImg: "images/haldi-reveal.jpeg"
                 },
                 {
@@ -172,8 +166,7 @@
         function initPageFromConfig() {
             // Landing screen
             document.getElementById('landing-title-text').innerText = CONFIG.landingTitle;
-            document.getElementById('groom-photo-img').src = CONFIG.groomPhoto;
-            document.getElementById('bride-photo-img').src = CONFIG.bridePhoto;
+            document.getElementById('landing-hero-img').src = CONFIG.landingIllustration;
             document.getElementById('landing-couple-names').innerText = `${CONFIG.groomName} ♥ ${CONFIG.brideName}`;
             document.getElementById('landing-tap-btn').innerText = CONFIG.tapButtonText;
             document.getElementById('music-src').src = CONFIG.bgMusicSrc;
@@ -219,13 +212,6 @@
 
         // Initialize page content
         initPageFromConfig();
-
-        /* --- Image Fallback Handler --- */
-        function handleImgError(img, textName) {
-            const parent = img.parentElement;
-            img.remove();
-            parent.innerHTML = `<span class="frame-placeholder">${textName}</span>`;
-        }
 
         /* --- Music Controller --- */
         const audio = document.getElementById('bg-music');

@@ -4,13 +4,468 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sreenu & Cherry | Wedding Celebration</title>
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="images/favicon-main.png">
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Separate Stylesheets -->
-    <link rel="stylesheet" href="landing.css">
-    <link rel="stylesheet" href="main.css">
+
+    <!-- STYLES -->
+    <style>
+        /* ==========================================
+           1. CORE & GLOBAL STYLES
+           ========================================== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #fcf8f2;
+            color: #333;
+            overflow-x: hidden;
+            touch-action: manipulation;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        /* Music Toggle Button */
+        .music-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid #d4af37;
+            font-size: 1.2rem;
+            padding: 10px 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(4px);
+            transition: transform 0.2s;
+        }
+
+        .music-btn:active {
+            transform: scale(0.9);
+        }
+
+        /* Falling Petals Background */
+        .petals-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 99;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            background: #e88a91;
+            border-radius: 15px 0 15px 0;
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0.2;
+            }
+        }
+
+        /* ==========================================
+           2. COVER / LANDING SCREEN (v1 Style)
+           ========================================== */
+        #cover-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #4A0E17;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            padding: 16px;
+            box-sizing: border-box;
+            transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
+        }
+
+        .envelope-card {
+            background: #FFFDF9;
+            width: 100%;
+            max-width: 380px;
+            max-height: 92vh;
+            border-radius: 20px;
+            padding: 16px 20px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .landing-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.2rem;
+            color: #6a131f;
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        .illustration-hero-container {
+            width: 100%;
+            max-height: 48vh;
+            margin: 8px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .landing-hero-img {
+            max-width: 100%;
+            max-height: 48vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+
+        .couple-names-text {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #333;
+            margin: 4px 0 2px 0;
+        }
+
+        .hand-pointer {
+            font-size: 1.2rem;
+            animation: bounce 1.2s infinite alternate;
+            margin-bottom: 4px;
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(6px); }
+        }
+
+        .tap-btn {
+            background: #6a131f;
+            color: #fff;
+            border: none;
+            padding: 10px 24px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(106, 19, 31, 0.3);
+            transition: transform 0.2s, background 0.2s;
+            width: 80%;
+        }
+
+        .tap-btn:active {
+            transform: scale(0.96);
+            background: #4a0e17;
+        }
+
+        /* ==========================================
+           3. MAIN PAGE LAYOUT & SECTIONS
+           ========================================== */
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header-section {
+            margin-bottom: 30px;
+        }
+
+        .sub-title {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.8rem;
+            color: #8b6b23;
+            margin-bottom: 8px;
+        }
+
+        .main-heading {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: #4a0e17;
+            font-weight: 700;
+        }
+
+        /* Couple Card */
+        .couple-card {
+            background: #ffffff;
+            border: 1px solid #f0e6d2;
+            border-radius: 16px;
+            padding: 24px 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .couple-names h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: #6a131f;
+            margin-bottom: 4px;
+        }
+
+        .parent-subtext {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .ampersand {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin: 6px 0;
+        }
+
+        /* Countdown Banner */
+        .countdown-banner {
+            background: linear-gradient(135deg, #6a131f, #4a0e17);
+            color: #fff;
+            padding: 20px;
+            border-radius: 16px;
+            margin-bottom: 35px;
+            box-shadow: 0 6px 20px rgba(106, 19, 31, 0.25);
+        }
+
+        .countdown-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            color: #f1d79e;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .timer-num {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .timer-label {
+            font-size: 0.7rem;
+            opacity: 0.8;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .section-title-wrap {
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.8rem;
+            color: #6a131f;
+        }
+
+        /* Timeline & Events */
+        .timeline {
+            position: relative;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ebdcc4;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+            text-align: left;
+        }
+
+        .event-date {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #8b6b23;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .event-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            color: #4a0e17;
+            margin-bottom: 6px;
+        }
+
+        .event-venue {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #444;
+            margin-bottom: 8px;
+        }
+
+        .event-desc {
+            font-size: 0.8rem;
+            font-style: italic;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .btn-group {
+            margin-top: 10px;
+        }
+
+        .action-btn {
+            display: inline-block;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: background 0.2s;
+        }
+
+        .btn-map {
+            background: #f4e8d3;
+            color: #6a131f;
+        }
+
+        .card-preview-wrap {
+            margin-top: 15px;
+            cursor: pointer;
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px dashed #d4af37;
+        }
+
+        .art-card-thumb img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .rub-tag {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(74, 14, 23, 0.85);
+            color: #fff;
+            font-size: 0.75rem;
+            text-align: center;
+            padding: 6px;
+            backdrop-filter: blur(2px);
+        }
+
+        footer {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: #8b6b23;
+            padding: 20px 0;
+        }
+
+        /* ==========================================
+           4. SCRATCH POP-UP MODAL
+           ========================================== */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.85);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 20000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .close-modal-btn {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            color: #fff;
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        .scratch-modal-box {
+            position: relative;
+            width: 300px;
+            height: 420px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .reveal-image-container {
+            width: 100%;
+            height: 100%;
+        }
+
+        .reveal-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .modal-scratch-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            touch-action: none;
+        }
+
+        .modal-instruction {
+            color: #fff;
+            font-size: 0.85rem;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+    </style>
 </head>
 <body>
 
@@ -22,14 +477,14 @@
     <!-- Music Toggle Button -->
     <button class="music-btn" id="music-toggle" onclick="toggleMusic()">🎵</button>
 
+    <!-- Background Petals Animation -->
     <div class="petals-container" id="petals"></div>
 
-    <!-- Cover / Landing Screen -->
+    <!-- COVER / LANDING SCREEN -->
     <div id="cover-screen">
         <div class="envelope-card">
             <h2 class="landing-title" id="landing-title-text"></h2>
             
-            <!-- Full Illustrated Image with Groom, Bride & Frame Built-In -->
             <div class="illustration-hero-container">
                 <img id="landing-hero-img" class="landing-hero-img" src="" alt="Sreenu & Cherry Wedding Illustration">
             </div>
@@ -40,7 +495,7 @@
         </div>
     </div>
 
-    <!-- Main Content Container -->
+    <!-- MAIN CONTENT CONTAINER -->
     <div class="container">
         <div class="header-section">
             <p class="sub-title" id="main-subtitle"></p>
@@ -79,7 +534,7 @@
         <footer id="footer-text"></footer>
     </div>
 
-    <!-- Scratch Pop-up Overlay Modal -->
+    <!-- Scratch Pop-up Modal -->
     <div class="modal-overlay" id="scratch-modal">
         <div class="close-modal-btn" onclick="closeScratchModal()">✕</div>
         <div class="scratch-modal-box">
@@ -91,35 +546,32 @@
         <div class="modal-instruction">👈 Rub screen to reveal event image 👉</div>
     </div>
 
-    <!-- CONFIG & LOGIC SCRIPT -->
+    <!-- JAVASCRIPT LOGIC & CONFIG -->
     <script>
         /* =========================================================
-           PARAMETERIZED CONFIGURATION (Edit values here)
+           CONFIGURABLE PARAMETERS
            ========================================================= */
         const CONFIG = {
-            // Landing Screen Parameters
+            // Cover / Landing Screen Parameters
             landingTitle: "Wedding Invitation",
             groomName: "Sreenu",
             brideName: "Cherry",
-            landingIllustration: "images/Sreenu4Cherry.png", // Full background artwork
+            landingIllustration: "images/Sreenu4Cherry.png",
             tapButtonText: "💌 TAP TO OPEN",
             bgMusicSrc: "images/adara-song.mp3",
 
             // Main Screen Parameters
             subTitle: "Together With Our Families",
             mainHeading: "Request The Honor Of Your Presence",
-            
             groomFullName: "B. Sreenivasulu",
             groomParents: "S/o B. Ramanjulu & B. LakshmiDevi",
-            
             brideFullName: "K. Charitha",
             brideParents: "D/o K. L. Narayana & K. Padmavati",
-            
             targetWeddingDate: "August 23, 2026 06:00:00",
             eventsSectionTitle: "The Festivities",
             footerText: "Warmly Invited By Sreenu & Cherry",
 
-            // Events Timeline Array Parameters
+            // Events List
             events: [
                 {
                     id: "haldi",
@@ -160,11 +612,8 @@
             ]
         };
 
-        /* =========================================================
-           POPULATE HTML FROM CONFIG
-           ========================================================= */
+        /* Initialize Page Content */
         function initPageFromConfig() {
-            // Landing screen
             document.getElementById('landing-title-text').innerText = CONFIG.landingTitle;
             document.getElementById('landing-hero-img').src = CONFIG.landingIllustration;
             document.getElementById('landing-couple-names').innerText = `${CONFIG.groomName} ♥ ${CONFIG.brideName}`;
@@ -172,7 +621,6 @@
             document.getElementById('music-src').src = CONFIG.bgMusicSrc;
             document.getElementById('bg-music').load();
 
-            // Main screen
             document.getElementById('main-subtitle').innerText = CONFIG.subTitle;
             document.getElementById('main-heading').innerText = CONFIG.mainHeading;
             document.getElementById('groom-full-name').innerText = CONFIG.groomFullName;
@@ -182,38 +630,33 @@
             document.getElementById('events-section-title').innerText = CONFIG.eventsSectionTitle;
             document.getElementById('footer-text').innerText = CONFIG.footerText;
 
-            // Render Timeline
             const timelineContainer = document.getElementById('events-timeline');
             timelineContainer.innerHTML = CONFIG.events.map(event => `
                 <div class="timeline-item">
-                    <div class="timeline-node"></div>
-                    <div class="event-card-container">
-                        <div class="event-info">
-                            <div class="event-date">${event.date}</div>
-                            <h3 class="event-title">${event.title}</h3>
-                            <div class="event-venue">${event.venue}</div>
-                            <p class="event-desc">${event.desc}</p>
-                            ${event.mapUrl ? `
-                                <div class="btn-group">
-                                    <a href="${event.mapUrl}" target="_blank" class="action-btn btn-map">📍 Directions</a>
-                                </div>
-                            ` : ''}
-                        </div>
-                        <div class="card-preview-wrap" onclick="openScratchModal('${event.id}')">
-                            <div class="art-card-thumb">
-                                <img src="${event.revealImg}" alt="${event.title}">
+                    <div class="event-info">
+                        <div class="event-date">${event.date}</div>
+                        <h3 class="event-title">${event.title}</h3>
+                        <div class="event-venue">${event.venue}</div>
+                        <p class="event-desc">${event.desc}</p>
+                        ${event.mapUrl ? `
+                            <div class="btn-group">
+                                <a href="${event.mapUrl}" target="_blank" class="action-btn btn-map">📍 Directions</a>
                             </div>
-                            <div class="rub-tag">✨ Rub To Reveal</div>
+                        ` : ''}
+                    </div>
+                    <div class="card-preview-wrap" onclick="openScratchModal('${event.id}')">
+                        <div class="art-card-thumb">
+                            <img src="${event.revealImg}" alt="${event.title}">
                         </div>
+                        <div class="rub-tag">✨ Rub To Reveal</div>
                     </div>
                 </div>
             `).join('');
         }
 
-        // Initialize page content
         initPageFromConfig();
 
-        /* --- Music Controller --- */
+        /* Audio Controls */
         const audio = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-toggle');
         let isPlaying = false;
@@ -223,7 +666,6 @@
             cover.style.transform = 'translateY(-100%)';
             cover.style.opacity = '0';
             setTimeout(() => { cover.style.display = 'none'; }, 800);
-
             playAudio();
         }
 
@@ -231,7 +673,7 @@
             audio.play().then(() => {
                 isPlaying = true;
                 musicBtn.innerText = '🎵';
-            }).catch(err => console.log('Audio autoplay blocked: ', err));
+            }).catch(err => console.log('Audio playback waiting for user action.', err));
         }
 
         function toggleMusic() {
@@ -246,7 +688,7 @@
             }
         }
 
-        /* --- Dynamic Countdown / Countup --- */
+        /* Countdown Calculation */
         const weddingTargetDate = new Date(CONFIG.targetWeddingDate).getTime();
         setInterval(function() {
             const now = new Date().getTime();
@@ -266,9 +708,9 @@
             document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
 
-        /* --- Falling Petals --- */
+        /* Falling Petals Generator */
         const petalsContainer = document.getElementById('petals');
-        for (let i = 0; i < 35; i++) {
+        for (let i = 0; i < 30; i++) {
             const petal = document.createElement('div');
             petal.className = 'petal';
             petal.style.left = Math.random() * 100 + '%';
@@ -279,7 +721,7 @@
             petalsContainer.appendChild(petal);
         }
 
-        /* --- Scratch Modal Logic --- */
+        /* Scratch Card Canvas Modal Logic */
         const modal = document.getElementById('scratch-modal');
         const modalCanvas = document.getElementById('modal-canvas');
         const ctx = modalCanvas.getContext('2d');

@@ -3,31 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sreenu & Cherry | Wedding Celebration</title>
+    <title>Sreenu & Cherry | Royal Wedding Celebration</title>
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         /* =========================================================
-           TEMPLE DOOR & MAIN INVITATION COMBINED STYLES
+           GLOBAL & COLOR PALETTE
            ========================================================= */
         :root {
-            /* MAIN PAGE PALETTE */
-            --main-bg: #FFFDF8;
+            --gold-light: #FFE082;
+            --gold-main: #FFC107;
+            --gold-dark: #D4AF37;
+            --gold-metallic: linear-gradient(135deg, #FFF3B0 0%, #D4AF37 50%, #AA7C11 100%);
+            
             --royal-maroon: #6A0B12;
-            --silver-accent: #C0C0C0;
-            --silver-dark: #A9A9A9;
-            --silver-light: #E0E0E0;
-            --text-dark: #222222;
+            --maroon-dark: #3B0005;
+            --maroon-gradient: linear-gradient(135deg, #880e16, #4a0005);
+            
+            --banana-green: #2E7D32;
+            --silver-accent: #D1D5DB;
+            --text-dark: #2A2A2A;
             --text-muted: #555555;
-            --white: #ffffff;
-
-            /* TEMPLE DOOR PALETTE */
-            --door-wood-dark: #3a1700;
-            --door-wood-light: #5c2c06;
-            --brass-gold: #FFD700;
-            --brass-dark: #B8860B;
+            --white: #FFFFFF;
         }
 
         * {
@@ -38,7 +37,7 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: var(--main-bg);
+            background-color: #FFFDF7;
             color: var(--text-dark);
             overflow-x: hidden;
         }
@@ -57,7 +56,7 @@
 
         .petal {
             position: absolute;
-            background: linear-gradient(135deg, #ffb7c5, #e05275);
+            background: linear-gradient(135deg, #FFB7C5, #E05275);
             border-radius: 150% 0 150% 0;
             opacity: 0.7;
             animation: animate-petal 7s linear infinite;
@@ -69,19 +68,19 @@
         }
 
         /* =========================================================
-           TEMPLE DOOR LANDING SCREEN STYLES
+           SOUTH INDIAN ENTRANCE & GOLDEN DOOR COVER
            ========================================================= */
         #temple-cover {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background: radial-gradient(circle, #2a0306 0%, #000000 100%);
+            background: #1A0205;
             z-index: 1000;
             display: flex;
             justify-content: center;
             align-items: center;
             perspective: 1200px;
             overflow: hidden;
-            transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+            transition: opacity 1.2s ease-in-out, visibility 1.2s ease-in-out;
         }
 
         #temple-cover.fade-out {
@@ -89,88 +88,111 @@
             visibility: hidden;
         }
 
-        /* Temple Arch / Frame */
-        .temple-arch-frame {
+        .royal-door-frame {
             position: relative;
-            width: 90%;
-            max-width: 420px;
-            height: 82vh;
-            max-height: 650px;
-            border: 12px solid #4a1c03;
-            border-radius: 180px 180px 0 0;
-            box-shadow: 0 0 50px rgba(0,0,0,0.9), inset 0 0 25px rgba(0,0,0,0.8);
-            background: #110304;
+            width: 100%;
+            max-width: 440px;
+            height: 100vh;
+            background: #250206;
             display: flex;
             justify-content: center;
-            align-items: flex-end;
+            align-items: center;
             overflow: hidden;
+            box-shadow: 0 0 50px rgba(0,0,0,0.9);
         }
 
-        /* Toran / Garland Header */
-        .toran-garland {
+        /* --- Traditional Banana Leaf Pillars (Left & Right) --- */
+        .banana-leaf-side {
+            position: absolute;
+            top: 0; width: 45px; height: 100%;
+            z-index: 32; pointer-events: none;
+            background: linear-gradient(90deg, #1B5E20, #4CAF50, #2E7D32);
+            border-radius: 0 20px 20px 0;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+            display: flex; flex-direction: column; justify-content: space-around;
+            padding: 20px 0;
+        }
+
+        .banana-leaf-side.left { left: 0; }
+        .banana-leaf-side.right { right: 0; transform: scaleX(-1); }
+
+        .banana-rib {
+            width: 100%; height: 60px;
+            border-bottom: 2px solid #81C784;
+            opacity: 0.6;
+        }
+
+        /* --- Marigold & Jasmine Floral Garland (Top Header) --- */
+        .marigold-garland {
             position: absolute;
             top: 0; left: 0; width: 100%;
-            height: 55px;
-            background: repeating-linear-gradient(45deg, #107810, #107810 15px, #d8800a 15px, #d8800a 30px);
-            clip-path: polygon(0 0, 100% 0, 100% 60%, 87.5% 100%, 75% 60%, 62.5% 100%, 50% 60%, 37.5% 100%, 25% 60%, 12.5% 100%, 0 60%);
-            z-index: 20;
+            height: 50px;
+            z-index: 35;
+            background: repeating-linear-gradient(
+                90deg,
+                #FF9800 0px, #FF9800 12px,
+                #FFFFFF 12px, #FFFFFF 20px, /* Jasmine */
+                #FF5722 20px, #FF5722 32px,
+                #FFEB3B 32px, #FFEB3B 44px
+            );
+            border-bottom: 3px solid #B78103;
             box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            clip-path: polygon(
+                0 0, 100% 0, 100% 50%, 
+                90% 100%, 80% 50%, 70% 100%, 60% 50%, 
+                50% 100%, 40% 50%, 30% 100%, 20% 50%, 10% 100%, 0 50%
+            );
         }
 
-        /* Hanging Ghantas (Temple Bells) */
-        .ghanta-container {
+        /* --- Hanging Lotus & Brass Lamp Ornaments --- */
+        .hanging-decor-wrap {
             position: absolute;
-            top: 40px;
-            width: 100%;
-            display: flex;
-            justify-content: space-around;
-            padding: 0 25px;
-            z-index: 25;
-            pointer-events: none;
+            top: 40px; width: 75%;
+            display: flex; justify-content: space-between;
+            z-index: 36; pointer-events: none;
         }
 
-        .ghanta-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        .decor-item {
+            display: flex; flex-direction: column; align-items: center;
             transform-origin: top center;
-            animation: swing-bell 3s infinite ease-in-out alternate;
+            animation: swing-decor 3.5s infinite ease-in-out alternate;
+        }
+        .decor-item:nth-child(2) { animation-delay: 0.8s; }
+
+        @keyframes swing-decor {
+            0% { transform: rotate(-4deg); }
+            100% { transform: rotate(4deg); }
         }
 
-        .ghanta-item:nth-child(2) { animation-delay: 0.5s; }
-        .ghanta-item:nth-child(3) { animation-delay: 1s; }
-
-        @keyframes swing-bell {
-            0% { transform: rotate(-6deg); }
-            100% { transform: rotate(6deg); }
+        .garland-string {
+            width: 3px; height: 45px;
+            background: repeating-linear-gradient(to bottom, #FFF 0px, #FFF 6px, #E05275 6px, #E05275 12px);
         }
 
-        .bell-chain {
-            width: 3px;
-            height: 45px;
-            background: repeating-linear-gradient(to bottom, var(--brass-gold), var(--brass-gold) 4px, #4a3300 4px, #4a3300 8px);
-        }
-
-        .bell-body {
-            width: 28px;
-            height: 26px;
-            background: linear-gradient(135deg, #ffe57f, var(--brass-gold), var(--brass-dark));
-            clip-path: polygon(20% 0%, 80% 0%, 100% 70%, 100% 100%, 0% 100%, 0% 70%);
-            border-radius: 4px 4px 10px 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+        /* Traditional Brass Diya Lamp */
+        .brass-lamp {
+            width: 24px; height: 24px;
+            background: var(--gold-metallic);
+            clip-path: polygon(50% 0%, 100% 40%, 80% 100%, 20% 100%, 0% 40%);
             position: relative;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.4);
         }
 
-        .bell-clapper {
-            width: 8px;
-            height: 8px;
-            background: var(--brass-dark);
-            border-radius: 50%;
-            margin-top: -2px;
+        .lamp-flame {
+            position: absolute; top: -10px; left: 7px;
+            width: 10px; height: 12px;
+            background: radial-gradient(#FFF, #FF9800);
+            border-radius: 50% 50% 20% 20%;
+            animation: flicker 0.2s infinite alternate;
         }
 
-        /* 3D Double Doors */
-        .temple-doors-wrap {
+        @keyframes flicker {
+            0% { opacity: 0.8; transform: scale(0.95); }
+            100% { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* --- 3D Double Doors --- */
+        .doors-container {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             display: flex;
@@ -178,134 +200,155 @@
             z-index: 10;
         }
 
-        .door-panel {
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(to right, var(--door-wood-dark), var(--door-wood-light));
-            border: 6px solid #230d01;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.8);
+        .door-leaf {
+            width: 50%; height: 100%;
+            background: radial-gradient(circle, #FFE082 0%, #D4AF37 60%, #997300 100%);
+            border: 4px solid #B78103;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
             transition: transform 1.5s cubic-bezier(0.65, 0, 0.35, 1);
+            position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-around;
             align-items: center;
-            gap: 20px;
-            position: relative;
+            padding: 80px 0;
         }
 
-        .door-left {
-            transform-origin: left center;
-            border-radius: 160px 0 0 0;
-        }
-
-        .door-right {
-            transform-origin: right center;
-            border-radius: 0 160px 0 0;
-        }
-
-        /* Open state for doors */
-        .temple-cover-open .door-left {
-            transform: rotateY(-115deg);
-        }
-
-        .temple-cover-open .door-right {
-            transform: rotateY(115deg);
-        }
-
-        /* Door Carvings / Panels */
-        .door-carving {
-            width: 70%;
-            height: 30%;
-            border: 2px dashed var(--brass-dark);
-            border-radius: 8px;
-            background: rgba(0,0,0,0.2);
-            box-shadow: inset 0 0 8px rgba(0,0,0,0.6);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: var(--brass-gold);
-            font-size: 1.5rem;
-        }
-
-        /* Brass Knobs / Rings */
-        .door-handle {
-            width: 32px;
-            height: 32px;
-            background: radial-gradient(circle, #ffe57f, var(--brass-dark));
-            border-radius: 50%;
-            box-shadow: 0 3px 6px rgba(0,0,0,0.5);
-            position: absolute;
-            top: 55%;
-        }
-
-        .door-left .door-handle { right: 10px; }
-        .door-right .door-handle { left: 10px; }
-
-        /* Temple Inner Invitation Preview (Visible when Doors Open) */
-        .temple-inner-content {
+        .door-leaf::before {
+            content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 30px 20px;
-            background: radial-gradient(circle, #6A0B12 0%, #200205 100%);
-            color: var(--silver-accent);
-            z-index: 5;
+            background-image: 
+                radial-gradient(#B78103 1px, transparent 1px),
+                radial-gradient(#B78103 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            opacity: 0.25;
+            pointer-events: none;
         }
 
-        /* Prompt Button / Action area */
-        .prompt-container {
+        .door-left { transform-origin: left center; border-right: 2px solid #8A6000; }
+        .door-right { transform-origin: right center; border-left: 2px solid #8A6000; }
+
+        .royal-door-frame.open .door-left { transform: rotateY(-110deg); }
+        .royal-door-frame.open .door-right { transform: rotateY(110deg); }
+
+        .royal-door-frame.open .royal-heart-seal {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.3);
+            transition: all 0.5s ease;
+        }
+
+        .door-inner-frame {
+            width: 78%; height: 38%;
+            border: 2px dashed #8A6000;
+            border-radius: 6px;
+            box-shadow: inset 0 0 10px rgba(138, 96, 0, 0.2);
+            position: relative; z-index: 2;
+        }
+
+        /* --- GOLD HEART MONOGRAM SEAL --- */
+        .royal-heart-seal {
             position: absolute;
-            bottom: 30px;
-            z-index: 30;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            pointer-events: auto;
-        }
-
-        .prompt-hand {
-            font-size: 2rem;
-            animation: bounce 1.2s infinite ease-in-out;
-            user-select: none;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(6px); }
-        }
-
-        .temple-tap-btn {
-            background: linear-gradient(135deg, var(--royal-maroon), #400408);
-            color: var(--brass-gold);
-            border: 2px solid var(--brass-gold);
-            padding: 12px 30px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            border-radius: 30px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px; height: 90px;
+            z-index: 40;
             cursor: pointer;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+            filter: drop-shadow(0 6px 15px rgba(0,0,0,0.7));
+            animation: pulse-heart 2s infinite ease-in-out;
+            display: flex; justify-content: center; align-items: center;
+        }
+
+        @keyframes pulse-heart {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.08); }
+        }
+
+        /* CSS Heart Shape Construction */
+        .heart-shape {
+            position: absolute;
+            width: 70px; height: 70px;
+            background: linear-gradient(135deg, #FFF3B0 0%, #FFD700 40%, #D4AF37 80%, #997300 100%);
+            transform: rotate(-45deg);
+            border: 2px solid #FFF;
+            box-shadow: inset 0 0 12px rgba(106, 11, 18, 0.6);
+        }
+
+        .heart-shape::before,
+        .heart-shape::after {
+            content: "";
+            position: absolute;
+            width: 70px; height: 70px;
+            background: inherit;
+            border-radius: 50%;
+            border: 2px solid #FFF;
+        }
+
+        .heart-shape::before { top: -35px; left: 0; border-bottom: none; }
+        .heart-shape::after { left: 35px; top: 0; border-left: none; }
+
+        /* Initials Inside Heart */
+        .seal-initials {
+            position: relative;
+            z-index: 45;
+            font-family: 'Cinzel', serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--royal-maroon);
+            letter-spacing: 1px;
+            text-shadow: 0 1px 2px rgba(255,255,255,0.8);
+            margin-top: -5px;
+        }
+
+        /* Prompts */
+        .tap-prompt-text {
+            position: absolute;
+            bottom: 18%; z-index: 35;
+            text-align: center; color: #FFE082;
+            font-family: 'Cinzel', serif; font-size: 0.8rem;
+            letter-spacing: 2px; text-transform: uppercase;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+            pointer-events: none;
+            display: flex; flex-direction: column; align-items: center; gap: 6px;
+        }
+
+        .tap-prompt-text span {
+            font-size: 1.1rem;
+            animation: bounce-hand 1.2s infinite ease-in-out;
+        }
+
+        @keyframes bounce-hand {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(5px); }
+        }
+
+        .bottom-warm-invite {
+            position: absolute; bottom: 5%; z-index: 35;
+            color: #FFE082; font-family: 'Cinzel', serif;
+            font-size: 0.75rem; letter-spacing: 3px;
+            text-transform: uppercase; opacity: 0.9;
+        }
+
+        .door-inner-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, #6A0B12 0%, #200205 100%);
+            z-index: 5; display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center; padding: 20px;
         }
 
         /* =========================================================
-           MAIN INVITATION LAYOUT STYLES
+           MAIN INVITATION CONTENT
            ========================================================= */
         .music-btn {
-            position: fixed;
-            bottom: 20px; right: 20px;
+            position: fixed; bottom: 20px; right: 20px;
             width: 45px; height: 45px;
             background: var(--royal-maroon);
-            border: 2px solid var(--silver-accent);
-            border-radius: 50%;
-            color: var(--silver-accent);
-            font-size: 1.2rem;
-            display: flex; justify-content: center; align-items: center;
+            border: 2px solid var(--gold-main);
+            border-radius: 50%; color: var(--gold-main);
+            font-size: 1.2rem; display: flex; justify-content: center; align-items: center;
             cursor: pointer; z-index: 900;
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
@@ -316,47 +359,48 @@
 
         .header-section { text-align: center; margin-bottom: 30px; }
         .sub-title { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--royal-maroon); margin-bottom: 10px; font-weight: 600; }
-        .main-heading { font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--royal-maroon); letter-spacing: 1px; }
+        .main-heading { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--royal-maroon); letter-spacing: 1px; }
 
         .couple-card {
             background: var(--white); 
-            border: 1px solid var(--silver-dark); 
+            border: 1px solid var(--gold-dark); 
             border-radius: 16px;
-            padding: 30px 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            padding: 30px 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.04);
             margin-bottom: 30px;
         }
 
         .couple-names h2 { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: var(--royal-maroon); line-height: 1; }
         .parent-subtext { font-size: 0.8rem; color: var(--text-muted); margin: 6px 0 15px; }
-        .ampersand { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--silver-dark); font-weight: 700; margin: 5px 0; }
+        .ampersand { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--gold-dark); font-weight: 700; margin: 5px 0; }
 
         .countdown-banner {
-            background: var(--royal-maroon); 
+            background: var(--maroon-gradient); 
             color: var(--white);
             padding: 20px; border-radius: 14px; text-align: center;
-            border: 1px solid var(--silver-accent); margin-bottom: 40px;
+            border: 1px solid var(--gold-main); margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(106, 11, 18, 0.2);
         }
-        .countdown-title { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; color: var(--silver-light); }
+        .countdown-title { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; color: var(--gold-light); }
         .timer { display: flex; justify-content: space-around; max-width: 360px; margin: 0 auto; }
-        .timer-num { font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 700; color: var(--silver-accent); }
+        .timer-num { font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 700; color: var(--gold-light); }
         .timer-label { font-size: 0.65rem; text-transform: uppercase; opacity: 0.8; }
 
         .section-title-wrap { text-align: center; margin-bottom: 35px; }
         .section-title { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--royal-maroon); }
 
-        .timeline { position: relative; padding-left: 28px; border-left: 2px solid var(--silver-accent); margin-left: 10px; }
+        .timeline { position: relative; padding-left: 28px; border-left: 2px solid var(--gold-dark); margin-left: 10px; }
         .timeline-item { position: relative; margin-bottom: 40px; }
 
         .timeline-node {
             position: absolute; left: -37px; top: 0;
             width: 16px; height: 16px; border-radius: 50%;
-            background: var(--silver-accent); border: 3px solid var(--main-bg);
-            box-shadow: 0 0 0 2px var(--silver-accent);
+            background: var(--gold-main); border: 3px solid var(--white);
+            box-shadow: 0 0 0 2px var(--gold-dark);
         }
 
         .event-card-container {
             display: flex; flex-direction: column-reverse; background: var(--white);
-            border: 1px solid var(--silver-accent); border-radius: 16px; overflow: hidden;
+            border: 1px solid var(--gold-dark); border-radius: 16px; overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.04);
         }
 
@@ -376,7 +420,7 @@
             font-size: 0.72rem; font-weight: 600; padding: 8px 16px;
             border-radius: 20px; text-decoration: none; transition: all 0.2s;
         }
-        .btn-map { background: var(--royal-maroon); color: var(--silver-accent); border: 1px solid var(--silver-accent); }
+        .btn-map { background: var(--royal-maroon); color: var(--gold-light); border: 1px solid var(--gold-main); }
 
         .card-preview-wrap {
             width: 100%; height: 210px; position: relative;
@@ -390,7 +434,7 @@
 
         .art-card-thumb {
             width: 130px; height: 175px; border-radius: 12px;
-            border: 2px solid var(--royal-maroon); box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            border: 2px solid var(--gold-dark); box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             position: relative; overflow: hidden; display: flex;
             justify-content: center; align-items: center;
         }
@@ -401,13 +445,13 @@
 
         .rub-tag {
             position: absolute; bottom: 18px; font-size: 0.62rem;
-            font-weight: 700; background: var(--silver-accent);
+            font-weight: 700; background: var(--gold-main);
             color: var(--royal-maroon); padding: 5px 12px; border-radius: 12px;
             letter-spacing: 0.5px; text-transform: uppercase; border: 1px solid var(--royal-maroon);
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
-        /* Modal Overlay & Scratch Canvas */
+        /* --- Modal Scratch Pop-up Overlay --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: rgba(0, 0, 0, 0.88); backdrop-filter: blur(6px);
@@ -428,7 +472,7 @@
 
         .scratch-modal-box {
             position: relative; width: 300px; height: 420px;
-            border-radius: 16px; border: 3px solid var(--silver-accent);
+            border-radius: 16px; border: 3px solid var(--gold-main);
             overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             background: var(--white); touch-action: none;
         }
@@ -458,7 +502,7 @@
 </head>
 <body>
 
-    <!-- Dynamic Audio Player -->
+    <!-- Audio Player -->
     <audio id="bg-music" loop preload="auto">
         <source id="music-src" src="" type="audio/mpeg">
     </audio>
@@ -466,58 +510,82 @@
     <!-- Music Toggle Button -->
     <button class="music-btn" id="music-toggle" onclick="toggleMusic()">🎵</button>
 
+    <!-- Petals Layer -->
     <div class="petals-container" id="petals"></div>
 
-    <!-- TEMPLE DOOR LANDING SCREEN -->
+    <!-- SOUTH INDIAN ENTRANCE WITH GOLDEN DOORS -->
     <div id="temple-cover">
-        <div class="temple-arch-frame" id="arch-frame">
+        <div class="royal-door-frame" id="door-frame">
             
-            <!-- Toran Garland -->
-            <div class="toran-garland"></div>
-
-            <!-- Hanging Ghantas (Bells) -->
-            <div class="ghanta-container">
-                <div class="ghanta-item"><div class="bell-chain"></div><div class="bell-body"></div><div class="bell-clapper"></div></div>
-                <div class="ghanta-item"><div class="bell-chain" style="height: 60px;"></div><div class="bell-body"></div><div class="bell-clapper"></div></div>
-                <div class="ghanta-item"><div class="bell-chain"></div><div class="bell-body"></div><div class="bell-clapper"></div></div>
+            <!-- Banana Leaves Side Decor -->
+            <div class="banana-leaf-side left">
+                <div class="banana-rib"></div><div class="banana-rib"></div><div class="banana-rib"></div>
+            </div>
+            <div class="banana-leaf-side right">
+                <div class="banana-rib"></div><div class="banana-rib"></div><div class="banana-rib"></div>
             </div>
 
-            <!-- 3D Double Doors -->
-            <div class="temple-doors-wrap">
-                <div class="door-panel door-left">
-                    <div class="door-carving">🪷</div>
-                    <div class="door-carving">🐘</div>
-                    <div class="door-handle"></div>
+            <!-- Floral Garland Header (Marigold + Jasmine) -->
+            <div class="marigold-garland"></div>
+
+            <!-- Hanging Lamps Decor -->
+            <div class="hanging-decor-wrap">
+                <div class="decor-item">
+                    <div class="garland-string"></div>
+                    <div class="brass-lamp"><div class="lamp-flame"></div></div>
                 </div>
-                <div class="door-panel door-right">
-                    <div class="door-carving">🪷</div>
-                    <div class="door-carving">🐘</div>
-                    <div class="door-handle"></div>
+                <div class="decor-item">
+                    <div class="garland-string" style="height: 60px;"></div>
+                    <div class="brass-lamp"><div class="lamp-flame"></div></div>
+                </div>
+                <div class="decor-item">
+                    <div class="garland-string"></div>
+                    <div class="brass-lamp"><div class="lamp-flame"></div></div>
                 </div>
             </div>
 
-            <!-- Inside Content Preview -->
-            <div class="temple-inner-content">
-                <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--brass-gold);" id="landing-title-text"></h2>
-                <p style="font-size: 1.4rem; font-weight: 600; color: #ffffff; margin-top: 15px;" id="landing-couple-names"></p>
+            <!-- 3D Golden Doors -->
+            <div class="doors-container">
+                <div class="door-leaf door-left">
+                    <div class="door-inner-frame"></div>
+                    <div class="door-inner-frame"></div>
+                </div>
+                <div class="door-leaf door-right">
+                    <div class="door-inner-frame"></div>
+                    <div class="door-inner-frame"></div>
+                </div>
             </div>
 
-            <!-- Prompt Button -->
-            <div class="prompt-container">
-                <div class="prompt-hand">👇</div>
-                <button class="temple-tap-btn" id="landing-tap-btn" onclick="openTempleDoors()"></button>
+            <!-- Central Golden Heart Monogram Seal (Tap trigger) -->
+            <div class="royal-heart-seal" onclick="openRoyalDoors()">
+                <div class="heart-shape"></div>
+                <div class="seal-initials" id="monogram-text">S & C</div>
+            </div>
+
+            <!-- Prompt text -->
+            <div class="tap-prompt-text">
+                <span>👇</span>
+                <p>TAP TO OPEN</p>
+            </div>
+
+            <div class="bottom-warm-invite">YOU ARE WARMLY INVITED</div>
+
+            <!-- Inner content revealed behind doors -->
+            <div class="door-inner-bg">
+                <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.5rem; color: #FFE082;" id="landing-title-text"></h2>
+                <p style="font-size: 1.3rem; font-weight: 600; color: #ffffff; margin-top: 15px;" id="landing-couple-names"></p>
             </div>
         </div>
     </div>
 
-    <!-- MAIN INVITATION CONTAINER -->
+    <!-- MAIN INVITATION CONTENT -->
     <div class="container">
         <div class="header-section">
             <p class="sub-title" id="main-subtitle"></p>
             <h1 class="main-heading" id="main-heading"></h1>
         </div>
 
-        <!-- Couple Banner -->
+        <!-- Couple Details Banner -->
         <div class="couple-card">
             <div class="couple-names">
                 <h2 id="groom-full-name"></h2>
@@ -543,7 +611,7 @@
             <h2 class="section-title" id="events-section-title"></h2>
         </div>
 
-        <!-- Dynamic Timeline Events Section -->
+        <!-- Timeline Events -->
         <div class="timeline" id="events-timeline"></div>
 
         <footer id="footer-text"></footer>
@@ -563,18 +631,13 @@
 
     <!-- CONFIG & SCRIPT LOGIC -->
     <script>
-        /* =========================================================
-           PARAMETERIZED CONFIGURATION (Edit all values here)
-           ========================================================= */
         const CONFIG = {
-            // Landing / Temple Door Parameters
+            monogramInitials: "S & C",
             landingTitle: "Wedding Invitation",
             groomName: "Sreenu",
             brideName: "Cherry",
-            tapButtonText: "🔔 Tap To Open",
             bgMusicSrc: "images/adara-song.mp3",
 
-            // Main Screen Parameters
             subTitle: "Together With Our Families",
             mainHeading: "Request The Honor Of Your Presence",
             
@@ -588,7 +651,6 @@
             eventsSectionTitle: "The Festivities",
             footerText: "Warmly Invited By Sreenu & Cherry",
 
-            // Events Array
             events: [
                 {
                     id: "haldi",
@@ -629,13 +691,10 @@
             ]
         };
 
-        /* =========================================================
-           POPULATE PAGE FROM CONFIG
-           ========================================================= */
         function initPageFromConfig() {
+            document.getElementById('monogram-text').innerText = CONFIG.monogramInitials;
             document.getElementById('landing-title-text').innerText = CONFIG.landingTitle;
             document.getElementById('landing-couple-names').innerText = `${CONFIG.groomName} ♥ ${CONFIG.brideName}`;
-            document.getElementById('landing-tap-btn').innerText = CONFIG.tapButtonText;
             document.getElementById('music-src').src = CONFIG.bgMusicSrc;
             document.getElementById('bg-music').load();
 
@@ -677,12 +736,11 @@
 
         initPageFromConfig();
 
-        /* --- Temple Door Opening Animation --- */
-        function openTempleDoors() {
-            const arch = document.getElementById('arch-frame');
+        function openRoyalDoors() {
+            const frame = document.getElementById('door-frame');
             const cover = document.getElementById('temple-cover');
 
-            arch.classList.add('temple-cover-open');
+            frame.classList.add('open');
             playAudio();
 
             setTimeout(() => {
@@ -690,7 +748,6 @@
             }, 1200);
         }
 
-        /* --- Music Controller --- */
         const audio = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-toggle');
         let isPlaying = false;
@@ -699,7 +756,7 @@
             audio.play().then(() => {
                 isPlaying = true;
                 musicBtn.innerText = '🎵';
-            }).catch(err => console.log('Audio playback prevented: ', err));
+            }).catch(err => console.log('Audio error:', err));
         }
 
         function toggleMusic() {
@@ -714,7 +771,6 @@
             }
         }
 
-        /* --- Dynamic Countdown / Countup --- */
         const weddingTargetDate = new Date(CONFIG.targetWeddingDate).getTime();
         setInterval(function() {
             const now = new Date().getTime();
@@ -734,7 +790,6 @@
             document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
 
-        /* --- Falling Petals --- */
         const petalsContainer = document.getElementById('petals');
         for (let i = 0; i < 35; i++) {
             const petal = document.createElement('div');
@@ -747,7 +802,6 @@
             petalsContainer.appendChild(petal);
         }
 
-        /* --- Scratch Modal Logic --- */
         const modal = document.getElementById('scratch-modal');
         const modalCanvas = document.getElementById('modal-canvas');
         const ctx = modalCanvas.getContext('2d');
@@ -766,7 +820,7 @@
 
             modalCanvas.style.opacity = '1';
             ctx.globalCompositeOperation = 'source-over';
-            ctx.fillStyle = '#A9A9A9';
+            ctx.fillStyle = '#D1D5DB';
             ctx.fillRect(0, 0, modalCanvas.width, modalCanvas.height);
 
             modal.classList.add('active');

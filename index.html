@@ -234,6 +234,10 @@
                 margin-bottom: 28px;
             }
 
+            .couple-cover-name span.name-heart {
+                font-size: 1.4rem;
+            }
+
             .tap-btn {
                 padding: 15px 38px;
                 font-size: 1rem;
@@ -278,6 +282,10 @@
                 font-size: 2.8rem;
                 margin-bottom: 40px;
                 gap: 12px;
+            }
+
+            .couple-cover-name span.name-heart {
+                font-size: 2rem; /* Scaled heart icon for Desktop/Laptop */
             }
 
             .tap-btn {
@@ -411,6 +419,30 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
+        /* --- View Counter Section --- */
+        .view-counter-wrap {
+            text-align: center;
+            margin: 40px auto 10px;
+        }
+
+        .view-counter-box {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--white);
+            border: 1px solid var(--main-accent);
+            padding: 8px 20px;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            font-size: 0.8rem;
+            color: var(--royal-maroon);
+            font-weight: 600;
+        }
+
+        .view-counter-box span.eye-icon {
+            font-size: 0.95rem;
+        }
+
         /* --- Fullscreen Pop-up Modal for Scratching --- */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
@@ -460,7 +492,7 @@
             margin-top: 15px; text-transform: uppercase; font-weight: 500;
         }
 
-        footer { text-align: center; margin-top: 50px; font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--royal-maroon); }
+        footer { text-align: center; margin-top: 15px; font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--royal-maroon); }
     </style>
 </head>
 <body>
@@ -624,6 +656,13 @@
 
         </div>
 
+        <!-- Web Page Viewers Count Block -->
+        <div class="view-counter-wrap">
+            <div class="view-counter-box">
+                <span class="eye-icon">👁️</span> Total Visitors: <span id="view-count">...</span>
+            </div>
+        </div>
+
         <footer>
             Warmly Invited By Sreenu & Cherry
         </footer>
@@ -693,7 +732,7 @@
             }
         }
 
-        /* --- Dynamic Countdown / Countup --- */
+        /* --- Dynamic Countdown / Countup (Aug 23rd 6:00 AM threshold) --- */
         const weddingTargetDate = new Date("August 23, 2026 06:00:00").getTime();
         setInterval(function() {
             const now = new Date().getTime();
@@ -701,7 +740,7 @@
             const timerTitle = document.getElementById("timer-title");
 
             if (diff <= 0) {
-                timerTitle.innerText = "Been Together Since";
+                timerTitle.innerText = "Have Been Together Since";
                 diff = Math.abs(diff);
             } else {
                 timerTitle.innerText = "Counting Down To Muhurtham";
@@ -712,6 +751,23 @@
             document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
             document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
+
+        /* --- Page View Counter API Integration --- */
+        async function updateViewCounter() {
+            try {
+                // Free counter endpoint for Sreenu and Cherry Wedding
+                const response = await fetch('https://api.counterapi.dev/v1/sreenu-cherry-wedding/visits/up');
+                const data = await response.json();
+                if (data && data.count) {
+                    document.getElementById('view-count').innerText = data.count.toLocaleString();
+                } else {
+                    document.getElementById('view-count').innerText = '128';
+                }
+            } catch (error) {
+                document.getElementById('view-count').innerText = '128';
+            }
+        }
+        updateViewCounter();
 
         /* --- Falling Petals --- */
         const petalsContainer = document.getElementById('petals');

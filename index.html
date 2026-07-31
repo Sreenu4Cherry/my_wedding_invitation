@@ -61,7 +61,7 @@
             100% { top: 110%; transform: translateX(100px) rotate(360deg); }
         }
 
-        /* --- New Landing Page (Matching Image) --- */
+        /* --- Landing Page Screen --- */
         #cover-screen {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -72,7 +72,7 @@
             padding: 20px;
         }
 
-        /* White Center Card */
+        /* White Center Landing Card (Default Mobile View) */
         .landing-card {
             background: #FFFDF9;
             width: 100%;
@@ -85,6 +85,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s ease-in-out;
         }
 
         .cover-header-title {
@@ -119,6 +120,7 @@
             color: #ffffff !important;
             font-weight: 600;
             font-size: 1rem;
+            transition: all 0.3s ease;
         }
 
         .photo-frame img {
@@ -158,6 +160,7 @@
             margin: 0 -16px;
             z-index: 2;
             box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
         }
 
         .couple-cover-name {
@@ -193,44 +196,87 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            transition: transform 0.15s ease, background-color 0.2s ease;
+            transition: transform 0.15s ease, background-color 0.2s ease, padding 0.3s ease, font-size 0.3s ease;
         }
 
         .tap-btn:active {
             transform: scale(0.96);
         }
 
-        /* --- Tablet Screens & Desktop Adjustments --- */
-        @media (min-width: 600px) {
+        /* --- Tablet Screens (600px to 1023px) --- */
+        @media (min-width: 600px) and (max-width: 1023px) {
             .landing-card {
-                max-width: 400px;
-                padding: 45px 30px 40px;
+                max-width: 440px;
+                padding: 45px 35px 40px;
                 border-radius: 32px;
             }
 
             .cover-header-title {
-                font-size: 3.2rem;
+                font-size: 3.4rem;
+                margin-bottom: 25px;
             }
 
             .photo-frame {
-                width: 140px;
-                height: 140px;
+                width: 150px;
+                height: 150px;
+                border-width: 4px;
             }
 
             .heart-badge {
-                width: 36px;
-                height: 36px;
+                width: 38px;
+                height: 38px;
                 font-size: 1.1rem;
-                margin: 0 -18px;
+                margin: 0 -19px;
             }
 
             .couple-cover-name {
-                font-size: 1.8rem;
+                font-size: 1.9rem;
+                margin-bottom: 28px;
             }
 
             .tap-btn {
-                padding: 14px 34px;
+                padding: 14px 36px;
                 font-size: 0.95rem;
+                border-radius: 30px;
+            }
+        }
+
+        /* --- Laptops & Desktops (1024px and up) --- */
+        @media (min-width: 1024px) {
+            .landing-card {
+                max-width: 520px;
+                padding: 55px 45px 50px;
+                border-radius: 38px;
+                box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+            }
+
+            .cover-header-title {
+                font-size: 4rem;
+                margin-bottom: 30px;
+            }
+
+            .photo-frame {
+                width: 180px;
+                height: 180px;
+                border-width: 4px;
+            }
+
+            .heart-badge {
+                width: 44px;
+                height: 44px;
+                font-size: 1.3rem;
+                margin: 0 -22px;
+            }
+
+            .couple-cover-name {
+                font-size: 2.2rem;
+                margin-bottom: 32px;
+            }
+
+            .tap-btn {
+                padding: 16px 42px;
+                font-size: 1.05rem;
+                border-radius: 35px;
             }
         }
 

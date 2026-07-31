@@ -5,18 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sreenu & Cherry | Wedding Celebration</title>
     
-    <!-- Google Fonts for Luxury Aesthetic -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
+            /* LUXURY PALETTE: Maroon, Silver, Ivory */
             --royal-maroon: #6A0B12;
-            --gold: #D4AF37;
-            --gold-light: #FBF4E2;
-            --cream: #FFFDF8;
-            --dark-gold: #B38F28;
-            --text-dark: #333333;
-            --text-muted: #666666;
+            --main-accent: #C0C0C0; /* Polished Silver */
+            --main-accent-dark: #A9A9A9; /* Darker Silver */
+            --accent-light: #E0E0E0; /* Light silver highlights */
+            --cream: #FFFDF8; /* Warm backdrop */
+            --text-dark: #222222;
+            --text-muted: #555555;
+            --white: #ffffff;
         }
 
         * {
@@ -59,26 +61,26 @@
             100% { top: 110%; transform: translateX(100px) rotate(360deg); }
         }
 
-        /* --- Envelope / Tap To Open Cover Screen --- */
+        /* --- Custom Traditional Cover Screen --- */
         #cover-screen {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
-            background: radial-gradient(circle, #58060c 0%, #350206 100%);
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 1000; color: var(--gold);
+            background: #fffdf8 url('images/cover-bg.jpg') center/cover no-repeat; /* Fallback frame image */
+            display: flex; flex-direction: column; justify-content: space-between; align-items: center;
+            z-index: 1000; color: var(--royal-maroon);
             transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
-            padding: 20px;
+            padding: 40px 20px;
+            text-align: center;
         }
 
-        .envelope-card {
-            background: var(--cream);
-            border: 2px solid var(--gold);
-            border-radius: 20px;
-            padding: 30px 20px;
-            width: 92%; max-width: 400px;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.6);
-            display: flex; flex-direction: column; align-items: center;
-            text-align: center;
+        .cover-header-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--royal-maroon);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+            margin-top: 20px;
         }
 
         /* Couple Photo Display Frame */
@@ -86,22 +88,26 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            margin: 20px 0;
+            gap: 12px;
+            margin: 10px 0;
             position: relative;
         }
 
         .photo-frame {
-            width: 130px;
-            height: 130px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
-            border: 3px solid var(--gold);
+            border: 4px solid var(--royal-maroon);
             overflow: hidden;
-            box-shadow: 0 6px 15px rgba(0,0,0,0.25);
-            background: #f0e6d2;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+            background: var(--royal-maroon);
             display: flex;
             justify-content: center;
             align-items: center;
+            text-align: center;
+            color: #ffffff !important;
+            font-weight: 600;
+            font-size: 1.1rem;
         }
 
         .photo-frame img {
@@ -110,40 +116,84 @@
             object-fit: cover;
         }
 
-        /* Groom specific alignment and reduced zoom so face matches proportion */
         .photo-frame img.groom-img {
             object-position: center top !important;
-            transform: scale(0.95);
+            transform: scale(1.10);
         }
 
         .photo-frame img.bride-img {
             object-position: center top !important;
         }
 
+        .frame-placeholder {
+            color: #ffffff;
+            font-size: 1.15rem;
+            font-weight: 600;
+            width: 100%;
+            text-align: center;
+        }
+
         /* Love Heart Badge */
         .heart-badge {
-            width: 36px;
-            height: 36px;
+            width: 38px;
+            height: 38px;
             background: var(--royal-maroon);
-            border: 2px solid var(--gold);
+            border: 2px solid #ffffff;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             color: #E25865;
-            font-size: 1.1rem;
-            margin: 0 -16px;
+            font-size: 1.2rem;
+            margin: 0 -18px;
             z-index: 2;
             box-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
 
+        .couple-cover-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--royal-maroon);
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.9);
+            margin: 5px 0 15px;
+        }
+
+        /* Cover Action Button Container */
+        .cover-action-wrap {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
         .tap-btn {
-            background: var(--royal-maroon); color: var(--gold);
-            border: 1px solid var(--gold); padding: 12px 28px;
-            font-size: 0.85rem; font-weight: 600; border-radius: 25px;
-            letter-spacing: 1.5px; margin-top: 10px; text-transform: uppercase;
+            background: var(--royal-maroon); 
+            color: var(--white);
+            border: 2px solid #E0E0E0; 
+            padding: 14px 40px;
+            font-size: 1rem; font-weight: 700; border-radius: 30px;
+            letter-spacing: 2px; text-transform: uppercase;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            box-shadow: 0 6px 18px rgba(106, 11, 18, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .tap-btn:active {
+            transform: scale(0.96);
+        }
+
+        /* Bouncing Hand Pointer */
+        .hand-pointer {
+            font-size: 1.6rem;
+            margin-bottom: 6px;
+            animation: bounce 1.2s infinite ease-in-out;
+            user-select: none;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
         }
 
         /* Music Floating Control Button */
@@ -154,9 +204,9 @@
             width: 45px;
             height: 45px;
             background: var(--royal-maroon);
-            border: 2px solid var(--gold);
+            border: 2px solid var(--main-accent);
             border-radius: 50%;
-            color: var(--gold);
+            color: var(--main-accent);
             font-size: 1.2rem;
             display: flex;
             justify-content: center;
@@ -172,47 +222,50 @@
         }
 
         .header-section { text-align: center; margin-bottom: 30px; }
-        .sub-title { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--dark-gold); margin-bottom: 10px; font-weight: 600; }
+        .sub-title { font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; color: var(--royal-maroon); margin-bottom: 10px; font-weight: 600; }
         .main-heading { font-family: 'Cinzel', serif; font-size: 1.6rem; color: var(--royal-maroon); letter-spacing: 1px; }
 
         .couple-card {
-            background: #ffffff; border: 1px solid #e8d7ad; border-radius: 16px;
+            background: var(--white); 
+            border: 1px solid var(--main-accent-dark); 
+            border-radius: 16px;
             padding: 30px 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.03);
             margin-bottom: 30px;
         }
 
         .couple-names h2 { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: var(--royal-maroon); line-height: 1; }
         .parent-subtext { font-size: 0.8rem; color: var(--text-muted); margin: 6px 0 15px; }
-        .ampersand { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--gold); font-weight: 700; margin: 5px 0; }
+        .ampersand { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--main-accent-dark); font-weight: 700; margin: 5px 0; }
 
         /* --- Countdown --- */
         .countdown-banner {
-            background: var(--royal-maroon); color: var(--gold);
+            background: var(--royal-maroon); 
+            color: var(--white);
             padding: 20px; border-radius: 14px; text-align: center;
-            border: 1px solid var(--gold); margin-bottom: 40px;
+            border: 1px solid var(--main-accent); margin-bottom: 40px;
         }
-        .countdown-title { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; color: #f3dfa2; }
+        .countdown-title { font-size: 0.75rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; color: var(--accent-light); }
         .timer { display: flex; justify-content: space-around; max-width: 360px; margin: 0 auto; }
-        .timer-num { font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 700; color: #ffffff; }
+        .timer-num { font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 700; color: var(--main-accent); }
         .timer-label { font-size: 0.65rem; text-transform: uppercase; opacity: 0.8; }
 
         /* --- Timeline & Interactive Cards Section --- */
         .section-title-wrap { text-align: center; margin-bottom: 35px; }
         .section-title { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--royal-maroon); }
 
-        .timeline { position: relative; padding-left: 28px; border-left: 2px solid var(--gold); margin-left: 10px; }
+        .timeline { position: relative; padding-left: 28px; border-left: 2px solid var(--main-accent); margin-left: 10px; }
         .timeline-item { position: relative; margin-bottom: 40px; }
 
         .timeline-node {
             position: absolute; left: -37px; top: 0;
             width: 16px; height: 16px; border-radius: 50%;
-            background: var(--gold); border: 3px solid var(--cream);
-            box-shadow: 0 0 0 2px var(--gold);
+            background: var(--main-accent); border: 3px solid var(--cream);
+            box-shadow: 0 0 0 2px var(--main-accent);
         }
 
         .event-card-container {
-            display: flex; flex-direction: column-reverse; background: #ffffff;
-            border: 1px solid #ebd9b0; border-radius: 16px; overflow: hidden;
+            display: flex; flex-direction: column-reverse; background: var(--white);
+            border: 1px solid var(--main-accent); border-radius: 16px; overflow: hidden;
             box-shadow: 0 4px 15px rgba(0,0,0,0.04);
         }
 
@@ -221,7 +274,7 @@
         }
 
         .event-info { padding: 20px; flex: 1; }
-        .event-date { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--dark-gold); letter-spacing: 1px; }
+        .event-date { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; color: var(--royal-maroon); letter-spacing: 1px; }
         .event-title { font-family: 'Cinzel', serif; font-size: 1.25rem; color: var(--royal-maroon); margin: 4px 0; }
         .event-venue { font-size: 0.8rem; color: #444; margin-bottom: 8px; font-weight: 500; }
         .event-desc { font-size: 0.8rem; color: var(--text-muted); font-style: italic; margin-bottom: 15px; }
@@ -234,12 +287,12 @@
             border-radius: 20px; text-decoration: none; transition: all 0.2s;
         }
 
-        .btn-map { background: var(--royal-maroon); color: var(--gold); border: 1px solid var(--gold); }
+        .btn-map { background: var(--royal-maroon); color: var(--main-accent); border: 1px solid var(--main-accent); }
 
         /* Card Preview Side Block */
         .card-preview-wrap {
             width: 100%; height: 210px; position: relative;
-            background: #fff6e5; display: flex; justify-content: center; align-items: center;
+            background: var(--white); display: flex; justify-content: center; align-items: center;
             user-select: none; cursor: pointer; padding: 10px;
         }
 
@@ -249,7 +302,7 @@
 
         .art-card-thumb {
             width: 130px; height: 175px; border-radius: 12px;
-            border: 2px solid var(--gold); box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            border: 2px solid var(--royal-maroon); box-shadow: 0 4px 10px rgba(0,0,0,0.15);
             position: relative; overflow: hidden; display: flex;
             justify-content: center; align-items: center;
         }
@@ -260,9 +313,9 @@
 
         .rub-tag {
             position: absolute; bottom: 18px; font-size: 0.62rem;
-            font-weight: 700; background: var(--royal-maroon);
-            color: var(--gold); padding: 5px 12px; border-radius: 12px;
-            letter-spacing: 0.5px; text-transform: uppercase; border: 1px solid var(--gold);
+            font-weight: 700; background: var(--main-accent);
+            color: var(--royal-maroon); padding: 5px 12px; border-radius: 12px;
+            letter-spacing: 0.5px; text-transform: uppercase; border: 1px solid var(--royal-maroon);
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
@@ -278,7 +331,7 @@
 
         .close-modal-btn {
             position: absolute; top: 25px; right: 25px;
-            width: 42px; height: 42px; background: #ffffff;
+            width: 42px; height: 42px; background: var(--white);
             color: #000; border-radius: 50%; display: flex;
             justify-content: center; align-items: center;
             font-size: 1.4rem; font-weight: bold; cursor: pointer;
@@ -287,19 +340,20 @@
 
         .scratch-modal-box {
             position: relative; width: 300px; height: 420px;
-            border-radius: 16px; border: 3px solid var(--gold);
+            border-radius: 16px; 
+            border: 3px solid var(--main-accent);
             overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            background: #fff;
+            background: var(--white);
             touch-action: none;
         }
 
         .reveal-image-container {
             width: 100%; height: 100%; position: absolute; top: 0; left: 0;
-            background: #ffffff;
+            background: var(--white);
         }
 
         .reveal-image {
-            width: 100%; height: 100%; object-fit: contain; display: block; background: #ffffff;
+            width: 100%; height: 100%; object-fit: contain; display: block; background: var(--white);
         }
 
         .modal-scratch-canvas {
@@ -310,7 +364,7 @@
         }
 
         .modal-instruction {
-            color: #ffffff; font-size: 0.85rem; letter-spacing: 1px;
+            color: var(--white); font-size: 0.85rem; letter-spacing: 1px;
             margin-top: 15px; text-transform: uppercase; font-weight: 500;
         }
 
@@ -331,22 +385,25 @@
 
     <!-- Cover Screen -->
     <div id="cover-screen">
-        <div class="envelope-card">
-            <h2 style="font-family: 'Great Vibes', cursive; font-size: 2.6rem; color: var(--royal-maroon);">Wedding Invitation</h2>
-            
-            <!-- Couple Photos Frame -->
+        <div class="cover-header-title">INVITE</div>
+        
+        <!-- Couple Photos Frame -->
+        <div>
             <div class="couple-photos-container">
-                <div class="photo-frame">
-                    <img class="groom-img" src="images/groom-photo1.jpeg" alt="Sreenu" onerror="this.onerror=null; this.src='images/groom-photo.jpg';">
+                <div class="photo-frame" id="groom-frame">
+                    <img class="groom-img" src="images/groom-photo1.jpeg" alt="Sreenu" onerror="handleImgError(this, 'Sreenu')">
                 </div>
                 <div class="heart-badge">♥</div>
-                <div class="photo-frame">
-                    <img class="bride-img" src="images/bride-photo.jpg" alt="Cherry">
+                <div class="photo-frame" id="bride-frame">
+                    <img class="bride-img" src="images/bride-photo.jpg" alt="Cherry" onerror="handleImgError(this, 'Cherry')">
                 </div>
             </div>
+            <div class="couple-cover-name">Sreenu & Cherry</div>
+        </div>
 
-            <p style="font-size: 0.95rem; font-weight: 600; color: var(--royal-maroon); margin-bottom: 5px;">Sreenu & Cherry</p>
-            <button class="tap-btn" onclick="openInvitation()">💌 Tap To Open</button>
+        <div class="cover-action-wrap">
+            <div class="hand-pointer">👇</div>
+            <button class="tap-btn" onclick="openInvitation()">TAP TO OPEN</button>
         </div>
     </div>
 
@@ -386,7 +443,7 @@
         <!-- Timeline Section -->
         <div class="timeline">
 
-            <!-- EVENT 1: HALDI -->
+            <!-- EVENT 1: HALDI (Dharmavaram) -->
             <div class="timeline-item">
                 <div class="timeline-node"></div>
                 <div class="event-card-container">
@@ -449,7 +506,7 @@
                 </div>
             </div>
 
-            <!-- EVENT 4: DHARMAVARAM -->
+            <!-- EVENT 4: DHARMAVARAM RECEPTION -->
             <div class="timeline-item">
                 <div class="timeline-node"></div>
                 <div class="event-card-container">
@@ -462,11 +519,11 @@
                             <a href="https://maps.app.goo.gl/dJzmkvnq5mUEw2gPA" target="_blank" class="action-btn btn-map">📍 Directions</a>
                         </div>
                     </div>
-                    <div class="card-preview-wrap" style="cursor: default;">
-                        <div class="art-card-thumb" style="background: linear-gradient(135deg, #e3f2fd 0%, #90caf9 100%); flex-direction: column;">
-                            <div style="font-size: 2rem;">🏡</div>
-                            <div style="font-family: 'Cinzel', serif; font-size: 0.9rem; color: var(--royal-maroon); font-weight: 700; margin-top: 5px;">Dharmavaram</div>
+                    <div class="card-preview-wrap" onclick="openScratchModal('reception2')">
+                        <div class="art-card-thumb">
+                            <img src="images/reception-reveal2.jpeg" alt="Dharmavaram Reception">
                         </div>
+                        <div class="rub-tag">✨ Rub To Reveal</div>
                     </div>
                 </div>
             </div>
@@ -493,6 +550,13 @@
     </div>
 
     <script>
+        /* --- Image Fallback Handler --- */
+        function handleImgError(img, textName) {
+            const parent = img.parentElement;
+            img.remove();
+            parent.innerHTML = `<span class="frame-placeholder">${textName}</span>`;
+        }
+
         /* --- Music Controller --- */
         const audio = document.getElementById('bg-music');
         const musicBtn = document.getElementById('music-toggle');
@@ -564,20 +628,24 @@
         const modalCanvas = document.getElementById('modal-canvas');
         const ctx = modalCanvas.getContext('2d');
         let isDrawing = false;
-        let scratchCount = 0; // Tracks swipe/scratch counts
+        let scratchCount = 0;
 
         const eventData = {
             'haldi': {
                 img: 'images/haldi-reveal.jpeg',
-                scratchColor: '#E5B80B'
+                scratchColor: '#A9A9A9'
             },
             'reception': {
                 img: 'images/reception-reveal.jpeg',
-                scratchColor: '#C84B61'
+                scratchColor: '#A9A9A9'
             },
             'muhurtham': {
                 img: 'images/muhurtham-reveal.jpeg',
-                scratchColor: '#D4AF37'
+                scratchColor: '#A9A9A9'
+            },
+            'reception2': {
+                img: 'images/reception-reveal2.jpeg',
+                scratchColor: '#A9A9A9'
             }
         };
 
@@ -591,7 +659,6 @@
             const imgElem = document.getElementById('reveal-img-src');
             imgElem.src = data.img;
 
-            // Reset canvas visibility and overlay color
             modalCanvas.style.opacity = '1';
             ctx.globalCompositeOperation = 'source-over';
             ctx.fillStyle = data.scratchColor;
@@ -606,7 +673,6 @@
         }
 
         function autoReveal() {
-            // Completely clear canvas layer
             ctx.clearRect(0, 0, modalCanvas.width, modalCanvas.height);
         }
 
@@ -632,7 +698,6 @@
 
             scratchCount++;
             
-            // Auto reveal fully after 2 drag/swipe motions
             if (scratchCount >= 2) {
                 autoReveal();
             }

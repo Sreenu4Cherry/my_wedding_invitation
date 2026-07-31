@@ -35,7 +35,6 @@
             overflow-x: hidden;
         }
 
-        /* Prevent background scroll when modal is active */
         body.modal-open {
             overflow: hidden !important;
             touch-action: none;
@@ -200,7 +199,6 @@
             transform: scale(0.96);
         }
 
-        /* Responsive Desktop scaling */
         @media (min-width: 1024px) {
             .landing-card {
                 max-width: 720px;
@@ -217,7 +215,6 @@
             .tap-btn { padding: 20px 54px; font-size: 1.25rem; border-radius: 40px; letter-spacing: 2px; }
         }
 
-        /* Music Floating Control Button */
         .music-btn {
             position: fixed;
             bottom: 20px; right: 20px;
@@ -232,7 +229,6 @@
             box-shadow: 0 4px 12px rgba(0,0,0,0.3);
         }
 
-        /* --- Main Layout --- */
         .container {
             width: 100%; max-width: 680px; margin: 0 auto; padding: 40px 20px;
         }
@@ -253,7 +249,6 @@
         .parent-subtext { font-size: 0.8rem; color: var(--text-muted); margin: 6px 0 15px; }
         .ampersand { font-family: 'Cinzel', serif; font-size: 1.4rem; color: var(--main-accent-dark); font-weight: 700; margin: 5px 0; }
 
-        /* Countdown Banner */
         .countdown-banner {
             background: var(--royal-maroon); 
             color: var(--white);
@@ -294,7 +289,6 @@
         .event-venue { font-size: 0.8rem; color: #444; margin-bottom: 8px; font-weight: 500; }
         .event-desc { font-size: 0.8rem; color: var(--text-muted); font-style: italic; margin-bottom: 12px; }
 
-        /* Dress Code Badge Style for Haldi */
         .dress-code-badge {
             display: inline-flex; align-items: center; gap: 6px;
             background: #f7f7f7; border: 1px solid #e0e0e0;
@@ -340,7 +334,6 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
-        /* --- Warm Invitation Signoff Banner --- */
         .invitation-signoff {
             text-align: center;
             margin: 40px 0 30px;
@@ -349,7 +342,6 @@
             color: var(--royal-maroon);
         }
 
-        /* --- Guestbook Blessings Section --- */
         .blessings-section {
             background: var(--white); border: 1px solid var(--main-accent);
             border-radius: 16px; padding: 25px 20px; margin: 20px 0 30px; text-align: center;
@@ -363,7 +355,33 @@
         .blessing-card { background: #fdfbf7; border-left: 3px solid var(--royal-maroon); padding: 8px 12px; border-radius: 4px; margin-bottom: 8px; font-size: 0.78rem; }
         .blessing-author { font-weight: 700; color: var(--royal-maroon); margin-bottom: 2px; }
 
-        /* --- View Counter Section --- */
+        /* Guest Uploaded Photos Grid Feed */
+        .uploaded-gallery-section {
+            background: var(--white); border: 1px solid var(--main-accent);
+            border-radius: 16px; padding: 25px 20px; margin: 30px 0; text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+        .uploaded-grid-feed {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+            max-height: 320px;
+            overflow-y: auto;
+            padding: 5px;
+        }
+        .user-photo-thumb {
+            width: 100%;
+            height: 100px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 1px solid var(--main-accent);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+            cursor: pointer;
+        }
+        .user-photo-thumb:hover { transform: scale(1.05); }
+
         .view-counter-wrap { text-align: center; margin: 20px auto 30px; }
         .view-counter-box {
             display: inline-flex; align-items: center; gap: 8px;
@@ -373,7 +391,7 @@
             color: var(--royal-maroon); font-weight: 600;
         }
 
-        /* --- Guest Photo Upload Section (At the End) --- */
+        /* Photo Upload Styling */
         .upload-section {
             background: var(--white); border: 1px solid var(--main-accent);
             border-radius: 16px; padding: 25px 20px; margin: 20px 0 40px; text-align: center;
@@ -392,14 +410,13 @@
         .upload-preview { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin-top: 15px; }
         .preview-thumb { width: 65px; height: 65px; border-radius: 8px; object-fit: cover; border: 1px solid #ccc; }
         .upload-submit { margin-top: 15px; }
+        .upload-status { font-size: 0.8rem; margin-top: 10px; font-weight: 600; }
 
-        /* --- Post Wedding Gallery (Hidden until post Aug 23rd) --- */
         #gallery-section { display: none; margin-top: 30px; text-align: center; }
         .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-top: 15px; }
         .gallery-item { border-radius: 12px; overflow: hidden; height: 130px; border: 1px solid var(--main-accent); }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Pop-up Modal */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             background: rgba(0, 0, 0, 0.88); backdrop-filter: blur(6px);
@@ -508,7 +525,6 @@
                         <div class="event-venue">📍 9:00 AM Onwards • Dharmavaram</div>
                         <p class="event-desc">"Turmeric, laughter, and the very first blessings."</p>
                         
-                        <!-- Dress Code Swatch for Haldi Only -->
                         <div class="dress-code-badge">
                             <span class="color-dot" style="background: #FFD700;"></span> Dress Code: Vibrant Yellows
                         </div>
@@ -599,7 +615,7 @@
 
         </div>
 
-        <!-- Post-Wedding Photo Gallery (Triggers post Aug 23rd) -->
+        <!-- Post-Wedding Photo Gallery -->
         <div id="gallery-section">
             <h2 class="section-title">Wedding Moments</h2>
             <div class="gallery-grid">
@@ -630,6 +646,15 @@
             </div>
         </div>
 
+        <!-- Dynamic Guest Uploaded Photos Gallery Wall -->
+        <div class="uploaded-gallery-section">
+            <h2 class="blessings-title">📸 Shared By Guests</h2>
+            <p style="font-size: 0.78rem; color: var(--text-muted);">Moments uploaded by friends and family</p>
+            <div class="uploaded-grid-feed" id="uploaded-grid-feed">
+                <!-- Dynamically populated from gallery.json -->
+            </div>
+        </div>
+
         <!-- View Counter Block -->
         <div class="view-counter-wrap">
             <div class="view-counter-box">
@@ -637,17 +662,18 @@
             </div>
         </div>
 
-        <!-- Guest Photo & Video Upload Section (Positioned Last) -->
+        <!-- Guest Photo & Video Upload Section -->
         <div class="upload-section">
-            <h2 class="upload-title">📸 Share Your Captured Moments</h2>
-            <p class="upload-desc">Did you take photos or videos during our celebrations? Upload them here to share with us!</p>
+            <h2 class="upload-title">📷 Upload Your Moments</h2>
+            <p class="upload-desc">Did you take photos or videos during our celebrations? Upload them here to share with everyone!</p>
             <div class="upload-box" id="upload-box" onclick="document.getElementById('photo-input').click()">
                 <span class="upload-icon">📁</span>
                 <p class="upload-prompt">Tap to choose photos/videos</p>
-                <input type="file" id="photo-input" multiple accept="image/*,video/*" style="display:none" onchange="handleFileUpload(event)">
+                <input type="file" id="photo-input" name="files[]" multiple accept="image/*,video/*" style="display:none" onchange="handleFileUpload(event)">
             </div>
             <div class="upload-preview" id="upload-preview"></div>
-            <button class="submit-btn upload-submit" onclick="submitUploadedPhotos()">Upload Moments 🚀</button>
+            <div class="upload-status" id="upload-status"></div>
+            <button class="submit-btn upload-submit" id="upload-btn" onclick="submitUploadedPhotos()">Upload Moments 🚀</button>
         </div>
 
     </div>
@@ -676,7 +702,6 @@
         const coverScreen = document.getElementById('cover-screen');
         let isPlaying = false;
 
-        /* Play audio handler supporting mobile browser policies */
         function playAudio() {
             if (audio && !isPlaying) {
                 audio.play().then(() => {
@@ -688,7 +713,6 @@
             }
         }
 
-        /* Unlocks audio on ANY user touch or click on the cover screen */
         if (coverScreen) {
             coverScreen.addEventListener('click', playAudio, { once: true });
             coverScreen.addEventListener('touchstart', playAudio, { once: true });
@@ -696,7 +720,6 @@
 
         function openInvitation() {
             playAudio();
-
             coverScreen.style.transform = 'translateY(-100%)';
             coverScreen.style.opacity = '0';
             setTimeout(() => { coverScreen.style.display = 'none'; }, 800);
@@ -714,7 +737,7 @@
             }
         }
 
-        /* Dynamic Countdown / Countup & Post Wedding Gallery Trigger */
+        /* Dynamic Countdown */
         const weddingTargetDate = new Date("August 23, 2026 06:00:00").getTime();
         setInterval(function() {
             const now = new Date().getTime();
@@ -736,7 +759,7 @@
             document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
 
-        /* Guestbook Wishes Logic */
+        /* Guestbook Wishes */
         function addBlessing() {
             const name = document.getElementById('guest-name').value.trim();
             const msg = document.getElementById('guest-message').value.trim();
@@ -759,7 +782,33 @@
             return text.replace(/[&<>"']/g, function(m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m]; });
         }
 
-        /* Photo Upload Section Logic */
+        /* Fetch & Display Uploaded Gallery Photos */
+        async function loadGuestGallery() {
+            const gridFeed = document.getElementById('uploaded-grid-feed');
+            try {
+                const response = await fetch('gallery.json?v=' + new Date().getTime());
+                if (!response.ok) return;
+                const imagePaths = await response.json();
+                
+                if (Array.isArray(imagePaths) && imagePaths.length > 0) {
+                    gridFeed.innerHTML = '';
+                    imagePaths.forEach(src => {
+                        const img = document.createElement('img');
+                        img.src = src;
+                        img.className = 'user-photo-thumb';
+                        img.onclick = () => window.open(src, '_blank');
+                        gridFeed.appendChild(img);
+                    });
+                } else {
+                    gridFeed.innerHTML = '<p style="font-size: 0.75rem; color: #888; grid-column: span 3;">No photos uploaded yet. Be the first to share!</p>';
+                }
+            } catch (err) {
+                gridFeed.innerHTML = '<p style="font-size: 0.75rem; color: #888; grid-column: span 3;">No photos uploaded yet. Be the first to share!</p>';
+            }
+        }
+        loadGuestGallery();
+
+        /* Server File Upload Logic */
         let uploadedFiles = [];
         function handleFileUpload(event) {
             const files = event.target.files;
@@ -791,15 +840,49 @@
             });
         }
 
-        function submitUploadedPhotos() {
+        async function submitUploadedPhotos() {
             if (uploadedFiles.length === 0) {
                 alert('Please select at least one photo or video to upload!');
                 return;
             }
-            alert(`Thank you! ${uploadedFiles.length} file(s) selected for upload.`);
-            document.getElementById('upload-preview').innerHTML = '';
-            document.getElementById('photo-input').value = '';
-            uploadedFiles = [];
+
+            const statusElem = document.getElementById('upload-status');
+            const uploadBtn = document.getElementById('upload-btn');
+            
+            statusElem.style.color = '#555';
+            statusElem.innerText = 'Uploading files to images/uploadedbyUsers/...';
+            uploadBtn.disabled = true;
+
+            const formData = new FormData();
+            uploadedFiles.forEach(file => {
+                formData.append('files[]', file);
+            });
+
+            try {
+                const response = await fetch('upload.php', {
+                    method: 'POST',
+                    body: formData
+                });
+                const result = await response.json();
+
+                if (result.status === 'success') {
+                    statusElem.style.color = 'green';
+                    statusElem.innerText = `✅ Success! ${result.files.length} file(s) uploaded.`;
+                    document.getElementById('upload-preview').innerHTML = '';
+                    document.getElementById('photo-input').value = '';
+                    uploadedFiles = [];
+                    // Refresh gallery grid immediately
+                    loadGuestGallery();
+                } else {
+                    statusElem.style.color = 'red';
+                    statusElem.innerText = '❌ Upload failed: ' + (result.message || 'Server error');
+                }
+            } catch (err) {
+                statusElem.style.color = 'red';
+                statusElem.innerText = '❌ Backend script (upload.php) not found or server offline.';
+            } finally {
+                uploadBtn.disabled = false;
+            }
         }
 
         /* View Counter */
@@ -818,7 +901,7 @@
         }
         updateViewCounter();
 
-        /* Petals */
+        /* Falling Petals */
         const petalsContainer = document.getElementById('petals');
         for (let i = 0; i < 35; i++) {
             const petal = document.createElement('div');

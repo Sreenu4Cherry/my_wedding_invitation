@@ -3,822 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Sreenu & Cherry | Wedding Celebration</title>
+    <title>Wedding Invitation | Sreenu & Cherry</title>
     
-    <!-- Favicon -->
-    <link rel="icon" type="image/png" href="images/favicon-main.png">
-
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Great+Vibes&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- STYLES -->
     <style>
-        /* ==========================================
-           1. CORE & GLOBAL STYLES
-           ========================================== */
+        :root {
+            --royal-maroon: #6A0B12;
+            --white: #ffffff;
+            --cream: #fffdf8;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: #fcf8f2;
-            color: #333;
-            overflow-x: hidden;
-            touch-action: manipulation;
-        }
-
-        body.modal-open {
-            overflow: hidden;
-        }
-
-        /* Music Toggle Button (Hidden on Landing, Revealed on Main Page) */
-        .music-btn {
-            position: fixed;
-            top: 18px;
-            right: 18px;
-            z-index: 10000;
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid #d4af37;
-            font-size: 1.2rem;
-            padding: 8px 11px;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            backdrop-filter: blur(4px);
-            transition: opacity 0.4s ease, transform 0.2s;
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .music-btn.visible {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .music-btn:active {
-            transform: scale(0.9);
-        }
-
-        /* Falling Petals Background */
-        .petals-container {
-            position: fixed;
-            top: 0;
-            left: 0;
+        body, html {
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: 99;
             overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--cream);
         }
 
-        .petal {
-            position: absolute;
-            background: #e88a91;
-            border-radius: 15px 0 15px 0;
-            opacity: 0.7;
-            animation: fall linear infinite;
-        }
-
-        @keyframes fall {
-            0% {
-                transform: translateY(-10vh) rotate(0deg);
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(105vh) rotate(360deg);
-                opacity: 0.2;
-            }
-        }
-
-        /* ==========================================
-           2. FULL-SCREEN EDGE-TO-EDGE LANDING COVER
-           ========================================== */
+        /* --- Fullscreen Artwork Cover Screen --- */
         #cover-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: #fdfaf5;
+            background-color: var(--cream);
+            background-image: url('images/Sreenu4Cherry_2.png');
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            z-index: 9999;
-            box-sizing: border-box;
+            z-index: 1000;
+            color: var(--royal-maroon);
+            padding: calc(env(safe-area-inset-top) + 5vh) 20px calc(env(safe-area-inset-bottom) + 4vh);
+            text-align: center;
             transition: transform 0.8s ease-in-out, opacity 0.8s ease-in-out;
-            overflow: hidden;
         }
 
-        /* Background Artwork fitting exact viewport */
-        .landing-hero-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center;
-            z-index: 1;
+        /* Top Title Header */
+        .cover-header-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.4rem, 4.5vw, 2.2rem);
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: var(--royal-maroon);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.9), 1px 1px 2px rgba(255, 255, 255, 0.8);
+            text-transform: uppercase;
         }
 
-        /* Arched SVG Title Section */
-        .arc-title-container {
-            position: relative;
-            z-index: 3;
-            width: 100%;
-            margin-top: 22px;
-            pointer-events: none;
+        /* Flexible Spacer */
+        .cover-middle-spacer {
+            flex-grow: 1;
         }
 
-        .arc-svg {
-            width: 100%;
-            height: 75px;
-            overflow: visible;
-        }
-
-        .arc-text {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.3rem;
-            fill: #6a131f;
-            text-shadow: 0px 1px 3px rgba(255, 255, 255, 0.9);
-        }
-
-        /* Controls sitting directly over the bottom artwork */
-        .bottom-content {
-            position: relative;
-            z-index: 3;
+        /* Bottom Section Wrapper */
+        .cover-bottom-content {
             width: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-bottom: 24px;
         }
 
-        .couple-names-text {
-            font-family: 'Cinzel', serif;
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: #3b0a10;
-            letter-spacing: 2px;
-            margin-bottom: 4px;
-            text-shadow: 0 1px 3px rgba(255, 255, 255, 0.9);
+        /* Couple Script Names */
+        .couple-cover-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(2.8rem, 8vw, 3.8rem);
+            font-weight: 600;
+            color: var(--royal-maroon);
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.95), 1px 1px 2px rgba(255, 255, 255, 0.8);
+            margin-bottom: 2vh;
         }
 
+        /* Bouncing Hand Icon */
         .hand-pointer {
-            font-size: 1.25rem;
-            animation: bounce 1.2s infinite alternate;
-            margin-bottom: 6px;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            animation: bounce 1.2s infinite ease-in-out;
+            user-select: none;
+            filter: drop-shadow(0 2px 4px rgba(255,255,255,0.8));
         }
 
         @keyframes bounce {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(6px); }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
         }
 
+        /* Action Button */
         .tap-btn {
-            background: #6a131f;
-            color: #fff;
-            border: none;
-            padding: 12px 28px;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.85rem;
+            background: var(--royal-maroon);
+            color: var(--white);
+            border: 2px solid #E0E0E0;
+            padding: 14px 40px;
+            font-size: 1rem;
             font-weight: 600;
-            letter-spacing: 1.2px;
-            border-radius: 25px;
+            border-radius: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(106, 19, 31, 0.4);
-            transition: transform 0.2s, background 0.2s;
-            width: 82%;
-            max-width: 320px;
+            box-shadow: 0 6px 20px rgba(106, 11, 18, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .tap-btn:active {
-            transform: scale(0.96);
-            background: #4a0e17;
+            transform: scale(0.95);
         }
 
-        /* ==========================================
-           3. MAIN PAGE LAYOUT & SECTIONS
-           ========================================== */
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .header-section {
-            margin-bottom: 30px;
-        }
-
-        .sub-title {
-            font-family: 'Montserrat', sans-serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.8rem;
-            color: #8b6b23;
-            margin-bottom: 8px;
-        }
-
-        .main-heading {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            color: #4a0e17;
-            font-weight: 700;
-        }
-
-        /* Couple Card */
-        .couple-card {
-            background: #ffffff;
-            border: 1px solid #f0e6d2;
-            border-radius: 16px;
-            padding: 24px 16px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-        }
-
-        .couple-names h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.4rem;
-            color: #6a131f;
-            margin-bottom: 4px;
-        }
-
-        .parent-subtext {
-            font-size: 0.8rem;
-            color: #666;
-            margin-bottom: 12px;
-        }
-
-        .ampersand {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.5rem;
-            color: #d4af37;
-            margin: 6px 0;
-        }
-
-        /* Countdown Banner */
-        .countdown-banner {
-            background: linear-gradient(135deg, #6a131f, #4a0e17);
-            color: #fff;
-            padding: 20px;
-            border-radius: 16px;
-            margin-bottom: 35px;
-            box-shadow: 0 6px 20px rgba(106, 19, 31, 0.25);
-        }
-
-        .countdown-title {
-            font-family: 'Cinzel', serif;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
-            color: #f1d79e;
-        }
-
-        .timer {
-            display: flex;
-            justify-content: space-around;
-        }
-
-        .timer-num {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .timer-label {
-            font-size: 0.7rem;
-            opacity: 0.8;
-            text-transform: uppercase;
-            margin-top: 2px;
-        }
-
-        .section-title-wrap {
-            margin-bottom: 25px;
-        }
-
-        .section-title {
-            font-family: 'Great Vibes', cursive;
-            font-size: 2.8rem;
-            color: #6a131f;
-        }
-
-        /* Timeline & Events */
-        .timeline {
-            position: relative;
-            margin-bottom: 40px;
-        }
-
-        .timeline-item {
-            background: #ffffff;
-            border-radius: 16px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border: 1px solid #ebdcc4;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
-            text-align: left;
-        }
-
-        .event-date {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #8b6b23;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
-        }
-
-        .event-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1.25rem;
-            color: #4a0e17;
-            margin-bottom: 6px;
-        }
-
-        .event-venue {
-            font-size: 0.85rem;
-            font-weight: 500;
-            color: #444;
-            margin-bottom: 8px;
-        }
-
-        .event-desc {
-            font-size: 0.8rem;
-            font-style: italic;
-            color: #666;
-            margin-bottom: 15px;
-        }
-
-        .btn-group {
-            margin-top: 10px;
-        }
-
-        .action-btn {
-            display: inline-block;
-            text-decoration: none;
-            font-size: 0.8rem;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 20px;
-            transition: background 0.2s;
-        }
-
-        .btn-map {
-            background: #f4e8d3;
-            color: #6a131f;
-        }
-
-        .card-preview-wrap {
-            margin-top: 15px;
-            cursor: pointer;
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px dashed #d4af37;
-        }
-
-        .art-card-thumb img {
-            width: 100%;
-            height: 140px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .rub-tag {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(74, 14, 23, 0.85);
-            color: #fff;
-            font-size: 0.75rem;
-            text-align: center;
-            padding: 6px;
-            backdrop-filter: blur(2px);
-        }
-
-        footer {
-            font-family: 'Cinzel', serif;
-            font-size: 0.85rem;
-            color: #8b6b23;
-            padding: 20px 0;
-        }
-
-        /* ==========================================
-           4. SCRATCH POP-UP MODAL
-           ========================================== */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.85);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 20000;
+        /* Hidden class for smooth slide up */
+        .hide-cover {
+            transform: translateY(-100%);
             opacity: 0;
             pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .close-modal-btn {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            color: #fff;
-            font-size: 1.8rem;
-            cursor: pointer;
-        }
-
-        .scratch-modal-box {
-            position: relative;
-            width: 300px;
-            height: 420px;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        .reveal-image-container {
-            width: 100%;
-            height: 100%;
-        }
-
-        .reveal-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .modal-scratch-canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            cursor: pointer;
-            touch-action: none;
-        }
-
-        .modal-instruction {
-            color: #fff;
-            font-size: 0.85rem;
-            margin-top: 15px;
-            letter-spacing: 1px;
         }
     </style>
 </head>
 <body>
 
-    <!-- Dynamic Audio Player -->
-    <audio id="bg-music" loop preload="auto">
-        <source id="music-src" src="" type="audio/mpeg">
-    </audio>
-
-    <!-- Music Toggle Button (Appears only on Main Page) -->
-    <button class="music-btn" id="music-toggle" onclick="toggleMusic()">🎵</button>
-
-    <!-- Background Petals Animation -->
-    <div class="petals-container" id="petals"></div>
-
-    <!-- COVER / LANDING SCREEN (Full Edge-To-Edge Viewport) -->
+    <!-- LANDING / COVER PAGE -->
     <div id="cover-screen">
-        <!-- Background Illustration -->
-        <img id="landing-hero-img" class="landing-hero-bg" src="" alt="Sreenu & Cherry Wedding Illustration">
+        <div class="cover-header-title">WEDDING INVITE</div>
         
-        <!-- Curved Arc Title at Top -->
-        <div class="arc-title-container">
-            <svg class="arc-svg" viewBox="0 0 300 70">
-                <path id="title-curve" d="M 15,58 A 185,185 0 0,1 285,58" fill="transparent"/>
-                <text class="arc-text">
-                    <textPath href="#title-curve" startOffset="50%" text-anchor="middle" id="landing-title-text">
-                        Wedding Invitation
-                    </textPath>
-                </text>
-            </svg>
-        </div>
+        <div class="cover-middle-spacer"></div>
 
-        <!-- Overlaid Bottom Elements -->
-        <div class="bottom-content">
-            <p class="couple-names-text" id="landing-couple-names"></p>
+        <div class="cover-bottom-content">
+            <div class="couple-cover-name">Sreenu & Cherry</div>
+
             <div class="hand-pointer">👇</div>
-            <button class="tap-btn" id="landing-tap-btn" onclick="openInvitation()"></button>
+            <button class="tap-btn" onclick="openInvitation()">TAP TO OPEN</button>
         </div>
     </div>
 
-    <!-- MAIN CONTENT CONTAINER -->
-    <div class="container">
-        <div class="header-section">
-            <p class="sub-title" id="main-subtitle"></p>
-            <h1 class="main-heading" id="main-heading"></h1>
-        </div>
-
-        <!-- Couple Banner -->
-        <div class="couple-card">
-            <div class="couple-names">
-                <h2 id="groom-full-name"></h2>
-                <p class="parent-subtext" id="groom-parents"></p>
-                <div class="ampersand">&</div>
-                <h2 id="bride-full-name"></h2>
-                <p class="parent-subtext" id="bride-parents"></p>
-            </div>
-        </div>
-
-        <!-- Countdown Banner -->
-        <div class="countdown-banner">
-            <div class="countdown-title" id="timer-title">Counting Down To Muhurtham</div>
-            <div class="timer">
-                <div><div class="timer-num" id="days">00</div><div class="timer-label">Days</div></div>
-                <div><div class="timer-num" id="hours">00</div><div class="timer-label">Hours</div></div>
-                <div><div class="timer-num" id="mins">00</div><div class="timer-label">Mins</div></div>
-                <div><div class="timer-num" id="secs">00</div><div class="timer-label">Secs</div></div>
-            </div>
-        </div>
-
-        <div class="section-title-wrap">
-            <h2 class="section-title" id="events-section-title"></h2>
-        </div>
-
-        <!-- Dynamic Timeline Events Section -->
-        <div class="timeline" id="events-timeline"></div>
-
-        <footer id="footer-text"></footer>
-    </div>
-
-    <!-- Scratch Pop-up Modal -->
-    <div class="modal-overlay" id="scratch-modal">
-        <div class="close-modal-btn" onclick="closeScratchModal()">✕</div>
-        <div class="scratch-modal-box">
-            <div class="reveal-image-container">
-                <img id="reveal-img-src" class="reveal-image" src="" alt="Revealed Event Card">
-            </div>
-            <canvas id="modal-canvas" class="modal-scratch-canvas" width="300" height="420"></canvas>
-        </div>
-        <div class="modal-instruction">👈 Rub screen to reveal event image 👉</div>
-    </div>
-
-    <!-- JAVASCRIPT LOGIC & CONFIG -->
     <script>
-        /* =========================================================
-           CONFIGURABLE PARAMETERS
-           ========================================================= */
-        const CONFIG = {
-            // Cover / Landing Screen Parameters
-            landingTitle: "Wedding Invitation",
-            groomName: "SREENU",
-            brideName: "CHERRY",
-            landingIllustration: "images/Sreenu4Cherry.png",
-            tapButtonText: "💌 TAP TO OPEN",
-            bgMusicSrc: "images/adara-song.mp3",
-
-            // Main Screen Parameters
-            subTitle: "Together With Our Families",
-            mainHeading: "Request The Honor Of Your Presence",
-            groomFullName: "B. Sreenivasulu",
-            groomParents: "S/o B. Ramanjulu & B. LakshmiDevi",
-            brideFullName: "K. Charitha",
-            brideParents: "D/o K. L. Narayana & K. Padmavati",
-            targetWeddingDate: "August 23, 2026 06:00:00",
-            eventsSectionTitle: "The Festivities",
-            footerText: "Warmly Invited By Sreenu & Cherry",
-
-            // Events List
-            events: [
-                {
-                    id: "haldi",
-                    date: "Saturday, 22 August 2026",
-                    title: "Haldi Ceremony",
-                    venue: "📍 9:00 AM Onwards • Dharmavaram",
-                    desc: "\"Turmeric, laughter, and the very first blessings.\"",
-                    mapUrl: "",
-                    revealImg: "images/haldi-reveal.jpeg"
-                },
-                {
-                    id: "reception",
-                    date: "Saturday, 22 August 2026",
-                    title: "Wedding Reception",
-                    venue: "📍 7:00 PM Onwards • Anantapur",
-                    desc: "\"An evening of celebration, dining, and joy.\"",
-                    mapUrl: "https://maps.app.goo.gl/wDfPxHQPte7LLno77",
-                    revealImg: "images/reception-reveal.jpeg"
-                },
-                {
-                    id: "muhurtham",
-                    date: "Sunday, 23 August 2026",
-                    title: "Wedding Ceremony",
-                    venue: "📍 Early Morning 4:00 AM – 5:00 AM • Anantapur",
-                    desc: "\"Two hands, two hearts, joined in love forever.\"",
-                    mapUrl: "https://maps.app.goo.gl/wDfPxHQPte7LLno77",
-                    revealImg: "images/muhurtham-reveal.jpeg"
-                },
-                {
-                    id: "reception2",
-                    date: "Dharmavaram",
-                    title: "Reception",
-                    venue: "📍 Dharmavaram",
-                    desc: "\"Continuing the joy and blessings.\"",
-                    mapUrl: "https://maps.app.goo.gl/dJzmkvnq5mUEw2gPA",
-                    revealImg: "images/reception-reveal2.jpeg"
-                }
-            ]
-        };
-
-        /* Initialize Page Content */
-        function initPageFromConfig() {
-            document.getElementById('landing-title-text').textContent = CONFIG.landingTitle;
-            document.getElementById('landing-hero-img').src = CONFIG.landingIllustration;
-            document.getElementById('landing-couple-names').innerText = `${CONFIG.groomName} ♥ ${CONFIG.brideName}`;
-            document.getElementById('landing-tap-btn').innerText = CONFIG.tapButtonText;
-            document.getElementById('music-src').src = CONFIG.bgMusicSrc;
-            document.getElementById('bg-music').load();
-
-            document.getElementById('main-subtitle').innerText = CONFIG.subTitle;
-            document.getElementById('main-heading').innerText = CONFIG.mainHeading;
-            document.getElementById('groom-full-name').innerText = CONFIG.groomFullName;
-            document.getElementById('groom-parents').innerText = CONFIG.groomParents;
-            document.getElementById('bride-full-name').innerText = CONFIG.brideFullName;
-            document.getElementById('bride-parents').innerText = CONFIG.brideParents;
-            document.getElementById('events-section-title').innerText = CONFIG.eventsSectionTitle;
-            document.getElementById('footer-text').innerText = CONFIG.footerText;
-
-            const timelineContainer = document.getElementById('events-timeline');
-            timelineContainer.innerHTML = CONFIG.events.map(event => `
-                <div class="timeline-item">
-                    <div class="event-info">
-                        <div class="event-date">${event.date}</div>
-                        <h3 class="event-title">${event.title}</h3>
-                        <div class="event-venue">${event.venue}</div>
-                        <p class="event-desc">${event.desc}</p>
-                        ${event.mapUrl ? `
-                            <div class="btn-group">
-                                <a href="${event.mapUrl}" target="_blank" class="action-btn btn-map">📍 Directions</a>
-                            </div>
-                        ` : ''}
-                    </div>
-                    <div class="card-preview-wrap" onclick="openScratchModal('${event.id}')">
-                        <div class="art-card-thumb">
-                            <img src="${event.revealImg}" alt="${event.title}">
-                        </div>
-                        <div class="rub-tag">✨ Rub To Reveal</div>
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        initPageFromConfig();
-
-        /* Audio Controls */
-        const audio = document.getElementById('bg-music');
-        const musicBtn = document.getElementById('music-toggle');
-        let isPlaying = false;
-
         function openInvitation() {
             const cover = document.getElementById('cover-screen');
-            cover.style.transform = 'translateY(-100%)';
-            cover.style.opacity = '0';
-            setTimeout(() => { cover.style.display = 'none'; }, 800);
-            
-            // Show music button on main invitation page
-            musicBtn.classList.add('visible');
-            playAudio();
+            cover.classList.add('hide-cover');
         }
-
-        function playAudio() {
-            audio.play().then(() => {
-                isPlaying = true;
-                musicBtn.innerText = '🎵';
-            }).catch(err => console.log('Audio playback waiting for user action.', err));
-        }
-
-        function toggleMusic() {
-            if (isPlaying) {
-                audio.pause();
-                isPlaying = false;
-                musicBtn.innerText = '🔇';
-            } else {
-                audio.play();
-                isPlaying = true;
-                musicBtn.innerText = '🎵';
-            }
-        }
-
-        /* Countdown Calculation */
-        const weddingTargetDate = new Date(CONFIG.targetWeddingDate).getTime();
-        setInterval(function() {
-            const now = new Date().getTime();
-            let diff = weddingTargetDate - now;
-            const timerTitle = document.getElementById("timer-title");
-
-            if (diff <= 0) {
-                timerTitle.innerText = "Been Together Since";
-                diff = Math.abs(diff);
-            } else {
-                timerTitle.innerText = "Counting Down To Muhurtham";
-            }
-
-            document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
-            document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
-            document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
-            document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
-        }, 1000);
-
-        /* Falling Petals Generator */
-        const petalsContainer = document.getElementById('petals');
-        for (let i = 0; i < 30; i++) {
-            const petal = document.createElement('div');
-            petal.className = 'petal';
-            petal.style.left = Math.random() * 100 + '%';
-            petal.style.width = (Math.random() * 8 + 8) + 'px';
-            petal.style.height = (Math.random() * 8 + 8) + 'px';
-            petal.style.animationDuration = (Math.random() * 4 + 4) + 's';
-            petal.style.animationDelay = (Math.random() * 4) + 's';
-            petalsContainer.appendChild(petal);
-        }
-
-        /* Scratch Card Canvas Modal Logic */
-        const modal = document.getElementById('scratch-modal');
-        const modalCanvas = document.getElementById('modal-canvas');
-        const ctx = modalCanvas.getContext('2d');
-        let isDrawing = false;
-        let scratchCount = 0;
-
-        function openScratchModal(eventId) {
-            const eventObj = CONFIG.events.find(e => e.id === eventId);
-            if (!eventObj) return;
-
-            document.body.classList.add('modal-open');
-            scratchCount = 0;
-
-            const imgElem = document.getElementById('reveal-img-src');
-            imgElem.src = eventObj.revealImg;
-
-            modalCanvas.style.opacity = '1';
-            ctx.globalCompositeOperation = 'source-over';
-            ctx.fillStyle = '#A9A9A9';
-            ctx.fillRect(0, 0, modalCanvas.width, modalCanvas.height);
-
-            modal.classList.add('active');
-        }
-
-        function closeScratchModal() {
-            modal.classList.remove('active');
-            document.body.classList.remove('modal-open');
-        }
-
-        function autoReveal() {
-            ctx.clearRect(0, 0, modalCanvas.width, modalCanvas.height);
-        }
-
-        function scratch(e) {
-            if (!isDrawing) return;
-            if (e.cancelable) e.preventDefault();
-
-            const rect = modalCanvas.getBoundingClientRect();
-            const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-            const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-
-            const scaleX = modalCanvas.width / rect.width;
-            const scaleY = modalCanvas.height / rect.height;
-
-            const x = (clientX - rect.left) * scaleX;
-            const y = (clientY - rect.top) * scaleY;
-
-            ctx.globalCompositeOperation = 'destination-out';
-            ctx.beginPath();
-            ctx.arc(x, y, 28, 0, Math.PI * 2, false);
-            ctx.fill();
-
-            scratchCount++;
-            if (scratchCount >= 2) autoReveal();
-        }
-
-        modalCanvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
-        modalCanvas.addEventListener('mousemove', scratch);
-        window.addEventListener('mouseup', () => { isDrawing = false; });
-
-        modalCanvas.addEventListener('touchstart', (e) => { 
-            isDrawing = true; 
-            if (e.cancelable) e.preventDefault();
-            scratch(e); 
-        }, { passive: false });
-
-        modalCanvas.addEventListener('touchmove', (e) => { 
-            if (e.cancelable) e.preventDefault();
-            scratch(e); 
-        }, { passive: false });
-
-        window.addEventListener('touchend', () => { isDrawing = false; });
     </script>
 </body>
 </html>

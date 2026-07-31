@@ -293,7 +293,7 @@
         .event-venue { font-size: 0.8rem; color: #444; margin-bottom: 8px; font-weight: 500; }
         .event-desc { font-size: 0.8rem; color: var(--text-muted); font-style: italic; margin-bottom: 12px; }
 
-        /* Dress Code Badge Style */
+        /* Dress Code Badge Style for Haldi */
         .dress-code-badge {
             display: inline-flex; align-items: center; gap: 6px;
             background: #f7f7f7; border: 1px solid #e0e0e0;
@@ -339,10 +339,19 @@
             box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
+        /* --- Warm Invitation Signoff Banner --- */
+        .invitation-signoff {
+            text-align: center;
+            margin: 40px 0 30px;
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: var(--royal-maroon);
+        }
+
         /* --- Guestbook Blessings Section --- */
         .blessings-section {
             background: var(--white); border: 1px solid var(--main-accent);
-            border-radius: 16px; padding: 25px 20px; margin: 30px 0; text-align: center;
+            border-radius: 16px; padding: 25px 20px; margin: 20px 0 30px; text-align: center;
         }
         .blessings-title { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--royal-maroon); margin-bottom: 12px; }
         .blessings-input { width: 100%; padding: 10px 14px; border-radius: 8px; border: 1px solid #ccc; margin-bottom: 10px; font-size: 0.85rem; font-family: inherit; }
@@ -354,7 +363,7 @@
         .blessing-author { font-weight: 700; color: var(--royal-maroon); margin-bottom: 2px; }
 
         /* --- View Counter Section --- */
-        .view-counter-wrap { text-align: center; margin: 30px auto 10px; }
+        .view-counter-wrap { text-align: center; margin: 20px auto 10px; }
         .view-counter-box {
             display: inline-flex; align-items: center; gap: 8px;
             background: var(--white); border: 1px solid var(--main-accent);
@@ -395,14 +404,12 @@
         .reveal-image { width: 100%; height: 100%; object-fit: contain; display: block; background: var(--white); }
         .modal-scratch-canvas { position: absolute; top: 0; left: 0; width: 100%; height: 100%; cursor: pointer; z-index: 5; touch-action: none; transition: opacity 0.5s ease; }
         .modal-instruction { color: var(--white); font-size: 0.85rem; letter-spacing: 1px; margin-top: 15px; text-transform: uppercase; font-weight: 500; }
-
-        footer { text-align: center; margin-top: 15px; font-family: 'Great Vibes', cursive; font-size: 2.2rem; color: var(--royal-maroon); }
     </style>
 </head>
 <body>
 
     <!-- Looping Audio Player -->
-    <audio id="bg-music" loop preload="auto">
+    <audio id="bg-music" loop playsinline preload="auto">
         <source src="images/adara-song.mp3" type="audio/mpeg">
     </audio>
 
@@ -480,7 +487,7 @@
                         <div class="event-venue">📍 9:00 AM Onwards • Dharmavaram</div>
                         <p class="event-desc">"Turmeric, laughter, and the very first blessings."</p>
                         
-                        <!-- Dress Code Swatch -->
+                        <!-- Dress Code Swatch for Haldi Only -->
                         <div class="dress-code-badge">
                             <span class="color-dot" style="background: #FFD700;"></span> Dress Code: Vibrant Yellows
                         </div>
@@ -508,11 +515,6 @@
                         <div class="event-venue">📍 7:00 PM Onwards • Anantapur</div>
                         <p class="event-desc">"An evening of celebration, dining, and joy."</p>
 
-                        <!-- Dress Code Swatch -->
-                        <div class="dress-code-badge">
-                            <span class="color-dot" style="background: #4B0082;"></span> Dress Code: Indo-Western / Formals
-                        </div>
-
                         <div class="btn-group">
                             <a href="https://maps.app.goo.gl/wDfPxHQPte7LLno77" target="_blank" class="action-btn btn-map">📍 Directions</a>
                             <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding+Reception+-+Sreenu+%26+Cherry&dates=20260822T133000Z/20260822T173000Z&details=Wedding+Reception&location=Anantapur" target="_blank" class="action-btn btn-cal">📅 Add to Cal</a>
@@ -536,11 +538,6 @@
                         <h3 class="event-title">Wedding Ceremony</h3>
                         <div class="event-venue">📍 Early Morning 4:00 AM – 5:00 AM • Anantapur</div>
                         <p class="event-desc">"Two hands, two hearts, joined in love forever."</p>
-
-                        <!-- Dress Code Swatch -->
-                        <div class="dress-code-badge">
-                            <span class="color-dot" style="background: #800000;"></span> Dress Code: Traditional Grand Silk
-                        </div>
 
                         <div class="btn-group">
                             <a href="https://maps.app.goo.gl/wDfPxHQPte7LLno77" target="_blank" class="action-btn btn-map">📍 Directions</a>
@@ -592,6 +589,11 @@
             </div>
         </div>
 
+        <!-- Warmly Invited By Signoff (Positioned Before Guestbook & Visitors) -->
+        <div class="invitation-signoff">
+            Warmly Invited By Sreenu & Cherry
+        </div>
+
         <!-- Guestbook / Blessings Wall -->
         <div class="blessings-section">
             <h2 class="blessings-title">Shower Your Blessings</h2>
@@ -613,10 +615,6 @@
                 <span class="eye-icon">👁️</span> Total Visitors: <span id="view-count">...</span>
             </div>
         </div>
-
-        <footer>
-            Warmly Invited By Sreenu & Cherry
-        </footer>
     </div>
 
     <!-- Scratch Pop-up Overlay Modal -->
@@ -643,14 +641,15 @@
         let isPlaying = false;
 
         function openInvitation() {
+            playAudio();
+
             const cover = document.getElementById('cover-screen');
             cover.style.transform = 'translateY(-100%)';
             cover.style.opacity = '0';
             setTimeout(() => { cover.style.display = 'none'; }, 800);
-
-            playAudio();
         }
 
+        /* Direct touch event for mobile browsers to unlock audio playback */
         const openBtn = document.getElementById('open-btn');
         if (openBtn) {
             openBtn.addEventListener('touchstart', function(e) {
@@ -660,10 +659,12 @@
         }
 
         function playAudio() {
-            audio.play().then(() => {
-                isPlaying = true;
-                musicBtn.innerText = '🎵';
-            }).catch(err => console.log('Autoplay handled: ', err));
+            if (audio) {
+                audio.play().then(() => {
+                    isPlaying = true;
+                    musicBtn.innerText = '🎵';
+                }).catch(err => console.log('Mobile autoplay intervention handled: ', err));
+            }
         }
 
         function toggleMusic() {

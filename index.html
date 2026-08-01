@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Sreenu & Cherry | Wedding Celebration</title>
-     <link rel="icon" type="image/png" href="images/favicon_main.png">
+    <link rel="icon" type="image/png" href="images/favicon_main.png">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -40,7 +40,86 @@
             overflow: hidden !important;
             touch-action: none;
         }
+        /* --- Main Couple Photo Arch Frame --- */
+        .hero-image-frame {
+            width: 100%;
+            max-width: 290px;
+            height: 380px;
+            margin: 0 auto 30px;
+            border-radius: 150px 150px 16px 16px; 
+            padding: 8px;
+            background: var(--white);
+            box-shadow: 0 12px 30px rgba(106, 11, 18, 0.15); /* Soft maroon shadow */
+            border: 1px solid var(--main-accent);
+            position: relative;
+        }
 
+        .hero-image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 142px 142px 10px 10px;
+            object-position: center 25%; /* Keeps your faces perfectly centered */
+        }
+        /* --- Zoom Icon Hint --- */
+        .hero-image-frame {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .hero-image-frame:active {
+            transform: scale(0.98);
+        }
+
+        .hero-image-frame::after {
+            content: "🔍";
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: var(--white);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            font-size: 1rem;
+            color: var(--royal-maroon);
+        }
+
+        /* --- Image Lightbox Overlay --- */
+        .lightbox-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0, 0, 0, 0.92); backdrop-filter: blur(8px);
+            z-index: 3000; display: none; justify-content: center; align-items: center;
+            opacity: 0; transition: opacity 0.3s ease; touch-action: none;
+        }
+        
+        .lightbox-overlay.active { 
+            display: flex; 
+            opacity: 1; 
+        }
+        
+        .close-lightbox-btn {
+            position: absolute; top: 25px; right: 25px;
+            width: 42px; height: 42px; background: rgba(255, 255, 255, 0.15);
+            color: #fff; border-radius: 50%; display: flex;
+            justify-content: center; align-items: center;
+            font-size: 1.4rem; font-weight: bold; cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.4); z-index: 3010;
+            transition: background 0.2s;
+        }
+
+        .close-lightbox-btn:active {
+            background: rgba(255, 255, 255, 0.4);
+        }
+        
+        .lightbox-overlay img {
+            max-width: 95%; max-height: 85%;
+            border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            object-fit: contain; cursor: zoom-out;
+        }
         /* --- Falling Petals --- */
         .petals-container {
             position: fixed;
@@ -304,6 +383,7 @@
             display: inline-flex; align-items: center; gap: 4px;
             font-size: 0.72rem; font-weight: 600; padding: 8px 14px;
             border-radius: 20px; text-decoration: none; transition: all 0.2s;
+            cursor: pointer;
         }
         .btn-map { background: var(--royal-maroon); color: var(--main-accent); border: 1px solid var(--main-accent); }
         .btn-cal { background: #f0f0f0; color: #333; border: 1px solid #ccc; }
@@ -352,8 +432,8 @@
         .blessings-textarea { width: 100%; height: 70px; padding: 10px 14px; border-radius: 8px; border: 1px solid #ccc; margin-bottom: 12px; font-size: 0.85rem; font-family: inherit; resize: none; }
         .submit-btn { background: var(--royal-maroon); color: #fff; border: none; padding: 10px 24px; border-radius: 20px; font-weight: 600; font-size: 0.8rem; cursor: pointer; }
         
-        .blessings-feed { margin-top: 20px; text-align: left; max-height: 160px; overflow-y: auto; padding-right: 5px; }
-        .blessing-card { background: #fdfbf7; border-left: 3px solid var(--royal-maroon); padding: 8px 12px; border-radius: 4px; margin-bottom: 8px; font-size: 0.78rem; }
+        .blessings-feed { margin-top: 20px; text-align: left; padding-right: 5px; }
+        .blessing-card { background: #fdfbf7; border-left: 3px solid var(--royal-maroon); padding: 8px 12px; border-radius: 4px; margin-bottom: 8px; font-size: 0.78rem; display: none; }
         .blessing-author { font-weight: 700; color: var(--royal-maroon); margin-bottom: 2px; }
 
         /* Guest Uploaded Photos Grid Feed */
@@ -367,8 +447,6 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 10px;
             margin-top: 15px;
-            max-height: 320px;
-            overflow-y: auto;
             padding: 5px;
         }
         .user-photo-thumb {
@@ -489,6 +567,12 @@
         </div>
 
         <div class="couple-card">
+            
+            <!-- Beautiful Arched Couple Photo -->
+            <div class="hero-image-frame" onclick="openLightbox('images/sreenu4cherry_main.jpeg')">
+                <img src="images/sreenu4cherry_main.jpeg" alt="Sreenu & Cherry">
+            </div>
+
             <div class="couple-names">
                 <h2>B. Sreenivasulu</h2>
                 <p class="parent-subtext">S/o B. Ramanjulu & B. LakshmiDevi</p>
@@ -640,11 +724,14 @@
             <button class="submit-btn" onclick="addBlessing()">Send Wishes 💖</button>
 
             <div class="blessings-feed" id="blessings-feed">
+                <!-- Example initial card -->
                 <div class="blessing-card">
                     <div class="blessing-author">Rambo4Fuggi & Family</div>
                     <div>Wishing you a lifetime of joy, happiness, and prosperity together!</div>
                 </div>
             </div>
+            
+            <button id="show-more-blessings-btn" class="action-btn btn-cal" style="display: none; margin: 15px auto 0;" onclick="showMoreBlessings()">Show More Wishes</button>
         </div>
 
         <!-- Dynamic Guest Uploaded Photos Gallery Wall -->
@@ -654,6 +741,7 @@
             <div class="uploaded-grid-feed" id="uploaded-grid-feed">
                 <!-- Dynamically populated from gallery.json -->
             </div>
+            <button id="show-more-gallery-btn" class="action-btn btn-cal" style="display: none; margin: 15px auto 0;" onclick="showMoreGallery()">Show More Images</button>
         </div>
 
         <!-- View Counter Block -->
@@ -689,6 +777,12 @@
             <canvas id="modal-canvas" class="modal-scratch-canvas" width="300" height="420"></canvas>
         </div>
         <div class="modal-instruction">👈 Rub screen to reveal event image 👉</div>
+    </div>
+
+    <!-- Image Lightbox Modal -->
+    <div class="lightbox-overlay" id="image-lightbox" onclick="closeLightbox()">
+        <div class="close-lightbox-btn">✕</div>
+        <img id="lightbox-img" src="" alt="Full Screen">
     </div>
 
     <script>
@@ -738,7 +832,7 @@
             }
         }
 
-        /* Dynamic Countdown */
+        /* Dynamic Countdown / Count Up */
         const weddingTargetDate = new Date("August 23, 2026 06:00:00").getTime();
         setInterval(function() {
             const now = new Date().getTime();
@@ -746,9 +840,10 @@
             const timerTitle = document.getElementById("timer-title");
             const gallerySection = document.getElementById("gallery-section");
 
+            // If date is passed, switch text and count upwards!
             if (diff <= 0) {
-                timerTitle.innerText = "Have Been Together Since";
-                diff = Math.abs(diff);
+                timerTitle.innerText = "Been together since";
+                diff = Math.abs(diff); // Makes the difference positive to count up
                 if (gallerySection) gallerySection.style.display = 'block';
             } else {
                 timerTitle.innerText = "Counting Down To Muhurtham";
@@ -760,7 +855,9 @@
             document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
         }, 1000);
 
-        /* Guestbook Wishes */
+        /* Guestbook Wishes (Max 5 with Show More) */
+        let blessingsRevealed = false;
+
         function addBlessing() {
             const name = document.getElementById('guest-name').value.trim();
             const msg = document.getElementById('guest-message').value.trim();
@@ -772,41 +869,101 @@
             const feed = document.getElementById('blessings-feed');
             const card = document.createElement('div');
             card.className = 'blessing-card';
+            // Prepending automatically sorts them latest showing
             card.innerHTML = `<div class="blessing-author">${escapeHtml(name)}</div><div>${escapeHtml(msg)}</div>`;
             feed.prepend(card);
 
             document.getElementById('guest-name').value = '';
             document.getElementById('guest-message').value = '';
+
+            updateBlessingsVisibility();
         }
 
         function escapeHtml(text) {
             return text.replace(/[&<>"']/g, function(m) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m]; });
         }
 
-        /* Fetch & Display Uploaded Gallery Photos */
+        function updateBlessingsVisibility() {
+            const feed = document.getElementById('blessings-feed');
+            const cards = feed.getElementsByClassName('blessing-card');
+            const showMoreBtn = document.getElementById('show-more-blessings-btn');
+
+            if (blessingsRevealed) {
+                for (let i = 0; i < cards.length; i++) cards[i].style.display = 'block';
+                showMoreBtn.style.display = 'none';
+                return;
+            }
+
+            for (let i = 0; i < cards.length; i++) {
+                if (i < 5) {
+                    cards[i].style.display = 'block';
+                } else {
+                    cards[i].style.display = 'none';
+                }
+            }
+
+            if (cards.length > 5) {
+                showMoreBtn.style.display = 'block';
+            } else {
+                showMoreBtn.style.display = 'none';
+            }
+        }
+
+        function showMoreBlessings() {
+            blessingsRevealed = true;
+            updateBlessingsVisibility();
+        }
+        updateBlessingsVisibility(); // Run on initial load
+
+        /* Fetch & Display Uploaded Gallery Photos (Max 6 with Show More) */
+        let allGalleryImages = [];
+        let visibleGalleryCount = 6;
+
         async function loadGuestGallery() {
             const gridFeed = document.getElementById('uploaded-grid-feed');
             try {
                 const response = await fetch('gallery.json?v=' + new Date().getTime());
                 if (!response.ok) return;
-                const imagePaths = await response.json();
                 
-                if (Array.isArray(imagePaths) && imagePaths.length > 0) {
-                    gridFeed.innerHTML = '';
-                    imagePaths.forEach(src => {
-                        const img = document.createElement('img');
-                        img.src = src;
-                        img.className = 'user-photo-thumb';
-                        img.onclick = () => window.open(src, '_blank');
-                        gridFeed.appendChild(img);
-                    });
-                } else {
-                    gridFeed.innerHTML = '<p style="font-size: 0.75rem; color: #888; grid-column: span 3;">No photos uploaded yet. Be the first to share!</p>';
-                }
+                // gallery.json is already sorted newest first by upload.php
+                allGalleryImages = await response.json(); 
+                renderGallery();
             } catch (err) {
                 gridFeed.innerHTML = '<p style="font-size: 0.75rem; color: #888; grid-column: span 3;">No photos uploaded yet. Be the first to share!</p>';
             }
         }
+
+        function renderGallery() {
+            const gridFeed = document.getElementById('uploaded-grid-feed');
+            const showMoreBtn = document.getElementById('show-more-gallery-btn');
+
+            if (Array.isArray(allGalleryImages) && allGalleryImages.length > 0) {
+                gridFeed.innerHTML = '';
+                const imagesToShow = allGalleryImages.slice(0, visibleGalleryCount);
+
+                imagesToShow.forEach(src => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.className = 'user-photo-thumb';
+                    img.onclick = () => window.open(src, '_blank');
+                    gridFeed.appendChild(img);
+                });
+
+                if (allGalleryImages.length > visibleGalleryCount) {
+                    showMoreBtn.style.display = 'block';
+                } else {
+                    showMoreBtn.style.display = 'none';
+                }
+            } else {
+                gridFeed.innerHTML = '<p style="font-size: 0.75rem; color: #888; grid-column: span 3;">No photos uploaded yet. Be the first to share!</p>';
+            }
+        }
+
+        function showMoreGallery() {
+            visibleGalleryCount = allGalleryImages.length; // Show all
+            renderGallery();
+        }
+
         loadGuestGallery();
 
         /* Server File Upload Logic */
@@ -872,8 +1029,9 @@
                     document.getElementById('upload-preview').innerHTML = '';
                     document.getElementById('photo-input').value = '';
                     uploadedFiles = [];
-                    // Refresh gallery grid immediately
-                    loadGuestGallery();
+                    
+                    // Refresh gallery grid immediately after upload
+                    loadGuestGallery(); 
                 } else {
                     statusElem.style.color = 'red';
                     statusElem.innerText = '❌ Upload failed: ' + (result.message || 'Server error');
@@ -889,7 +1047,7 @@
         /* View Counter */
         async function updateViewCounter() {
             try {
-                const response = await fetch('https://api.counterapi.dev/v1/sreenu-cherry-wedding/visits/up');
+                const response = await fetch('https://api.counterapi.dev/v1/sreenu4cherry-wedding/visits/up');
                 const data = await response.json();
                 if (data && data.count) {
                     document.getElementById('view-count').innerText = data.count.toLocaleString();
@@ -995,6 +1153,30 @@
         }, { passive: false });
 
         window.addEventListener('touchend', () => { isDrawing = false; });
+        
+        /* --- Lightbox Logic --- */
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('image-lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = imageSrc;
+            
+            lightbox.style.display = 'flex';
+            // Slight delay allows the CSS transition to work smoothly
+            setTimeout(() => {
+                lightbox.classList.add('active');
+                document.body.classList.add('modal-open'); // Stops background scrolling
+            }, 10);
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('image-lightbox');
+            lightbox.classList.remove('active');
+            
+            setTimeout(() => {
+                lightbox.style.display = 'none';
+                document.body.classList.remove('modal-open'); // Restores background scrolling
+            }, 300);
+        }
     </script>
 </body>
 </html>
